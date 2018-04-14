@@ -6,21 +6,22 @@ from accounts.forms import (
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-def home(request):
-    numbers = [1,2,3,4,5]
-    name = 'Bryan Ki'
-    args = {'myName': name, 'numbers': numbers}
-    return render(request, 'accounts/home.html')
+# def home(request):
+#     numbers = [1,2,3,4,5]
+#     name = 'Bryan Ki'
+#     args = {'myName': name, 'numbers': numbers}
+#     return render(request, 'accounts/home.html')
 
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/account')
+            return redirect(reverse('accounts:home'))
         # need else statement
     else:
         form = RegistrationForm()
@@ -28,9 +29,11 @@ def register(request):
         args = {'form': form}
         return render(request, 'accounts/reg_form.html', args)
 
+
 def view_profile(request):
     args = {'user': request.user}
     return render(request, 'accounts/profile.html', args)
+
 
 def edit_profile(request):
     if request.method == 'POST':
@@ -38,11 +41,12 @@ def edit_profile(request):
 
         if form.is_valid():
             form.save()
-            return redirect('/account/profile')
+            return redirect(reverse('accounts:view_profile'))
     else:
         form = EditProfileForm(instance=request.user)
         args = {'form': form}
         return render(request, 'accounts/edit_profile.html', args)
+
 
 def change_password(request):
     if request.method == 'POST':
@@ -51,11 +55,11 @@ def change_password(request):
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
-            return redirect('/account/profile')
+            return redirect(reverse('accounts:view_profile'))
         else:
             # TODO print error message: "incorrect password entry", etc
             update_session_auth_hash(request, form.user)
-            return redirect('/account/change-password')
+            return redirect(reverse('accounts:change_password'))
     else:
         form = PasswordChangeForm(user=request.user)
         args = {'form': form}
