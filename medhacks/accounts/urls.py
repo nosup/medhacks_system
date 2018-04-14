@@ -4,14 +4,13 @@ from django.contrib.auth.views import (
     login, logout, password_reset, password_reset_done, password_reset_confirm,
     password_reset_complete,
     )
-# for photos
-from django.conf import settings
-from django.conf.urls.static import static
+
+
 
 app_name = 'accounts'
 
 urlpatterns = [
-    # path('', views.home, name='home'),
+    path('', views.home, name='home'),
     path('login/', login, {'template_name': 'accounts/login.html'}, name='login'),
     path('logout/', logout, {'template_name': 'accounts/logout.html'}, name='logout'),
     path('register/', views.register, name='register'),
@@ -38,4 +37,4 @@ urlpatterns = [
     path('reset-password/complete/', password_reset_complete, {'template_name':
         'accounts/reset_password_complete.html'},
         name='password_reset_complete')
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]

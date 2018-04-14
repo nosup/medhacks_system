@@ -8,13 +8,8 @@ from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 
-
-# Create your views here.
-# def home(request):
-#     numbers = [1,2,3,4,5]
-#     name = 'Bryan Ki'
-#     args = {'myName': name, 'numbers': numbers}
-#     return render(request, 'accounts/home.html')
+def home(request):
+    return render(request, 'accounts/home.html')
 
 def register(request):
     if request.method == 'POST':
@@ -22,7 +17,11 @@ def register(request):
         if form.is_valid():
             form.save()
             return redirect(reverse('accounts:home'))
-        # need else statement
+        else:
+            form = RegistrationForm()
+
+            args = {'form': form}
+            return render(request, 'accounts/reg_form.html', args)
     else:
         form = RegistrationForm()
 

@@ -16,9 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from medhacks import views
+# for photos
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.login_redirect, name='login_redirect'),
     path('admin/', admin.site.urls),
     path('account/', include(('accounts.urls', 'accounts'), namespace='accounts')),
-]
+    path('home/', include(('home.urls', 'home'), namespace='home')),
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
