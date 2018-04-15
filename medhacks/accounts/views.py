@@ -11,7 +11,7 @@ from django.urls import reverse
 from home.models import Application
 
 def home(request):
-    posts = Application.objects.all()[:1]
+    posts = Application.objects.filter(email=request.user.email)[:1]
     args = {'posts': posts}
     return render(request, 'accounts/home.html', args)
 
