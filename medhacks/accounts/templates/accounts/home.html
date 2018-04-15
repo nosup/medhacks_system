@@ -8,6 +8,14 @@
      <ol>
         <li>
            Application
+           {% for post in posts %}
+              <p>{{post.first_name}}</p>
+              <p>{{post.email}}</p>
+              <p>{{post.graduating_class}}</p>
+              <p>{{post.university}}</p>
+              <p>{{post.phone_number}}</p>
+              <p>{{post.address}}</p>
+           {% endfor %}
         </li>
         <li>
            Campus Ambassador
