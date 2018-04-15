@@ -8,7 +8,7 @@ class HomeView(TemplateView):
     def get(self, request):
         form = HomeForm()
         # requires HTTP response
-        return render(request, self.template_name, {'form': form})
+        return render(request, 'home/applied.html')
 
     def post(self, request):
         form = HomeForm(request.POST)
@@ -34,7 +34,7 @@ class HomeView(TemplateView):
             reimbursement = form.cleaned_data['reimbursement']
             contingency = form.cleaned_data['contingency']
             team = form.cleaned_data['team']
-            return redirect('home:home')
+            return render(request, 'home/applied.html')
 
 
 
