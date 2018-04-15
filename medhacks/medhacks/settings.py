@@ -129,7 +129,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'medhacks/media/')
 
-LOGIN_URL = '/account/login'
+LOGIN_URL = '/account/login/'
 
 LOGIN_REDIRECT_URL = '/account/'
 
