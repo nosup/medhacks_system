@@ -2,7 +2,41 @@
 
 {% block body %}
 <div class="container">
-  <h1>Home</h1>
+  <h1>Home inside accounts</h1>
+  <p>
+     should display status of:
+     <ol>
+        <li>
+           Application
+           {% for post in posts %}
+              <p>{{post.first_name}}</p>
+              <p>{{post.last_name}}</p>
+              <p>{{post.email}}</p>
+              <p>{{post.phone_number}}</p>
+              <p>{{post.address1}}</p>
+              <p>{{post.address2}}</p>
+              <p>{{post.zipcode}}</p>
+              <p>{{post.city}}</p>
+              <p>{{post.country}}</p>
+              <p>{{post.gender}}</p>
+              <p>{{post.university}}</p>
+              <p>{{post.graduating_class}}</p>
+              <p>{{post.major}}</p>
+              <p>{{post.track}}</p>
+              <p>{{post.reimbursement}}</p>
+              <p>{{post.contingency}}</p>
+              <p>{{post.team}}</p>
+              <p>{{post.user}}</p>
+           {% endfor %}
+        </li>
+        <li>
+           Campus Ambassador
+        </li>
+        <li>
+           Travel Reimbursement
+        </li>
+     </ol>
+  </p>
 </div>
 
 {% endblock %}

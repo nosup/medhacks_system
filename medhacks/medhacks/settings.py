@@ -25,7 +25,11 @@ SECRET_KEY = 'yduuqy89g%s61t@)yvby_k5drh5zz6m^hl8xgcpts-$-labet='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '0.0.0.0',
+    '159.89.155.87',
+    '127.0.0.1'
+]
 
 
 # Application definition
@@ -79,7 +83,7 @@ WSGI_APPLICATION = 'medhacks.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'databasedir', 'db.sqlite3'),
     }
 }
 
@@ -121,11 +125,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'medhacks/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'medhacks/media/')
 
-LOGIN_URL = '/account/login'
+LOGIN_URL = '/account/login/'
 
 LOGIN_REDIRECT_URL = '/account/'
 

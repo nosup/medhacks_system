@@ -8,9 +8,15 @@ from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+<<<<<<< HEAD
+=======
+from home.models import Application
+>>>>>>> b5cccd36db9c7afc052d5048140c0e9766039f05
 
 def home(request):
-    return render(request, 'accounts/home.html')
+    posts = Application.objects.filter(email=request.user.email)[:1]
+    args = {'posts': posts}
+    return render(request, 'accounts/home.html', args)
 
 def register(request):
     if request.method == 'POST':
