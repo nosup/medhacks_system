@@ -1,2 +1,3 @@
 medhacks/db.sqlite3
+djangoenv/
 *.pyc
