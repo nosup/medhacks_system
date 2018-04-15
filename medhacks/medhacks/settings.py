@@ -27,7 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '0.0.0.0',
-    '159.89.155.87'
+    '159.89.155.87',
+    '127.0.0.1'
 ]
 
 
@@ -82,7 +83,7 @@ WSGI_APPLICATION = 'medhacks.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'databasedir', 'db.sqlite3'),
     }
 }
 
