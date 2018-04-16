@@ -8,6 +8,7 @@
     {{ form.as_p }}
     <button type="submit">Submit</button>
   </form>
+  {% if text is not '' %}
   <p>
     {{ text }}
     {{ first }}
@@ -27,5 +28,11 @@
     {{ contingency }}
     {{ team }}
   </p>
+  {% else %}
+  <p>
+    Don't forget to submit your application before 09/13/2018!
+    <a class="nav-link" href={% url 'home:home' %}>Application</a>
+  </p>
+  {% endif %}
 </div>
 {% endblock %}
