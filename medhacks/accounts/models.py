@@ -9,19 +9,26 @@ class UserProfileManager(models.Manager):
         # .filter(city='London')
 
 class UserProfile(models.Model):
-    # cascade as delete
+    CHOICES = (
+        ('Y', 'Yes'),
+        ('N', 'No'),
+        ('-', 'Not Decided'),
+    )
+    # user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # description = models.CharField(max_length=100, default='')
+    # city = models.CharField(max_length=100, default='')
+    # website = models.URLField(default='')
+    # phone = models.IntegerField(default=0)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    description = models.CharField(max_length=100, default='')
-    city = models.CharField(max_length=100, default='')
-    website = models.URLField(default='')
-    phone = models.IntegerField(default=0)
-    image = models.ImageField(upload_to='profile_image', blank=True)
+    travel_reimbursement = models.CharField(max_length=1, choices=CHOICES, default = '-')
+    campus_ambassador = models.CharField(max_length=1, choices=CHOICES, default = '-')
+
+    # image = models.ImageField(upload_to='profile_image', blank=True)
 
     # london = UserProfileManager()
 
     def __str__(self):
         return self.user.username
-
 
 def create_profile(sender, **kwargs):
     if kwargs['created']:

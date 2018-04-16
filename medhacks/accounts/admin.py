@@ -4,7 +4,7 @@ from django.db.models.signals import post_save
 
 # Register your models here.
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'user_info', 'city', 'phone', 'website')
+    list_display = ('user', 'travel_reimbursement', 'campus_ambassador',)
 
     def user_info(self, obj):
         return obj.description
@@ -12,7 +12,7 @@ class UserProfileAdmin(admin.ModelAdmin):
     # how to sort the queryset
     def get_queryset(self, request):
         queryset = super(UserProfileAdmin, self).get_queryset(request)
-        queryset = queryset.order_by('-phone', 'user')
+        queryset = queryset.order_by('user')
         return queryset
 
     # changes title/header of table

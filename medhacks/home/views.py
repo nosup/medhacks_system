@@ -8,7 +8,8 @@ class HomeView(TemplateView):
     def get(self, request):
         form = HomeForm()
         # requires HTTP response
-        return render(request, 'home/applied.html')
+        args = {'form':form}
+        return render(request, self.template_name, args)
 
     def post(self, request):
         form = HomeForm(request.POST)
@@ -16,7 +17,6 @@ class HomeView(TemplateView):
             post = form.save(commit=False)
             post.user = request.user
             post.save()
-            text = form.cleaned_data['post']
             first = form.cleaned_data['first_name']
             last = form.cleaned_data['last_name']
             email = form.cleaned_data['email']
@@ -38,7 +38,7 @@ class HomeView(TemplateView):
 
 
 
-        args = {'form': form, 'text': text, 'first': first, 'last': last,
+        args = {'form': form, 'first': first, 'last': last,
             'email': email, 'phone_number': phone_number, 'address1': address1,
             'address2':address2, 'zipcode': zipcode, 'city': city,
             'country': country, 'gender': gender, 'university':university,

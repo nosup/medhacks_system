@@ -3,7 +3,6 @@ from home.models import Application
 from django.forms.widgets import SelectDateWidget
 
 class HomeForm(forms.ModelForm):
-    post = forms.CharField()
     first_name = forms.CharField(label='First Name', max_length=50)
     last_name = forms.CharField(label='Last Name', max_length=50)
     email = forms.EmailField(label='Email', max_length=50)
@@ -24,7 +23,7 @@ class HomeForm(forms.ModelForm):
     # resume = forms.FileField(label='Resume')
 
     class Meta:
-        fields = ('post', 'first_name', 'last_name', 'email', 'phone_number',
+        fields = ('first_name', 'last_name', 'email', 'phone_number',
         'address1', 'address2', 'zipcode', 'city', 'country', 'gender',
         'university', 'graduating_class', 'major', 'track', 'reimbursement',
         'contingency', 'team')

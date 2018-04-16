@@ -4,7 +4,7 @@ from django.db.models.signals import post_save
 
 # Register your models here.
 class ApplicationAdmin(admin.ModelAdmin):
-    list_display = ('post', 'first_name', 'last_name', 'email', 'phone_number',
+    list_display = ('first_name', 'last_name', 'email', 'phone_number',
     'address1', 'address2', 'zipcode', 'city', 'country', 'gender',
     'university', 'graduating_class', 'major', 'track', 'reimbursement',
     'contingency', 'team', 'user')
