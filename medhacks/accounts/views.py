@@ -16,21 +16,12 @@ def home(request):
     return render(request, 'accounts/home.html', args)
 
 def register(request):
+    form = RegistrationForm(request.POST or None)
     if request.method == 'POST':
-        form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect(reverse('accounts:home'))
-        else:
-            form = RegistrationForm()
-
-            args = {'form': form}
-            return render(request, 'accounts/reg_form.html', args)
-    else:
-        form = RegistrationForm()
-
-        args = {'form': form}
-        return render(request, 'accounts/reg_form.html', args)
+    return render(request, 'accounts/reg_form.html', {'form': form})
 
 
 def view_profile(request):
