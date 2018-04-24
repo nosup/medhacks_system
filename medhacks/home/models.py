@@ -20,6 +20,7 @@ class Application(models.Model):
     essay1 = models.CharField(max_length=300, default = '-')
     essay2 = models.CharField(max_length=300, default = '-')
     essay3 = models.CharField(max_length=300, default = '-')
+    essay4 = models.CharField(max_length=300, default = '-')
     # track = models.CharField(max_length=50)
     reimbursement = models.CharField(max_length=50)
     # contingency = models.CharField(max_length=50)

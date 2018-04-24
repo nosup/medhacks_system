@@ -11,7 +11,7 @@ class HomeView(TemplateView):
         application = Application.objects.filter(email=request.user.email)[:1]
         if application.count() > 0:
             return render(request, self.template_name, {'form': None, 'apps': application})
-        return render(request, self.template_name, {'form': form})
+        return render(request, self.template_name, {'form': form, 'apps': None})
 
     def post(self, request):
         form = HomeForm(request.POST)

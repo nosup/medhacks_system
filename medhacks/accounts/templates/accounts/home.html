@@ -9,7 +9,7 @@
         <li>
            Application
            <div class="container">
-             {% if post is not None %}
+             {% if apps == None %}
                {% for post in posts %}
                   <p>{{post.first_name}}</p>
                   <p>{{post.last_name}}</p>
@@ -26,7 +26,6 @@
                   <p>{{post.major}}</p>
                   <p>{{post.track}}</p>
                   <p>{{post.reimbursement}}</p>
-                  <p>{{post.contingency}}</p>
                   <p>{{post.team}}</p>
                   <p>{{post.user}}</p>
                {% endfor %}
