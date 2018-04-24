@@ -3,10 +3,16 @@
 {% block body %}
 <div class="container">
   <h1>Application</h1>
-  <form method="post">
+  <form action={% url 'home:home' %} method="post" enctype='multipart/form-data'>
+     {{ form.as_p }}
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
+    <p>{{ form.non_field_errors }}</p>
+    <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+    <p>
+         {{ form.docfile.errors }}
+         {{ form.docfile }}
+    </p>
+    <p><input type="submit" value="Submit" /></p>
   </form>
   {% if text is not '' %}
   <p>
@@ -28,6 +34,7 @@
     {{ contingency }}
     {{ team }}
   </p>
+
   {% else %}
   <p>
     Don't forget to submit your application before 09/13/2018!

@@ -1,6 +1,7 @@
 from django import forms
 from home.models import Application
 from django.forms.widgets import SelectDateWidget
+from django.core.exceptions import ValidationError
 
 class HomeForm(forms.ModelForm):
     first_name = forms.CharField(label='First Name', max_length=50)
@@ -20,11 +21,10 @@ class HomeForm(forms.ModelForm):
     reimbursement = forms.ChoiceField(label='Travel Reimbursement', choices=(('1', 'No'),('2', 'Yes')))
     contingency = forms.ChoiceField(label='Contingency', choices=(('1', 'No'),('2', 'Yes')))
     team = forms.ChoiceField(label='Team', choices=(('1', 'No'),('2', 'Yes')))
-    # resume = forms.FileField(label='Resume')
-
+    resume = forms.FileField(label='Upload Resume', widget = forms.FileInput, required=True)
     class Meta:
         fields = ('first_name', 'last_name', 'email', 'phone_number',
         'address1', 'address2', 'zipcode', 'city', 'country', 'gender',
         'university', 'graduating_class', 'major', 'track', 'reimbursement',
-        'contingency', 'team')
+        'contingency', 'team', 'resume')
         model = Application
