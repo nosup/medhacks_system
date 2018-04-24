@@ -14,17 +14,18 @@ class HomeForm(forms.ModelForm):
     country = forms.CharField(label="Country", max_length=50)
     gender = forms.ChoiceField(label='Gender', choices = (('M', 'Male'), ('F', 'Female')))
     university = forms.CharField(label='University', max_length=100)
+    # forms.DateField(widget=forms.SelectDateWidget(years=BIRTH_YEAR_CHOICES))
     graduating_class = forms.IntegerField(label='Graduating Class', max_value=2050)
     major = forms.CharField(label='Major', max_length=50)
-    track = forms.ChoiceField(label='Track', choices=(('1', 'Track1'),('2', 'Track2'),('3', 'Track3')))
-    reimbursement = forms.ChoiceField(label='Travel Reimbursement', choices=(('No', 'No'),('Yes', 'Yes')))
-    contingency = forms.ChoiceField(label='Contingency', choices=(('1', 'No'),('2', 'Yes')))
-    team = forms.ChoiceField(label='Team', choices=(('No', 'No'),('Yes', 'Yes')))
-    # resume = forms.FileField(label='Resume')
+    reimbursement = forms.ChoiceField(label='Will you be seeking a travel reimbursement?', choices=(('1', 'No'),('2', 'Yes')))
+    essay1 = forms.CharField(label='Why do you want to attend MedHacks 2018? (Max 300 characters)', widget=forms.Textarea)
+    essay2 = forms.CharField(label='What skills can you bring to the hackathon? (Max 200 characters)', widget=forms.Textarea)
+    essay3 = forms.CharField(label='What would you like to see at MedHacks 2018? (Max 400 characters)', widget=forms.Textarea)
+    essay4 = forms.CharField(label='Is there anything you would like us to know? (Max 200 characters)', widget=forms.Textarea)
 
     class Meta:
         fields = ('first_name', 'last_name', 'email', 'phone_number',
         'address1', 'address2', 'zipcode', 'city', 'country', 'gender',
-        'university', 'graduating_class', 'major', 'track', 'reimbursement',
-        'contingency', 'team')
+        'university', 'graduating_class', 'major', 'reimbursement',
+        )
         model = Application
