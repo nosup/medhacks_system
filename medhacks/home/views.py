@@ -1,7 +1,6 @@
 from django.views.generic import TemplateView
 from home.forms import HomeForm
 from django.shortcuts import render, redirect
-
 from .models import Application
 from .forms import HomeForm
 

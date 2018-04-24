@@ -16,6 +16,7 @@ class Application(models.Model):
     country = models.CharField(max_length=50, blank=True)
     gender = models.CharField(max_length=50, blank=True)
     university = models.CharField(max_length=100, blank=True)
+    #university = models.ChoiceField()
     graduating_class = models.IntegerField(blank=True)
     major = models.CharField(max_length=50, blank=True)
     track = models.CharField(max_length=50, blank=True)
