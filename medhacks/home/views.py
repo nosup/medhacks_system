@@ -33,11 +33,17 @@ class HomeView(TemplateView):
             university = form.cleaned_data['university']
             gclass = form.cleaned_data['graduating_class']
             major = form.cleaned_data['major']
-            track = form.cleaned_data['track']
+            # track = form.cleaned_data['track']
             reimbursement = form.cleaned_data['reimbursement']
-            contingency = form.cleaned_data['contingency']
-            team = form.cleaned_data['team']
+            essay1 = form.cleaned_data['essay1']
+            essay2 = form.cleaned_data['essay2']
+            essay3 = form.cleaned_data['essay3']
+            essay4 = form.cleaned_data['essay4']
             form.save()
+            # contingency = form.cleaned_data['contingency']
+            # team = form.cleaned_data['team']
+            return render(request, 'home/applied.html')
+
 
             return render(request, 'home/applied.html')
         else:
@@ -47,9 +53,15 @@ class HomeView(TemplateView):
             'email': email, 'phone_number': phone_number, 'address1': address1,
             'address2':address2, 'zipcode': zipcode, 'city': city,
             'country': country, 'gender': gender, 'university':university,
-            'gclass': gclass, 'major':major, 'track': track, 'reimbursement': reimbursement,
-            'contingency': contingency, 'team': team, 'resume': resume}
-
+            'gclass': gclass, 'major':major, 'reimbursement': reimbursement, # 'contingency': contingency,
+            'essay1': essay1, 'resume': resume}
+        # args = {'form': form, 'text': text, 'first': first, 'last_name': last_name,
+        #     'email': email, 'phone_number': address1, 'address1': address1,
+        #     'address2': address2, 'zipcode': zipcode, 'city': city,
+        #     'country': country, 'gender': gender, 'university': university,
+        #     'graduating_class': graduating_class, 'major': major, 'track': track,
+        #     'reimbursement': reimbursement, 'contingency': contingency, 'team': team,
+        # }
         return render(request, self.template_name, args)
 
 '''
