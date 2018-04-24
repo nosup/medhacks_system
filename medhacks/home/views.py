@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView
 from home.forms import HomeForm
+from home.models import Application
 from django.shortcuts import render, redirect
 
 class HomeView(TemplateView):
@@ -7,9 +8,10 @@ class HomeView(TemplateView):
 
     def get(self, request):
         form = HomeForm()
-        # requires HTTP response
-        args = {'form':form}
-        return render(request, self.template_name, args)
+        application = Application.objects.filter(email=request.user.email)[:1]
+        if application.count() > 0:
+            return render(request, self.template_name, {'form': None, 'apps': application})
+        return render(request, self.template_name, {'form': form})
 
     def post(self, request):
         form = HomeForm(request.POST)
@@ -36,14 +38,14 @@ class HomeView(TemplateView):
             team = form.cleaned_data['team']
             return render(request, 'home/applied.html')
 
+        return render(request, self.template_name, {'form': form})
 
-
-        args = {'form': form, 'first': first, 'last': last,
-            'email': email, 'phone_number': phone_number, 'address1': address1,
-            'address2':address2, 'zipcode': zipcode, 'city': city,
-            'country': country, 'gender': gender, 'university':university,
-            'gclass': gclass, 'major':major, 'track': track, 'reimbursement': reimbursement,
-            'contingency': contingency, 'team': team}
+        # args = {'form': form, 'first': first, 'last': last,
+        # 'email': email, 'phone_number': phone_number, 'address1': address1,
+        # 'address2':address2, 'zipcode': zipcode, 'city': city,
+        # 'country': country, 'gender': gender, 'university':university,
+        # 'gclass': gclass, 'major':major, 'track': track, 'reimbursement': reimbursement,
+        # 'contingency': contingency, 'team': team}
         # args = {'form': form, 'text': text, 'first': first, 'last_name': last_name,
         #     'email': email, 'phone_number': address1, 'address1': address1,
         #     'address2': address2, 'zipcode': zipcode, 'city': city,
@@ -51,4 +53,3 @@ class HomeView(TemplateView):
         #     'graduating_class': graduating_class, 'major': major, 'track': track,
         #     'reimbursement': reimbursement, 'contingency': contingency, 'team': team,
         # }
-        return render(request, self.template_name, args)

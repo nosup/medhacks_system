@@ -6,7 +6,7 @@ class HomeForm(forms.ModelForm):
     first_name = forms.CharField(label='First Name', max_length=50)
     last_name = forms.CharField(label='Last Name', max_length=50)
     email = forms.EmailField(label='Email', max_length=50)
-    phone_number = forms.CharField(label='Phone Number')
+    phone_number = forms.CharField(label='Phone Number', max_length=15)
     address1 = forms.CharField(label="Address line 1", max_length=50)
     address2 = forms.CharField(label="Address line 2", max_length=50, required=False)
     zipcode = forms.CharField(label="Zipcode", max_length=50, required=False)
@@ -17,9 +17,9 @@ class HomeForm(forms.ModelForm):
     graduating_class = forms.IntegerField(label='Graduating Class', max_value=2050)
     major = forms.CharField(label='Major', max_length=50)
     track = forms.ChoiceField(label='Track', choices=(('1', 'Track1'),('2', 'Track2'),('3', 'Track3')))
-    reimbursement = forms.ChoiceField(label='Travel Reimbursement', choices=(('1', 'No'),('2', 'Yes')))
+    reimbursement = forms.ChoiceField(label='Travel Reimbursement', choices=(('No', 'No'),('Yes', 'Yes')))
     contingency = forms.ChoiceField(label='Contingency', choices=(('1', 'No'),('2', 'Yes')))
-    team = forms.ChoiceField(label='Team', choices=(('1', 'No'),('2', 'Yes')))
+    team = forms.ChoiceField(label='Team', choices=(('No', 'No'),('Yes', 'Yes')))
     # resume = forms.FileField(label='Resume')
 
     class Meta:

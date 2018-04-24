@@ -3,35 +3,34 @@
 {% block body %}
 <div class="container">
   <h1>Application</h1>
+  {% if form != None %}
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Submit</button>
   </form>
-  {% if text is not '' %}
-  <p>
-    {{ text }}
-    {{ first }}
-    {{ email }}
-    {{ phone_number }}
-    {{ address1 }}
-    {{ address2 }}
-    {{ zipcode }}
-    {{ city }}
-    {{ country }}
-    {{ gender }}
-    {{ university }}
-    {{ gclass }}
-    {{ major }}
-    {{ track }}
-    {{ reimbursement }}
-    {{ contingency }}
-    {{ team }}
-  </p>
   {% else %}
   <p>
-    Don't forget to submit your application before 09/13/2018!
-    <a class="nav-link" href={% url 'home:home' %}>Application</a>
+    {% for app in apps %}
+    First Name: {{ app.first_name }}</br>
+    Last Name: {{ app.last_name }}</br>
+    Email: {{ app.email }}</br>
+    Phone Number: {{ app.phone_number }}</br>
+    Address: {{ app.address1 }}
+             {{ app.address2 }}</br>
+    Zipcode: {{ app.zipcode }}</br>
+    City: {{ app.city }}</br>
+    Country: {{ app.country }}</br>
+    Gender: {{ app.gender }}</br>
+    University: {{ app.university }}</br>
+    Graduating Class: {{ app.gclass }}</br>
+    Zipcode: {{ app.zipcode }}</br>
+    City: {{ app.city }}</br>
+    Major: {{ app.major }}</br>
+    Track: {{ app.track }}</br>
+    Reimbursement: {{ app.reimbursement }}</br>
+    Team: {{ app.team }}</br>
+  {% endfor %}
   </p>
   {% endif %}
 </div>
