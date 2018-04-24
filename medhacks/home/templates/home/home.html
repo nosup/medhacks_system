@@ -19,6 +19,10 @@
       <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
         <div class="card-body">
           {% if form != None %}
+          <p>Username: {{user}}</p>
+          <p>First name: {{user.first_name}}</p>
+          <p>Last name: {{user.last_name}}</p>
+          <p>Email: {{user.email}}</p>
             <form method="post">
               {% csrf_token %}
               {{ form.as_p }}

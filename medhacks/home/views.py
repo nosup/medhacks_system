@@ -8,9 +8,9 @@ class HomeView(TemplateView):
 
     def get(self, request):
         form = HomeForm()
-        application = Application.objects.filter(email=request.user.email)[:1]
+        application = Application.objects.filter(user=request.user)[:1]
         if application.count() > 0:
-            return render(request, self.template_name, {'form': None, 'apps': application})
+            return render(request, self.template_name, {'form': None, 'apps': application, 'user': request.user})
         return render(request, self.template_name, {'form': form, 'apps': None})
 
     def post(self, request):
