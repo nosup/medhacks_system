@@ -37,14 +37,14 @@ class RegistrationForm(UserCreationForm):
             raise forms.ValidationError(self.fields['password2'].error_messages["error2"])
 
 
-class EditProfileForm(UserChangeForm):
-
-    class Meta:
-        model = User
-        fields = (
-            'email',
-            'first_name',
-            'last_name',
-            'password'
-        )
-        # exclude = ()
+# class EditProfileForm(UserChangeForm):
+#
+#     class Meta:
+#         model = User
+#         fields = (
+#             'email',
+#             'first_name',
+#             'last_name',
+#             'password'
+#         )
+#         # exclude = ()
