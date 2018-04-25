@@ -29,18 +29,12 @@ class HomeForm(forms.ModelForm):
     with open(path) as json_file:
         json_data = json.load(json_file)
 
+    # collegeList = list(json_data)
+    #
+    # numberList = collegeList
+    # tupledList = list(zip(numberList,collegeList))
 
-    #print(collegeList)
-
-    #counter is 7770
-
-    collegeList = list(json_data)
-
-    #numberList = list(range(1, counter))
-    numberList = collegeList
-    tupledList = list(zip(numberList,collegeList))
-    #collegeList =
-    #print(collegeList)
+    tupledList = (('1', 'X'), ('2', 'J'))
 
     f.close()
 
