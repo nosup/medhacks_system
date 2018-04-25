@@ -21,12 +21,12 @@ class HomeForm(forms.ModelForm):
     with open(path) as json_file:
         json_data = json.load(json_file)
 
-    # collegeList = list(json_data)
-    #
-    # numberList = collegeList
-    # tupledList = list(zip(numberList,collegeList))
+    collegeList = list(json_data)
 
-    tupledList = (('1', 'X'), ('2', 'J'))
+    numberList = collegeList
+    tupledList = list(zip(numberList,collegeList))
+
+    #tupledList = (('1', 'X'), ('2', 'J'))
 
 
 
