@@ -20,10 +20,10 @@ class HomeForm(forms.ModelForm):
     json_string = f.read()
 
     counter = 1
-    inst = "institution"
-    for line in json_string.split('\n'):
-        if inst in line:
-            counter = counter + 1
+    # inst = "institution"
+    # for line in json_string.split('\n'):
+    #     if inst in line:
+    #         counter = counter + 1
 
     json_data = []
     with open(path) as json_file:
@@ -32,6 +32,7 @@ class HomeForm(forms.ModelForm):
 
     #print(collegeList)
 
+    #counter is 7770
 
     collegeList = list(json_data)
 
