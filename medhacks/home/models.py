@@ -27,4 +27,4 @@ class Application(models.Model):
     # contingency = models.CharField(max_length=50)
     # team = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    resume = ContentTypeRestrictedFileField(upload_to='resume', content_types=['application/pdf','image/jpeg', 'application/docx'],max_upload_size=5242880,blank=False, null=False)
+    resume = ContentTypeRestrictedFileField(upload_to='resume', content_types=['application/pdf','application/docx', 'image.jpg', 'image.jpeg'],max_upload_size=5242880,blank=False, null=False)

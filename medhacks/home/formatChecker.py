@@ -30,7 +30,7 @@ class ContentTypeRestrictedFileField(FileField):
             else:
                 print("FILEtypeHI\n")
 
-                raise forms.ValidationError(_('Filetype not supported.'))
+                raise forms.ValidationError(_('Only .pdf, .docx, and .jpg accepted'))
                 print("WHAT")
         except AttributeError:
             pass

@@ -18,45 +18,26 @@ class HomeForm(forms.ModelForm):
 
     f = open(path)
     json_string = f.read()
-    #print(json_string)
-    json_string = json_string.replace('[', '(')
-    json_string = json_string.replace(']', ')')
-    json_string = json_string.replace('{', '(')
-    json_string = json_string.replace('}', ')')
-    json_string = json_string.replace(':', ',')
 
-    #print(json_string)
     counter = 1
-    collegechoices = ""
-
     inst = "institution"
     for line in json_string.split('\n'):
         if inst in line:
-            line = line.replace(inst, str(counter))
-            line = '(' + line + '),'
-            collegechoices = collegechoices + line
-            #print(line)
             counter = counter + 1
-    collegechoices = '(' + collegechoices + ')'
-    tuplecollegechoices = tuple(collegechoices,)
-    #print(tuple(collegechoices,))
-    #print(collegechoices)
-    #json_object = json.load(f)
 
     json_data = []
     with open(path) as json_file:
         json_data = json.load(json_file)
 
+
+    #print(collegeList)
+
+
     collegeList = list(json_data)
 
-    #print(collegeList)
-
-
-    #print(collegeList)
-    numberList = list(range(1, counter))
+    #numberList = list(range(1, counter))
+    numberList = collegeList
     tupledList = list(zip(numberList,collegeList))
-    # tupledList = [item.replace("'", "") for item in tupledList]
-
     #collegeList =
     #print(collegeList)
 
@@ -77,7 +58,7 @@ class HomeForm(forms.ModelForm):
     # forms.DateField(widget=forms.SelectDateWidget(years=BIRTH_YEAR_CHOICES))
     graduating_class = forms.IntegerField(label='Graduating Class', max_value=2050)
     major = forms.CharField(label='Major', max_length=50)
-    reimbursement = forms.ChoiceField(label='Will you be seeking a travel reimbursement?', choices=(('1', 'No'),('2', 'Yes')))
+    reimbursement = forms.ChoiceField(label='Will you be seeking a travel reimbursement?', choices=(('No', 'No'),('Yes', 'Yes')))
     essay1 = forms.CharField(label='Why do you want to attend MedHacks 2018? (Max 300 characters)', widget=forms.Textarea)
     essay2 = forms.CharField(label='What skills can you bring to the hackathon? (Max 200 characters)', widget=forms.Textarea)
     essay3 = forms.CharField(label='What would you like to see at MedHacks 2018? (Max 400 characters)', widget=forms.Textarea)
