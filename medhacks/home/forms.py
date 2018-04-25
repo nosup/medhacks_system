@@ -17,9 +17,9 @@ class HomeForm(forms.ModelForm):
 
     counter = 1
 
-    # json_data = []
-    # with open(path) as json_file:
-    #     json_data = json.load(json_file)
+    json_data = []
+    with open(path) as json_file:
+        json_data = json.load(json_file)
 
     # collegeList = list(json_data)
     #
