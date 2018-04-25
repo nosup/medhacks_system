@@ -18,14 +18,13 @@ class HomeForm(forms.ModelForm):
     counter = 1
 
     json_data = []
-    with open(path) as json_file:
+    with open(path, encoding='utf-8') as json_file:
         json_data = json.load(json_file)
 
+    collegeList = list(json_data)
+    tupledList = list(zip(collegeList,collegeList))
 
-    # collegeList = list(str(json_data))
-    # tupledList = list(zip(collegeList,collegeList))
-
-    tupledList = (('1', 'Temp1'), ('2', 'Temp2'))
+    #tupledList = (('1', 'Temp1'), ('2', 'Temp2'))
 
     first_name = forms.CharField(label='First Name', max_length=50)
     last_name = forms.CharField(label='Last Name', max_length=50)
