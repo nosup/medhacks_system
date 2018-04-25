@@ -5,29 +5,21 @@ from django.core.exceptions import ValidationError
 import json
 from django.conf import settings
 import os
-import ast
+
 class HomeForm(forms.ModelForm):
     #json_data = open('colleges.json').read()
     # STATIC_URL = '/static/'
     #
     # json_data = os.path.join(STATIC_URL, 'colleges.json')
     # data = open(json_data,'r')
-
     path = os.path.join( settings.STATIC_ROOT, 'colleges.json')
     #print(path)
 
-    f = open(path)
-    json_string = f.read()
-
     counter = 1
-    # inst = "institution"
-    # for line in json_string.split('\n'):
-    #     if inst in line:
-    #         counter = counter + 1
 
-    json_data = []
-    with open(path) as json_file:
-        json_data = json.load(json_file)
+    # json_data = []
+    # with open(path) as json_file:
+    #     json_data = json.load(json_file)
 
     # collegeList = list(json_data)
     #
@@ -36,7 +28,6 @@ class HomeForm(forms.ModelForm):
 
     tupledList = (('1', 'X'), ('2', 'J'))
 
-    f.close()
 
 
     first_name = forms.CharField(label='First Name', max_length=50)
