@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView
 from home.forms import HomeForm
+from home.models import Application
 from django.shortcuts import render, redirect
 from .models import Application
 from .forms import HomeForm
@@ -9,9 +10,10 @@ class HomeView(TemplateView):
 
     def get(self, request):
         form = HomeForm()
-        # requires HTTP response
-        args = {'form':form}
-        return render(request, self.template_name, args)
+        application = Application.objects.filter(user=request.user)[:1]
+        if application.count() > 0:
+            return render(request, self.template_name, {'form': None, 'apps': application, 'user': request.user})
+        return render(request, self.template_name, {'form': form, 'apps': None})
 
     def post(self, request):
         form = HomeForm(request.POST, request.FILES)
@@ -43,18 +45,16 @@ class HomeView(TemplateView):
             # contingency = form.cleaned_data['contingency']
             # team = form.cleaned_data['team']
             return render(request, 'home/applied.html')
+        return render(request, self.template_name, {'form': form})
 
 
-            return render(request, 'home/applied.html')
-        else:
-            return render(request, 'home/home.html')
-
-        args = {'form': form, 'first': first, 'last': last,
-            'email': email, 'phone_number': phone_number, 'address1': address1,
-            'address2':address2, 'zipcode': zipcode, 'city': city,
-            'country': country, 'gender': gender, 'university':university,
-            'gclass': gclass, 'major':major, 'reimbursement': reimbursement, # 'contingency': contingency,
-            'essay1': essay1, 'resume': resume}
+        #
+        # args = {'form': form, 'first': first, 'last': last,
+        #     'email': email, 'phone_number': phone_number, 'address1': address1,
+        #     'address2':address2, 'zipcode': zipcode, 'city': city,
+        #     'country': country, 'gender': gender, 'university':university,
+        #     'gclass': gclass, 'major':major, 'reimbursement': reimbursement, # 'contingency': contingency,
+        #     'essay1': essay1}
         # args = {'form': form, 'text': text, 'first': first, 'last_name': last_name,
         #     'email': email, 'phone_number': address1, 'address1': address1,
         #     'address2': address2, 'zipcode': zipcode, 'city': city,

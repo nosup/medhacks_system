@@ -2,48 +2,129 @@
 {% load staticfiles %}
 {% block body %}
 <div class="container">
-  <h1>Application</h1>
-  <form action={% url 'home:home' %} method="post" enctype='multipart/form-data'>
-     {{ form.as_p }}
-    {% csrf_token %}
-    <p>{{ form.non_field_errors }}</p>
-    <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
-    <p>
-         {{ form.docfile.errors }}
-         {{ form.docfile }}
-    </p>
-    <p><input type="submit" value="Submit" /></p>
-  </form>
+  <div id="accordion">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            {% if form != None %}
+            Application due 9/31/2018!
+            {% else %}
+            Application Submission View
+            {% endif %}
+          </button>
+        </h5>
+      </div>
 
-  {% if text is not '' %}
-  <p>
-    {{ text }}
-    {{ first }}
-    {{ email }}
-    {{ phone_number }}
-    {{ address1 }}
-    {{ address2 }}
-    {{ zipcode }}
-    {{ city }}
-    {{ country }}
-    {{ gender }}
-    {{ university }}
-    {{ gclass }}
-    {{ major }}
-    {{ track }}
-    {{ reimbursement }}
-    {{ contingency }}
-    {{ team }}
-  </p>
-
-  {% else %}
-  <p>
-    Don't forget to submit your application before 09/13/2018!
-    <a class="nav-link" href={% url 'home:home' %}>Application</a>
-  </p>
-  {% endif %}
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+          {% if form != None %}
+          <p>Username: {{user}}</p>
+          <p>First name: {{user.first_name}}</p>
+          <p>Last name: {{user.last_name}}</p>
+          <p>Email: {{user.email}}</p>
+          <h1>Application</h1>
+          <form action={% url 'home:home' %} method="post" enctype='multipart/form-data'>
+             {{ form.as_p }}
+            {% csrf_token %}
+            <p>{{ form.non_field_errors }}</p>
+            <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+            <p>
+                 {{ form.docfile.errors }}
+                 {{ form.docfile }}
+            </p>
+            <p><input type="submit" value="Submit" /></p>
+          </form>
+            {% else %}
+            <p>
+              {% for app in apps %}
+              <strong>First Name:</strong> {{ app.first_name }}</br>
+              <strong>Last Name:</strong> {{ app.last_name }}</br>
+              <strong>Email:</strong> {{ app.email }}</br>
+              <strong>Phone Number:</strong> {{ app.phone_number }}</br>
+              <strong>Address:</strong> {{ app.address1 }}
+                       {{ app.address2 }}</br>
+              <strong>Zipcode:</strong> {{ app.zipcode }}</br>
+              <strong>City:</strong> {{ app.city }}</br>
+              <strong>Country:</strong> {{ app.country }}</br>
+              <strong>Gender:</strong> {{ app.gender }}</br>
+              <strong>University:</strong> {{ app.university }}</br>
+              <strong>Graduating Class:</strong> {{ app.gclass }}</br>
+              <strong>Zipcode:</strong> {{ app.zipcode }}</br>
+              <strong>City:</strong> {{ app.city }}</br>
+              <strong>Major:</strong> {{ app.major }}</br>
+              <strong>Reimbursement:</strong> {{ app.reimbursement }}</br>
+              <strong>Why do you want to attend MedHacks 2018?</strong> </br>
+              {{ app.essay1 }} </br>
+              <strong>What skills can you bring to the hackathon?</strong> </br>
+              {{ app.essay2 }} </br>
+              <strong>What would you like to see at MedHacks 2018?</strong> </br>
+              {{ app.essay3 }} </br>
+              <strong>Is there anything you would like us to know?</strong> </br>
+              {{ app.essay4 }} </br>
+            {% endfor %}
+            </p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Campus Ambassador
+          </button>
+        </h5>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <div class="card-body">
+          <div class="container">
+            {% if user.userprofile.campus_ambassador == 'Y' %}
+            <p>
+              Thank you for being a campus amabassador!
+            </p>
+            {% else %}
+            <p>
+              Not a MedHacks campus ambassador? Find out the perks of becoming one!
+            </p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingThree">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Travel Reimbursement
+          </button>
+        </h5>
+      </div>
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+        <div class="card-body">
+          <div class="container">
+            {% if user.userprofile.travel_reimbursement == 'Y' %}
+            <p>
+              You have been awarded a travel reimbursement!
+            </p>
+            {% elif user.userprofile.travel_reimbursement == 'N' %}
+            <p>
+              You are not eligible for a travel reimbursement.
+            </p>
+            {% else %}
+            <p>
+              Travel reimbursement application pending! (All reimbursements statuses
+              will be marked as pending, even if you selected 'No' in the
+              application).
+            </p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script type="text/javascript" src="{% static "js/myscript.js" %}"></script>
+
 {% endblock %}

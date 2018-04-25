@@ -55,7 +55,7 @@ class HomeForm(forms.ModelForm):
     #print(collegeList)
     numberList = list(range(1, counter))
     tupledList = list(zip(numberList,collegeList))
-    tupledList = [item.replace("'", "") for item in tupledList]
+    # tupledList = [item.replace("'", "") for item in tupledList]
 
     #collegeList =
     #print(collegeList)
@@ -66,14 +66,14 @@ class HomeForm(forms.ModelForm):
     first_name = forms.CharField(label='First Name', max_length=50)
     last_name = forms.CharField(label='Last Name', max_length=50)
     email = forms.EmailField(label='Email', max_length=50)
-    phone_number = forms.CharField(label='Phone Number')
+    phone_number = forms.CharField(label='Phone Number', max_length=15)
     address1 = forms.CharField(label="Address line 1", max_length=50)
     address2 = forms.CharField(label="Address line 2", max_length=50, required=False)
     zipcode = forms.CharField(label="Zipcode", max_length=50, required=False)
     city = forms.CharField(label="City", max_length=50)
     country = forms.CharField(label="Country", max_length=50)
     gender = forms.ChoiceField(label='Gender', choices = (('M', 'Male'), ('F', 'Female')))
-    university = forms.CharField(label='University', max_length=100)
+    university = forms.ChoiceField(label='University', choices=tupledList)
     # forms.DateField(widget=forms.SelectDateWidget(years=BIRTH_YEAR_CHOICES))
     graduating_class = forms.IntegerField(label='Graduating Class', max_value=2050)
     major = forms.CharField(label='Major', max_length=50)
@@ -87,7 +87,8 @@ class HomeForm(forms.ModelForm):
     class Meta:
         fields = ('first_name', 'last_name', 'email', 'phone_number',
         'address1', 'address2', 'zipcode', 'city', 'country', 'gender',
-        'university', 'graduating_class', 'major', 'reimbursement','resume',
+        'university', 'graduating_class', 'major', 'reimbursement',
+        'essay1', 'essay2', 'essay3', 'essay4', 'resume',
         )
         model = Application
     # def __init__(self, *args, **kwargs):
