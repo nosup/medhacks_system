@@ -7,11 +7,6 @@ from django.conf import settings
 import os
 
 class HomeForm(forms.ModelForm):
-    #json_data = open('colleges.json').read()
-    # STATIC_URL = '/static/'
-    #
-    # json_data = os.path.join(STATIC_URL, 'colleges.json')
-    # data = open(json_data,'r')
     path = os.path.join( settings.STATIC_ROOT, 'colleges.json')
     #print(path)
 
@@ -21,9 +16,17 @@ class HomeForm(forms.ModelForm):
     with open(path, encoding='utf-8') as json_file:
         json_data = json.load(json_file)
 
-    collegeList = list(json_data)
-    tupledList = list(zip(collegeList,collegeList))
 
+    onlyCollegeList = []
+    for piece in json_data:
+        this_ip = piece['institution']
+        onlyCollegeList.append(this_ip)
+
+    #print(onlyCollegeList)
+    onlyCollegeList = sorted(set(onlyCollegeList))
+
+    #tupledList = list(zip(collegeDict,collegeDict))
+    tupledList = list(zip(onlyCollegeList, onlyCollegeList))
     #tupledList = (('1', 'Temp1'), ('2', 'Temp2'))
 
     first_name = forms.CharField(label='First Name', max_length=50)
@@ -54,7 +57,3 @@ class HomeForm(forms.ModelForm):
         'essay1', 'essay2', 'essay3', 'essay4', 'resume',
         )
         model = Application
-    # def __init__(self, *args, **kwargs):
-    #     super(HomeForm, self).__init__(*args, **kwargs)
-    #     if self.instance:
-    #         self.fields['university'].choices = ('1', 'track')
