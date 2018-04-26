@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load static %}
+
 {% block body %}
 <div class="container">
   <div id="accordion">
@@ -62,6 +64,8 @@
               {{ app.essay3 }} </br>
               <strong>Is there anything you would like us to know?</strong> </br>
               {{ app.essay4 }} </br>
+              <a href="{{app.resume.url}}" target="_blank"><strong>Resume Submitted</strong></a>
+              <br />
             {% endfor %}
             </p>
             {% endif %}

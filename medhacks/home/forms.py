@@ -10,8 +10,6 @@ class HomeForm(forms.ModelForm):
     path = os.path.join( settings.STATIC_ROOT, 'colleges.json')
     #print(path)
 
-    counter = 1
-
     json_data = []
     with open(path, encoding='utf-8') as json_file:
         json_data = json.load(json_file)
@@ -25,7 +23,6 @@ class HomeForm(forms.ModelForm):
     #print(onlyCollegeList)
     onlyCollegeList = sorted(set(onlyCollegeList))
 
-    #tupledList = list(zip(collegeDict,collegeDict))
     tupledList = list(zip(onlyCollegeList, onlyCollegeList))
     #tupledList = (('1', 'Temp1'), ('2', 'Temp2'))
 
