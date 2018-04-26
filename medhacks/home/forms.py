@@ -29,9 +29,9 @@ class HomeForm(forms.ModelForm):
     tupledList = list(zip(onlyCollegeList, onlyCollegeList))
     #tupledList = (('1', 'Temp1'), ('2', 'Temp2'))
 
-    first_name = forms.CharField(label='First Name', max_length=50)
-    last_name = forms.CharField(label='Last Name', max_length=50)
-    email = forms.EmailField(label='Email', max_length=50)
+    first_name = forms.CharField(label='First Name', max_length=50, widget = forms.HiddenInput())
+    last_name = forms.CharField(label='Last Name', max_length=50, widget = forms.HiddenInput())
+    email = forms.EmailField(label='Email', max_length=50, widget = forms.HiddenInput())
     phone_number = forms.CharField(label='Phone Number', max_length=15)
     address1 = forms.CharField(label="Address line 1", max_length=50)
     address2 = forms.CharField(label="Address line 2", max_length=50, required=False)

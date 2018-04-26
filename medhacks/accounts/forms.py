@@ -36,6 +36,17 @@ class RegistrationForm(UserCreationForm):
             self.fields['password2'].error_messages["error2"] = "Passwords must match"
             raise forms.ValidationError(self.fields['password2'].error_messages["error2"])
 
+    def clean_first_name(self):
+        if self.cleaned_data["first_name"].strip() == '':
+            self.fields['first_name'].error_messages["error3"] = "First name is required"
+            raise forms.ValidationError(self.fields['first_name'].error_messages["error3"])
+        return self.cleaned_data["first_name"]
+
+    def clean_last_name(self):
+        if self.cleaned_data["last_name"].strip() == '':
+            self.fields['last_name'].error_messages["error4"] = "Last name is required"
+            raise forms.ValidationError(self.fields['last_name'].error_messages["error4"])
+        return self.cleaned_data["last_name"]
 
 # class EditProfileForm(UserChangeForm):
 #

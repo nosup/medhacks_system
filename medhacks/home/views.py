@@ -9,7 +9,10 @@ class HomeView(TemplateView):
     template_name = 'home/home.html'
 
     def get(self, request):
-        form = HomeForm()
+        ufirst_name = request.user.first_name;
+        ulast_name = request.user.last_name;
+        uemail = request.user.email;
+        form = HomeForm(initial={'first_name':ufirst_name, 'last_name':ulast_name, 'email':uemail})
         application = Application.objects.filter(user=request.user)[:1]
         if application.count() > 0:
             return render(request, self.template_name, {'form': None, 'apps': application, 'user': request.user})
