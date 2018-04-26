@@ -35,6 +35,7 @@ class HomeView(TemplateView):
             city = form.cleaned_data['city']
             country = form.cleaned_data['country']
             gender = form.cleaned_data['gender']
+            education = form.cleaned_data['education']
             university = form.cleaned_data['university']
             gclass = form.cleaned_data['graduating_class']
             major = form.cleaned_data['major']

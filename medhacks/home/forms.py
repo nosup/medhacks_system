@@ -39,6 +39,9 @@ class HomeForm(forms.ModelForm):
     city = forms.CharField(label="City", max_length=50)
     country = forms.CharField(label="Country", max_length=50)
     gender = forms.ChoiceField(label='Gender', choices = (('M', 'Male'), ('F', 'Female')))
+    education = forms.ChoiceField(label='Current Level of Education', choices =
+        (('High School', 'High School'), ('Undergraduate', 'Undergraduate'),
+        ('Graduate', 'Graduate'), ('Professional', 'Professional')))
     university = forms.ChoiceField(label='University', choices=tupledList)
     # forms.DateField(widget=forms.SelectDateWidget(years=BIRTH_YEAR_CHOICES))
     graduating_class = forms.IntegerField(label='Graduating Class', max_value=2050)
@@ -53,7 +56,7 @@ class HomeForm(forms.ModelForm):
     class Meta:
         fields = ('first_name', 'last_name', 'email', 'phone_number',
         'address1', 'address2', 'zipcode', 'city', 'country', 'gender',
-        'university', 'graduating_class', 'major', 'reimbursement',
+        'education', 'university', 'graduating_class', 'major', 'reimbursement',
         'essay1', 'essay2', 'essay3', 'essay4', 'resume',
         )
         model = Application
