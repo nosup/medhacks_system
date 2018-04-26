@@ -4,7 +4,7 @@ from django.db.models.signals import post_save
 
 # Register your models here.
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'travel_reimbursement', 'campus_ambassador',)
+    list_display = ('user', 'travel_reimbursement', 'campus_ambassador', 'accepted')
 
     def user_info(self, obj):
         return obj.description

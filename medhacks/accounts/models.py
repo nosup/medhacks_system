@@ -20,8 +20,9 @@ class UserProfile(models.Model):
     # website = models.URLField(default='')
     # phone = models.IntegerField(default=0)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    travel_reimbursement = models.CharField(max_length=1, choices=CHOICES, default = '-')
-    campus_ambassador = models.CharField(max_length=1, choices=CHOICES, default = '-')
+    travel_reimbursement = models.CharField(max_length=1, choices=CHOICES, default='-')
+    campus_ambassador = models.CharField(max_length=1, choices=CHOICES, default='-')
+    accepted = models.CharField(max_length=1, choices=CHOICES, default='-')
 
     # image = models.ImageField(upload_to='profile_image', blank=True)
 
