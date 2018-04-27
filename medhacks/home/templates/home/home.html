@@ -5,6 +5,7 @@
 {% block body %}
 <div class="container">
   <div id="accordion">
+
     <div class="card">
       <div class="card-header" id="headingOne">
         <h5 class="mb-0">
@@ -17,7 +18,6 @@
           </button>
         </h5>
       </div>
-
       <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
         <div class="card-body">
           {% if form != None %}
@@ -75,8 +75,44 @@
             {% endif %}
           </div>
         </div>
+
+
       </div>
     </div>
+
+
+   <div class="card">
+    <div class="card-header" id="headingFour">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          Application Status
+        </button>
+      </h5>
+    </div>
+    
+    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+      <div class="card-body">
+        <div class="container">
+
+           {% if user.userprofile.accepted == 'Y' %}
+           <p>
+             Congratulations! You have been accepeted into 2018 MedHacks!
+           </p>
+           {% elif user.userprofile.accepted == 'N' %}
+           <p>
+             I'm sorry, due to the large number of applicants this year, we are unable to
+             accept you.
+           </p>
+           {% else %}
+           <p>
+             Application status pending
+           </p>
+           {% endif %}
+
+        </div>
+      </div>
+    </div>
+
     <div class="card">
       <div class="card-header" id="headingTwo">
         <h5 class="mb-0">
@@ -101,6 +137,7 @@
         </div>
       </div>
     </div>
+
     <div class="card">
       <div class="card-header" id="headingThree">
         <h5 class="mb-0">
@@ -131,6 +168,10 @@
         </div>
       </div>
     </div>
+
+
+
+
   </div>
 </div>
 
