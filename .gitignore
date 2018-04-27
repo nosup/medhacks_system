@@ -1,2 +1,4 @@
 djangoenv/
 *.pyc
+databasedir/*
+db.sqlite3
