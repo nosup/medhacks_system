@@ -11,6 +11,8 @@ class HomeForm(forms.ModelForm):
     path_to_colleges = os.path.join(settings.STATIC_ROOT, 'colleges.json')
 
     json_data = []
+
+    #need encoding to prevent error on live server
     with open(path_to_colleges, encoding='utf-8') as json_file:
         json_data = json.load(json_file)
 
@@ -20,14 +22,13 @@ class HomeForm(forms.ModelForm):
         this_ip = piece['institution']
         onlyCollegeList.append(this_ip)
 
-    #print(onlyCollegeList)
+    #sorted and deletes duplicates from onlyCollegeList
     onlyCollegeList = sorted(set(onlyCollegeList))
     onlyCollegeList.insert(0, 'Other')
 
+    #puts onlyCollegeList into a tupled list of choices for forms
     tupled_list_colleges = list(zip(onlyCollegeList, onlyCollegeList))
     #tupledList = (('1', 'Temp1'), ('2', 'Temp2'))
-
-
 
     path_to_majors = os.path.join(settings.STATIC_ROOT, 'major_list.csv')
 
@@ -36,6 +37,8 @@ class HomeForm(forms.ModelForm):
         complete_majors_list = list(reader)
 
     only_majors_list = [a[1] for a in complete_majors_list]
+
+    #delete first index of major list because it is not a major(it's a header)
     only_majors_list.pop(0)
     only_majors_list = sorted(only_majors_list)
     only_majors_list.insert(0, 'Other')
