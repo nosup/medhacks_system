@@ -80,6 +80,7 @@
       </div>
     </div>
 
+    {% if form == None %}
 
    <div class="card">
     <div class="card-header" id="headingFour">
@@ -89,14 +90,15 @@
         </button>
       </h5>
     </div>
-    
+
     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
       <div class="card-body">
         <div class="container">
 
            {% if user.userprofile.accepted == 'Y' %}
            <p>
-             Congratulations! You have been accepeted into 2018 MedHacks!
+             Congratulations! You have been accepted into 2018 MedHacks! Your travel
+             reimbursement details are listed below.
            </p>
            {% elif user.userprofile.accepted == 'N' %}
            <p>
@@ -112,6 +114,9 @@
         </div>
       </div>
     </div>
+
+
+    {% endif %}
 
     <div class="card">
       <div class="card-header" id="headingTwo">
