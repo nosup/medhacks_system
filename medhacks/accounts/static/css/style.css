@@ -1,0 +1,59 @@
+.wmd-panel {
+   margin-left: 0px;
+   margin-right: 0px;
+}
+body {
+   background-color: #BF4D42;
+   font-family: custom;
+}
+@font-face {
+   font-family: custom;
+   src: url("../Raleway-Light.ttf");
+}
+.navbar-brand {
+   background-image: url("../medhackslogo.png");
+   width: 20rem;
+   height: 4rem;
+   background-size: contain;
+   background-repeat: no-repeat;
+}
+
+.navbar {
+   background-color: #ffffff !important;
+}
+
+.applyButton {
+  margin-right: 5.5rem;
+  padding: 0.5rem;
+  width: 10rem;
+  color: black;
+  background-color: #efefef;
+  border-radius: 0.5rem;
+  transform: scale(0.85);
+  transition: 0.2s background-color ease-out, .2s border-color ease-out, .2s transform ease-out;
+}
+
+.applyButton:hover {
+   transform: scale(1);
+   background-color: #BF4D42;
+   color: black;
+   cursor: pointer;
+}
+
+.rightitem {
+   padding: 10px 20px;
+   text-decoration: none;
+   color: black;
+   font-size: 1.3rem;
+   border-radius: 0.5rem;
+   transform: scale(0.85);
+   transition: 0.2s background-color ease-out, .2s border-color ease-out, .2s transform ease-out;
+}
+
+.rightitem:hover {
+   text-decoration: none;
+   background-color: #193f55;
+   color:white;
+   transform: scale(1);
+   cursor: pointer;
+}
