@@ -40,6 +40,8 @@ class HomeView(TemplateView):
             gclass = form.cleaned_data['graduating_class']
             major = form.cleaned_data['major']
             # track = form.cleaned_data['track']
+            attended = form.cleaned_data['attended']
+
             reimbursement = form.cleaned_data['reimbursement']
             essay1 = form.cleaned_data['essay1']
             essay2 = form.cleaned_data['essay2']
