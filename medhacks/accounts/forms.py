@@ -26,6 +26,14 @@ class RegistrationForm(UserCreationForm):
             user.save()
         return user
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        username = self.cleaned_data.get('username')
+        if email and User.objects.filter(email=email).exclude(username=username).exists():
+            self.fields['email'].error_messages["error"] = "An account with this email already exists"
+            raise forms.ValidationError(self.fields['email'].error_messages["error"])
+        return email
+
     def clean_password(self):
         data = self.cleaned_data
         if (len(data['password1']) < 8):

@@ -18,10 +18,10 @@ More information can be found at our [website](http://medhacks.org/)
 This repository contains documentation for the revamped Medhacks website.
 
 #### Server
-We are working on a [Django framework](https://www.djangoproject.com/).
+We are using [digitalocean](https://www.digitalocean.com/) as our server.
 
 #### Web Framework
-We are using [digitalocean](https://www.digitalocean.com/) as our server.
+We are working on a [Django framework](https://www.djangoproject.com/).
 
 ## Connect with Medhacks
 Follow Medhacks on [Facebook](https://www.facebook.com/medhacks/?ref=br_rs/) and [Instagram](https://www.instagram.com/medhacks/). Check out our [website](http://medhacks.org/).
