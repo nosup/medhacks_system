@@ -5,7 +5,9 @@
 {% endblock %}
 
 {% block body %}
-<div class="container">
+<div id="accordion">
+   <div class="card-body">
+
   <h1>Profile</h1>
   <p>Username: {{user}}</p>
   <p>First name: {{user.first_name}}</p>
@@ -44,7 +46,8 @@
   <p>City: {{user.userprofile.city }}</p>
   <p>Website: {{user.userprofile.website }}</p>
   <img src="{{ user.userprofile.image.url }}" width="240"> -->
-
+</div>
+</div>
 
 {% endblock %}
 </body>
