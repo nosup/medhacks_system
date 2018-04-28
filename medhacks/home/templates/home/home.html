@@ -37,7 +37,6 @@
 <div style="height: 50px"></div>
 {% else %}
 <div id="accordion">
-
   <div class="card">
     <div class="card-header" id="headingOne">
       <h5 class="mb-0">
@@ -49,44 +48,12 @@
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
           <p>
-            {% for app in apps %}
-            <strong>First Name:</strong> {{ app.first_name }}</br>
-            <strong>Last Name:</strong> {{ app.last_name }}</br>
-            <strong>Email:</strong> {{ app.email }}</br>
-            <strong>Phone Number:</strong> {{ app.phone_number }}</br>
-            <strong>Address:</strong> {{ app.address1 }}
-                     {{ app.address2 }}</br>
-            <strong>Zipcode:</strong> {{ app.zipcode }}</br>
-            <strong>City:</strong> {{ app.city }}</br>
-            <strong>Country:</strong> {{ app.country }}</br>
-            <strong>Gender:</strong> {{ app.gender }}</br>
-            <strong>University:</strong> {{ app.university }}</br>
-            <strong>Graduating Class:</strong> {{ app.gclass }}</br>
-            <strong>Zipcode:</strong> {{ app.zipcode }}</br>
-            <strong>City:</strong> {{ app.city }}</br>
-            <strong>Major:</strong> {{ app.major }}</br>
-            <strong>Reimbursement:</strong> {{ app.reimbursement }}</br>
-            <strong>Have you attended MedHacks previously?</strong> {{ app.attended }} <br />
-            <strong>Why do you want to attend MedHacks 2018?</strong> </br>
-            {{ app.essay1 }} </br>
-            <strong>What skills can you bring to the hackathon?</strong> </br>
-            {{ app.essay2 }} </br>
-            <strong>What would you like to see at MedHacks 2018?</strong> </br>
-            {{ app.essay3 }} </br>
-            <strong>Is there anything you would like us to know?</strong> </br>
-            {{ app.essay4 }} </br>
             <a href="{{app.resume.url}}" target="_blank"><strong>Resume Submitted</strong></a>
             <br />
-          {% endfor %}
           </p>
         </div>
       </div>
-
-
     </div>
-
-  {% if form == None %}
-
  <div class="card">
   <div class="card-header" id="headingFour">
     <h5 class="mb-0">
@@ -119,9 +86,6 @@
       </div>
     </div>
   </div>
-
-
-  {% endif %}
 
   {% if user.userprofile.campus_ambassador == 'Y' %}
 
@@ -176,10 +140,6 @@
       </div>
     </div>
   </div>
-
-
-
-
 </div>
 </div>
 {% endif %}
