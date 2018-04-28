@@ -7,6 +7,7 @@
 {% endblock %}
 
 {% block body %}
+
 {% if form != None %}
 <div class=card-body style="width: 90vw; margin-left: 5vw;">
     <form action={% url 'home:home' %} method="post" enctype='multipart/form-data'>
@@ -25,8 +26,6 @@
       <p>
          Be sure to like our <a href="https://www.facebook.com/medhacks/?ref=br_rs" target="_blank">Facebook</a> for more updates!
       </p>
-
-
       <!--<p><input type="submit" value="Submit" /></p>-->
 
       <input class="applyButton" type="submit" value="Submit"/>

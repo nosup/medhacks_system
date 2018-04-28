@@ -25,7 +25,7 @@ class HomeForm(forms.ModelForm):
     #sorted and deletes duplicates from onlyCollegeList
     onlyCollegeList = sorted(set(onlyCollegeList))
     onlyCollegeList.insert(0, 'Other')
-
+    onlyCollegeList.insert(0, 'NA')
     #puts onlyCollegeList into a tupled list of choices for forms
     tupled_list_colleges = list(zip(onlyCollegeList, onlyCollegeList))
     #tupledList = (('1', 'Temp1'), ('2', 'Temp2'))
@@ -68,7 +68,7 @@ class HomeForm(forms.ModelForm):
     secondmajor = forms.ChoiceField(label='Second Major', choices=tupled_list_majors)
 
     attended = forms.ChoiceField(label='Have you attended MedHacks previously?', choices=CHOICESMEDHACKS, widget=forms.RadioSelect())
-    reimbursement = forms.ChoiceField(label='Will you be seeking a travel reimbursement?', choices=(('No', 'No'),('Yes', 'Yes')))
+    reimbursement = forms.ChoiceField(label='Will you be seeking a travel reimbursement?', choices=CHOICESMEDHACKS, widget=forms.RadioSelect())
     essay1 = forms.CharField(label='Why do you want to attend MedHacks 2018? (Max 300 characters)', widget=forms.Textarea)
     essay2 = forms.CharField(label='What skills can you bring to the hackathon? (Max 200 characters)', widget=forms.Textarea)
     essay3 = forms.CharField(label='What would you like to see at MedHacks 2018? (Max 400 characters)', widget=forms.Textarea)
