@@ -1,24 +1,33 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
+
+{% block specificcss %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
+{% endblock %}
+
 {% block body %}
 <div id="accordion">
    <div class="card-body">
-     <h1>Welcome</h1>
-     <p>
-       You can log in here!
-     </p>
-     <h2>Login</h2>
-     <div style="height: 25px"></div>
-     <form method="post">
-       {% csrf_token %}
-       <!--{{ form.as_p }}-->
-       {{ form|crispy}}
-      <div style="height: 25px"></div>
-       <button class="applyButton" type="submit">Login</button>
-     </form>
+       <div width="25vw" class="login-container">
+         <h1>Welcome</h1>
+         <p>
+           You can log in here!
+         </p>
+         <h2>Login</h2>
+         <div style="height: 25px"></div>
+         <form method="post">
+           {% csrf_token %}
+           <!--{{ form.as_p }}-->
+           {{ form|crispy}}
+          <div style="height: 25px"></div>
+           <button class="applyButton" type="submit">Login</button>
+         </form>
+        </div>
+
 
   </div>
 </div>
-
+<img src="{% static 'medhackslogo.png' %}"/>
 {% endblock %}
