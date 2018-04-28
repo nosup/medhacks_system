@@ -7,54 +7,47 @@
 {% endblock %}
 
 {% block body %}
+{% if form != None %}
+<div class=card-body style="width: 90vw; margin-left: 5vw;">
+    <form action={% url 'home:home' %} method="post" enctype='multipart/form-data'>
+       {% csrf_token %}
+       <!--{{ form.as_p }}-->
+      {{form|crispy}}
+
+
+
+      <p>{{ form.non_field_errors }}</p>
+      <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+      <p>
+           {{ form.docfile.errors }}
+           {{ form.docfile }}
+      </p>
+      <p>
+         Be sure to like our <a href="https://www.facebook.com/medhacks/?ref=br_rs" target="_blank">Facebook</a> for more updates!
+      </p>
+
+
+      <!--<p><input type="submit" value="Submit" /></p>-->
+
+      <input class="applyButton" type="submit" value="Submit"/>
+
+
+    </form>
+</div>
+<div style="height: 50px"></div>
+{% else %}
 <div id="accordion">
 
   <div class="card">
     <div class="card-header" id="headingOne">
       <h5 class="mb-0">
         <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          {% if form != None %}
-          Application due 9/31/2018!
-          {% else %}
           Application Submission View
-          {% endif %}
         </button>
       </h5>
     </div>
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
-        {% if form != None %}
-        <!--
-        <h1>Application</h1>
-        <p>Username: {{user}}</p>
-        <p>First name: {{user.first_name}}</p>
-        <p>Last name: {{user.last_name}}</p>
-        <p>Email: {{user.email}}</p>-->
-        <form action={% url 'home:home' %} method="post" enctype='multipart/form-data'>
-           {% csrf_token %}
-           <!--{{ form.as_p }}-->
-          {{form|crispy}}
-
-
-
-          <p>{{ form.non_field_errors }}</p>
-          <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
-          <p>
-               {{ form.docfile.errors }}
-               {{ form.docfile }}
-          </p>
-          <p>
-             Be sure to like our <a href="https://www.facebook.com/medhacks/?ref=br_rs" target="_blank">Facebook</a> for more updates!
-          </p>
-
-
-          <!--<p><input type="submit" value="Submit" /></p>-->
-
-          <input class="applyButton" type="submit" value="Submit"/>
-
-
-        </form>
-          {% else %}
           <p>
             {% for app in apps %}
             <strong>First Name:</strong> {{ app.first_name }}</br>
@@ -86,7 +79,6 @@
             <br />
           {% endfor %}
           </p>
-          {% endif %}
         </div>
       </div>
 
@@ -146,7 +138,7 @@
         <div class="container">
           <p>
             Thank you for being a campus amabassador! Here are some helpful links.
-          </p>         
+          </p>
         </div>
       </div>
     </div>
@@ -190,7 +182,7 @@
 
 </div>
 </div>
-
+{% endif %}
 
 
 {% endblock %}
