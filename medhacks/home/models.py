@@ -19,6 +19,7 @@ class Application(models.Model):
     university = models.CharField(max_length=100)
     graduating_class = models.IntegerField()
     major = models.CharField(max_length=50)
+    secondmajor = models.CharField(max_length=50, default = 'NA')
     essay1 = models.CharField(max_length=300, default = '-')
     essay2 = models.CharField(max_length=300, default = '-')
     essay3 = models.CharField(max_length=300, default = '-')

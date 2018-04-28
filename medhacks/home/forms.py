@@ -42,9 +42,10 @@ class HomeForm(forms.ModelForm):
     only_majors_list.pop(0)
     only_majors_list = sorted(only_majors_list)
     only_majors_list.insert(0, 'Other')
+    only_majors_list.insert(0, 'NA')
+
     tupled_list_majors = list(zip(only_majors_list, only_majors_list))
     #print(only_majors_list)
-
     CHOICESMEDHACKS=[('Yes','Yes'), ('No','No')]
 
     first_name = forms.CharField(label='First Name', max_length=50, widget = forms.HiddenInput())
@@ -64,6 +65,8 @@ class HomeForm(forms.ModelForm):
     # forms.DateField(widget=forms.SelectDateWidget(years=BIRTH_YEAR_CHOICES))
     graduating_class = forms.IntegerField(label='Graduating Class', max_value=2050)
     major = forms.ChoiceField(label='Major', choices=tupled_list_majors)
+    secondmajor = forms.ChoiceField(label='Second Major', choices=tupled_list_majors)
+
     attended = forms.ChoiceField(label='Have you attended MedHacks previously?', choices=CHOICESMEDHACKS, widget=forms.RadioSelect())
     reimbursement = forms.ChoiceField(label='Will you be seeking a travel reimbursement?', choices=(('No', 'No'),('Yes', 'Yes')))
     essay1 = forms.CharField(label='Why do you want to attend MedHacks 2018? (Max 300 characters)', widget=forms.Textarea)
@@ -75,7 +78,7 @@ class HomeForm(forms.ModelForm):
     class Meta:
         fields = ('first_name', 'last_name', 'email', 'phone_number',
         'address1', 'address2', 'zipcode', 'city', 'country', 'gender',
-        'education', 'university', 'major','graduating_class', 'reimbursement', 'attended',
+        'education', 'university', 'major','secondmajor','graduating_class', 'reimbursement', 'attended',
         'essay1', 'essay2', 'essay3', 'essay4', 'resume',
         )
         model = Application
