@@ -1,0 +1,14 @@
+.login-container {
+    width: 35vw;
+}
+
+img {
+    width: 40vw;
+    position: relative;
+    left: 50vw;
+    bottom: 30vw;
+}
+
+.card-body {
+    width: 40vw;
+}
