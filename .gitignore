@@ -3,3 +3,4 @@ djangoenv/
 databasedir/*
 databasedir/db.sqlite3
 */db.sqlite3
+/medhacks/medhacks/media/*
