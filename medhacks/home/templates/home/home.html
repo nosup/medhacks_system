@@ -15,8 +15,20 @@
        <!--{{ form.as_p }}-->
       {{form|crispy}}
 
-
-
+      <!-- <script type="text/javascript">
+      var uni = form.getElementById("uni-dropdown");
+      var other_uni = form.getElementById("other-uni");
+      window.onload = function() {
+        other_uni.style.display = 'none';
+      }
+      function showOtherField() {
+        if (uni.options[uni.selectedIndex].value == "Other") {
+          other_uni.style.display = 'block';
+        } else {
+          other_uni.style.display = 'none';
+        };
+      }
+      </script> -->
       <p>{{ form.non_field_errors }}</p>
       <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
       <p>
@@ -60,12 +72,10 @@
             <strong>Country:</strong> {{ app.country }}</br>
             <strong>Gender:</strong> {{ app.gender }}</br>
             <strong>University:</strong> {{ app.university }}</br>
-            <strong>Graduating Class:</strong> {{ app.gclass }}</br>
-            <strong>Zipcode:</strong> {{ app.zipcode }}</br>
-            <strong>City:</strong> {{ app.city }}</br>
+            <strong>Graduation Class:</strong> {{ app.graduating_class }}</br>
             <strong>Major:</strong> {{ app.major }}</br>
             <strong>Reimbursement:</strong> {{ app.reimbursement }}</br>
-            <strong>Have you attended MedHacks previously?</strong> {{ app.attended }} <br />
+            <strong>Have you attended MedHacks previously?</strong> {{ app.attended }} </br>
             <strong>Why do you want to attend MedHacks 2018?</strong> </br>
             {{ app.essay1 }} </br>
             <strong>What skills can you bring to the hackathon?</strong> </br>
@@ -175,13 +185,8 @@
       </div>
     </div>
   </div>
-
-
-
-
 </div>
 </div>
 {% endif %}
-
 
 {% endblock %}

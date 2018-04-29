@@ -62,11 +62,11 @@ class HomeForm(forms.ModelForm):
         (('High School', 'High School'), ('Undergraduate', 'Undergraduate'),
         ('Graduate', 'Graduate'), ('Professional', 'Professional')))
     university = forms.ChoiceField(label='University', choices=tupled_list_colleges)
+    other_uni = forms.CharField(label='Other University', max_length=100, required=False)
     # forms.DateField(widget=forms.SelectDateWidget(years=BIRTH_YEAR_CHOICES))
     graduating_class = forms.IntegerField(label='Graduating Class', max_value=2050)
     major = forms.ChoiceField(label='Major', choices=tupled_list_majors)
     secondmajor = forms.ChoiceField(label='Second Major', choices=tupled_list_majors)
-
     attended = forms.ChoiceField(label='Have you attended MedHacks previously?', choices=CHOICESMEDHACKS, widget=forms.RadioSelect())
     reimbursement = forms.ChoiceField(label='Will you be seeking a travel reimbursement?', choices=CHOICESMEDHACKS, widget=forms.RadioSelect())
     essay1 = forms.CharField(label='Why do you want to attend MedHacks 2018? (Max 300 characters)', widget=forms.Textarea)
@@ -75,10 +75,23 @@ class HomeForm(forms.ModelForm):
     essay4 = forms.CharField(label='Is there anything you would like us to know? (Max 200 characters)', widget=forms.Textarea)
     resume = forms.FileField(label='Upload Resume', widget = forms.FileInput, required=True)
 
+    # def clean_other_uni(self):
+    #     if self.cleaned_data['university'] == 'Other' and self.cleaned_data['other_uni'] == '':
+    #         self.cleaned_data['other_uni'] = 'None'
+    #         raise ValidationError("Please enter your university")
+    #     return self.cleaned_data['other_uni']
+
+    def clean(self):
+        if self.cleaned_data['university'] == 'Other':
+            if self.cleaned_data['other_uni'] == '':
+                self.add_error('other_uni', "Please enter your university")
+            else:
+                self.cleaned_data['university'] = self.cleaned_data['other_uni']
+
     class Meta:
         fields = ('first_name', 'last_name', 'email', 'phone_number',
         'address1', 'address2', 'zipcode', 'city', 'country', 'gender',
-        'education', 'university', 'major','secondmajor','graduating_class', 'reimbursement', 'attended',
+        'education', 'university', 'other_uni', 'major','secondmajor','graduating_class', 'reimbursement', 'attended',
         'essay1', 'essay2', 'essay3', 'essay4', 'resume',
         )
         model = Application
