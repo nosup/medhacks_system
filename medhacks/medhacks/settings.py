@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'crispy_forms',
 ]
 
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
+# CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -84,10 +84,15 @@ WSGI_APPLICATION = 'medhacks.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME' : os.path.join(BASE_DIR, 'db.sqlite3')
+        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+	# 'NAME': 'medhacks',
+	# 'USER': 'admin',
+	# 'PASSWORD': '',
+	# 'HOST': 'localhost',
+	# 'PORT': '',
+	'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'databasedir', 'db.sqlite3'),
-        #'NAME': '/medhacks/databasedir/db.sqlite3',
+
     }
 }
 
