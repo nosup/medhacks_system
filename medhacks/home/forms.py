@@ -57,7 +57,7 @@ class HomeForm(forms.ModelForm):
     zipcode = forms.CharField(label="Zipcode", max_length=50, required=False)
     city = forms.CharField(label="City", max_length=50)
     country = forms.CharField(label="Country", max_length=50)
-    gender = forms.ChoiceField(label='Gender', choices = (('M', 'Male'), ('F', 'Female'), ('O', 'Other')))
+    gender = forms.ChoiceField(label='Gender', choices = (('M', 'Male'), ('F', 'Female'), ('O', 'Other'), ('Prefer not to say', 'Prefer not to say')))
     education = forms.ChoiceField(label='Current Level of Education', choices =
         (('High School', 'High School'), ('Undergraduate', 'Undergraduate'),
         ('Graduate', 'Graduate'), ('Professional', 'Professional')))
@@ -66,7 +66,7 @@ class HomeForm(forms.ModelForm):
     # forms.DateField(widget=forms.SelectDateWidget(years=BIRTH_YEAR_CHOICES))
     graduating_class = forms.IntegerField(label='Graduating Class', max_value=2050)
     major = forms.ChoiceField(label='Major', choices=tupled_list_majors)
-    secondmajor = forms.ChoiceField(label='Second Major', choices=tupled_list_majors)
+    secondmajor = forms.ChoiceField(label='Second Major', choices=tupled_list_majors, required=False)
     attended = forms.ChoiceField(label='Have you attended MedHacks previously?', choices=CHOICESMEDHACKS, widget=forms.RadioSelect())
     reimbursement = forms.ChoiceField(label='Will you be seeking a travel reimbursement?', choices=CHOICESMEDHACKS, widget=forms.RadioSelect())
     essay1 = forms.CharField(label='Why do you want to attend MedHacks 2018? (Max 300 characters)', widget=forms.Textarea)
