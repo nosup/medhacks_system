@@ -27,6 +27,7 @@ ALLOWED_HOSTS = [
     '0.0.0.0',
     '127.0.0.1',
     '159.89.155.87',
+    'medhacks.org',
     #get rid of 127.0.0.1!!!TODO
 ]
 
@@ -154,5 +155,15 @@ LOGIN_EXEMPT_URLS = (
 
 )
 
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 1025
+# EMAIL_HOST = 'localhost'
+# EMAIL_PORT = 1025
+
+DEFAULT_FROM_EMAIL = 'no.reply@medhacks.org'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.zoho.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'no.reply@medhacks.org'
+EMAIL_HOST_PASSWORD = 'medhacks'
+
