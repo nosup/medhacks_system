@@ -24,6 +24,7 @@ class HomeForm(forms.ModelForm):
 
     #sorted and deletes duplicates from onlyCollegeList
     onlyCollegeList = sorted(set(onlyCollegeList))
+
     onlyCollegeList.insert(0, 'Other')
     onlyCollegeList.insert(0, 'NA')
     #puts onlyCollegeList into a tupled list of choices for forms
@@ -41,10 +42,17 @@ class HomeForm(forms.ModelForm):
     #delete first index of major list because it is not a major(it's a header)
     only_majors_list.pop(0)
     only_majors_list = sorted(only_majors_list)
-    only_majors_list.insert(0, 'Other')
-    only_majors_list.insert(0, 'NA')
 
-    tupled_list_majors = list(zip(only_majors_list, only_majors_list))
+    majors_lower = [x.lower() for x in only_majors_list]
+
+    for x in range(len(majors_lower)):
+        majors_lower[x] = majors_lower[x].title()
+        x = x + 1
+
+    majors_lower.insert(0, 'Other')
+    majors_lower.insert(0, 'NA')
+
+    tupled_list_majors = list(zip(majors_lower, majors_lower))
     #print(only_majors_list)
     CHOICESMEDHACKS=[('Yes','Yes'), ('No','No')]
 
@@ -72,7 +80,7 @@ class HomeForm(forms.ModelForm):
     essay1 = forms.CharField(label='Why do you want to attend MedHacks 2018? (Max 300 characters)', widget=forms.Textarea)
     essay2 = forms.CharField(label='What skills can you bring to the hackathon? (Max 200 characters)', widget=forms.Textarea)
     essay3 = forms.CharField(label='What would you like to see at MedHacks 2018? (Max 400 characters)', widget=forms.Textarea)
-    essay4 = forms.CharField(label='Is there anything you would like us to know? (Max 200 characters)', widget=forms.Textarea)
+    essay4 = forms.CharField(label='Is there anything you would like us to know? (Max 200 characters)', widget=forms.Textarea, required=False)
     resume = forms.FileField(label='Upload Resume', widget = forms.FileInput, required=True)
 
     # def clean_other_uni(self):
