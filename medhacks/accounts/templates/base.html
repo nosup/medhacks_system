@@ -44,13 +44,9 @@
            <!--<li class="nav-item active">
              <a class="nav-link leftitem" href="{% url 'home:home' %}">Home</a>
           </li>-->
-           <li class="nav-item">
-             <a class="nav-link leftitem" href="{% url 'accounts:login' %}">Login</a>
-           </li>
-           <li="nav-item">
-             <a class="nav-link leftitem" href="{% url 'accounts:reset_password' %}">Reset Password</a>
-           </li>
          </ul>
+         <a class="nav-link rightitem" href="{% url 'accounts:login' %}">Login</a>
+         <a class="nav-link rightitem" href="{% url 'accounts:reset_password' %}">Reset Password</a>
          <a class="nav-link rightitem" href="{% url 'accounts:register' %}">Register</a>
          {% endif %}
       </div>
