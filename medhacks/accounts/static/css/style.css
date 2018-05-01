@@ -52,6 +52,7 @@ body {
 }
 
 .rightitem:hover {
+    color: white;
    text-decoration: none;
    background-color: #BF4D42;
    transform: scale(1);
