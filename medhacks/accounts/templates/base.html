@@ -46,9 +46,11 @@
              <a class="nav-link leftitem" href="{% url 'home:home' %}">Home</a>
           </li>-->
          </ul>
+         {% block loginButton %}
          <a class="nav-link rightitem" href="{% url 'accounts:login' %}">Login</a>
-         <a class="nav-link rightitem" href="{% url 'accounts:reset_password' %}">Reset Password</a>
+         {% endblock %}
          <a class="nav-link rightitem" href="{% url 'accounts:register' %}">Register</a>
+         <a class="nav-link rightitem" href="{% url 'accounts:reset_password' %}">Reset Password</a>
          {% endif %}
       </div>
      </nav>
