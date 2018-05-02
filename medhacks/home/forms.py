@@ -16,7 +16,6 @@ class HomeForm(forms.ModelForm):
     with open(path_to_colleges, encoding='utf-8') as json_file:
         json_data = json.load(json_file)
 
-
     onlyCollegeList = []
     for piece in json_data:
         this_ip = piece['institution']
@@ -32,39 +31,44 @@ class HomeForm(forms.ModelForm):
     #tupledList = (('1', 'Temp1'), ('2', 'Temp2'))
 
     path_to_majors = os.path.join(settings.STATIC_ROOT, 'major_list.csv')
-
     with open(path_to_majors, 'r') as f:
         reader = csv.reader(f)
         complete_majors_list = list(reader)
-
     only_majors_list = [a[1] for a in complete_majors_list]
 
     #delete first index of major list because it is not a major(it's a header)
     only_majors_list.pop(0)
     only_majors_list = sorted(only_majors_list)
-
     majors_lower = [x.lower() for x in only_majors_list]
-
     for x in range(len(majors_lower)):
         majors_lower[x] = majors_lower[x].title()
         x = x + 1
-
     majors_lower.insert(0, 'Other')
     majors_lower.insert(0, 'NA')
-
     tupled_list_majors = list(zip(majors_lower, majors_lower))
-    #print(only_majors_list)
+
+    # get list of states for dropdown 
+    path_to_states = os.path.join(settings.STATIC_ROOT, 'states.csv')
+    with open(path_to_states, 'r', encoding='utf-8') as file:
+        states = csv.reader(file)
+        states_list = list(states)
+    states_list = [a[0] for a in states_list]
+    states_list.pop(0)
+    states_list.insert(0, 'NA')
+    tupled_list_states = list(zip(states_list,states_list))
+
     CHOICESMEDHACKS=[('Yes','Yes'), ('No','No')]
 
     first_name = forms.CharField(label='First Name', max_length=50, widget = forms.HiddenInput())
     last_name = forms.CharField(label='Last Name', max_length=50, widget = forms.HiddenInput())
     email = forms.EmailField(label='Email', max_length=50, widget = forms.HiddenInput())
     phone_number = forms.CharField(label='Phone Number', max_length=15)
-    address1 = forms.CharField(label="Address line 1", max_length=50)
-    address2 = forms.CharField(label="Address line 2", max_length=50, required=False)
-    zipcode = forms.CharField(label="Zipcode", max_length=50, required=False)
+    # address1 = forms.CharField(label="Address line 1", max_length=50)
+    # address2 = forms.CharField(label="Address line 2", max_length=50, required=False)
+    # zipcode = forms.CharField(label="Zipcode", max_length=50, required=False)
     city = forms.CharField(label="City", max_length=50)
     country = forms.CharField(label="Country", max_length=50)
+    state = forms.ChoiceField(label='State', choices=tupled_list_states)
     gender = forms.ChoiceField(label='Gender', choices = (('M', 'Male'), ('F', 'Female'), ('O', 'Other'), ('Prefer not to say', 'Prefer not to say')))
     education = forms.ChoiceField(label='Current Level of Education', choices =
         (('High School', 'High School'), ('Undergraduate', 'Undergraduate'),
@@ -72,9 +76,9 @@ class HomeForm(forms.ModelForm):
     university = forms.ChoiceField(label='University', choices=tupled_list_colleges)
     other_uni = forms.CharField(label='Other University', max_length=100, required=False)
     # forms.DateField(widget=forms.SelectDateWidget(years=BIRTH_YEAR_CHOICES))
-    graduating_class = forms.IntegerField(label='Graduating Class', max_value=2050)
-    major = forms.ChoiceField(label='Major', choices=tupled_list_majors)
-    secondmajor = forms.ChoiceField(label='Second Major', choices=tupled_list_majors, required=False)
+    graduating_class = forms.ChoiceField(label='Graduating Class', choices=(('NA','NA'),('2018','2018'), ('2019','2019'), ('2020','2020'), ('2021+','2021+')))
+    major = forms.ChoiceField(label='Major/Area of Expertise', choices=tupled_list_majors)
+    secondmajor = forms.ChoiceField(label='Second Major/Area of Expertise', choices=tupled_list_majors, required=False)
     attended = forms.ChoiceField(label='Have you attended MedHacks previously?', choices=CHOICESMEDHACKS, widget=forms.RadioSelect())
     reimbursement = forms.ChoiceField(label='Will you be seeking a travel reimbursement?', choices=CHOICESMEDHACKS, widget=forms.RadioSelect())
     essay1 = forms.CharField(label='Why do you want to attend MedHacks 2018? (Max 300 characters)', widget=forms.Textarea)
@@ -98,7 +102,7 @@ class HomeForm(forms.ModelForm):
 
     class Meta:
         fields = ('first_name', 'last_name', 'email', 'phone_number',
-        'address1', 'address2', 'zipcode', 'city', 'country', 'gender',
+        'city', 'country', 'state', 'gender',
         'education', 'university', 'other_uni', 'major','secondmajor','graduating_class', 'reimbursement', 'attended',
         'essay1', 'essay2', 'essay3', 'essay4', 'resume',
         )
