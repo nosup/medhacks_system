@@ -23,10 +23,9 @@ body {
 }
 
 .applyButton {
-  margin-right: 5.5rem;
-  padding: 0.5rem;
   width: 10rem;
   color: black;
+  display: inline-block;
   background-color: #efefef;
   border-radius: 0.5rem;
   transform: scale(0.85);
