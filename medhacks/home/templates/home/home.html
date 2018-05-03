@@ -10,6 +10,7 @@
 
 {% if form != None %}
 <div class=card-body style="width: 90vw; margin-left: 5vw;">
+    <h1>Medhacks 2018 Application</h1>
     <form action={% url 'home:home' %} method="post" enctype='multipart/form-data'>
        {% csrf_token %}
        <!--{{ form.as_p }}-->
