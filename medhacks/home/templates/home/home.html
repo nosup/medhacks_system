@@ -133,7 +133,7 @@
 {% endif %}
 
 {% for appli in apps %}
-{% if appli.reimbursement == 'Yes'%}
+{% if appli.reimbursement == 'Yes' and user.userprofile.campus_ambassador != 'Y' %}
 <div id="accordion">
     <div class="card-body">
         <ul class="nav nav-tabs typeTab">
