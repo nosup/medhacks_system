@@ -27,7 +27,7 @@ ALLOWED_HOSTS = [
     '0.0.0.0',
     '127.0.0.1',
     '159.89.155.87',
-    'medhacks.org',
+    'apply.medhacks.org',
     #get rid of 127.0.0.1!!!TODO
 ]
 
