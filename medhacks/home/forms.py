@@ -47,7 +47,7 @@ class HomeForm(forms.ModelForm):
     majors_lower.insert(0, 'NA')
     tupled_list_majors = list(zip(majors_lower, majors_lower))
 
-    # get list of states for dropdown 
+    # get list of states for dropdown
     path_to_states = os.path.join(settings.STATIC_ROOT, 'states.csv')
     with open(path_to_states, 'r', encoding='utf-8') as file:
         states = csv.reader(file)
@@ -67,8 +67,8 @@ class HomeForm(forms.ModelForm):
     # address2 = forms.CharField(label="Address line 2", max_length=50, required=False)
     # zipcode = forms.CharField(label="Zipcode", max_length=50, required=False)
     city = forms.CharField(label="City", max_length=50)
-    country = forms.CharField(label="Country", max_length=50)
     state = forms.ChoiceField(label='State', choices=tupled_list_states)
+    country = forms.CharField(label="Country", max_length=50)
     gender = forms.ChoiceField(label='Gender', choices = (('M', 'Male'), ('F', 'Female'), ('O', 'Other'), ('Prefer not to say', 'Prefer not to say')))
     education = forms.ChoiceField(label='Current Level of Education', choices =
         (('High School', 'High School'), ('Undergraduate', 'Undergraduate'),
@@ -102,7 +102,7 @@ class HomeForm(forms.ModelForm):
 
     class Meta:
         fields = ('first_name', 'last_name', 'email', 'phone_number',
-        'city', 'country', 'state', 'gender',
+        'city', 'state', 'country', 'gender',
         'education', 'university', 'other_uni', 'major','secondmajor','graduating_class', 'reimbursement', 'attended',
         'essay1', 'essay2', 'essay3', 'essay4', 'resume',
         )
