@@ -66,6 +66,7 @@
 {% elif user.userprofile.campus_ambassador == 'Y' %}
 <div id="accordion">
     <div class="card-body">
+        <h2>Hello {{user}}! </h2>
         <ul class="nav nav-tabs typeTab">
           <li class="active activeLi"><a id="statusTab" data-toggle="tab" href="#statusCA">Application Status</a></li>
           <li><a id="travelTab" data-toggle="tab" href="#travelCA">Travel Reimbursements</a></li>
@@ -132,10 +133,12 @@
 </div>
 {% endif %}
 
+
 {% for appli in apps %}
 {% if appli.reimbursement == 'Yes' and user.userprofile.campus_ambassador != 'Y' %}
 <div id="accordion">
     <div class="card-body">
+        <h2>Hello {{user}}! </h2>
         <ul class="nav nav-tabs typeTab">
           <li class="active activeLi"><a id="statusTab" data-toggle="tab" href="#statusCA">Application Status</a></li>
           <li><a id="travelTab" data-toggle="tab" href="#travelCA">Travel Reimbursements</a></li>
@@ -194,6 +197,7 @@
 {% else %}
 <div id="accordion">
     <div class="card-body">
+    <h2>Hello {{ user }}! </h2>
       <div class="container">
 
          {% if user.userprofile.accepted == 'Y' %}
