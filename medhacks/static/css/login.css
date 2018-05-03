@@ -12,3 +12,18 @@ img {
 .card-body {
     width: 40vw;
 }
+
+@media screen and (max-width: 800px) {
+    .slideshow {
+        display: none;
+    }
+
+    .card-body {
+        width: 80vw;
+    }
+
+    .login-container {
+        width: 70vw;
+    }
+
+}
