@@ -86,12 +86,13 @@ class HomeForm(forms.ModelForm):
     essay3 = forms.CharField(label='What would you like to see at MedHacks 2018? (Max 400 characters)', widget=forms.Textarea)
     essay4 = forms.CharField(label='Is there anything you would like us to know? (Max 200 characters)', widget=forms.Textarea, required=False)
     resume = forms.FileField(label='Upload Resume', widget = forms.FileInput, required=True)
-
+    permission = forms.BooleanField(label='I am giving MedHacks use of my personal information',required=True);
     # def clean_other_uni(self):
     #     if self.cleaned_data['university'] == 'Other' and self.cleaned_data['other_uni'] == '':
     #         self.cleaned_data['other_uni'] = 'None'
     #         raise ValidationError("Please enter your university")
     #     return self.cleaned_data['other_uni']
+
 
     def clean(self):
         if self.cleaned_data['university'] == 'Other':
@@ -99,11 +100,13 @@ class HomeForm(forms.ModelForm):
                 self.add_error('other_uni', "Please enter your university")
             else:
                 self.cleaned_data['university'] = self.cleaned_data['other_uni']
+        # if self.cleaned_data['permission'] == 'False':
+        #     self.add_error('Please checkmark this box')
 
     class Meta:
         fields = ('first_name', 'last_name', 'email', 'phone_number',
         'city', 'state', 'country', 'gender',
         'education', 'university', 'other_uni', 'major','secondmajor','graduating_class', 'reimbursement', 'attended',
-        'essay1', 'essay2', 'essay3', 'essay4', 'resume',
+        'essay1', 'essay2', 'essay3', 'essay4', 'resume','permission',
         )
         model = Application
