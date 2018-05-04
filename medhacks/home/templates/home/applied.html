@@ -8,6 +8,8 @@
       <br />
       <p style="text-align: center">You have successfully submitted your application!</p>
       <a class="rightitem profButton" href="{% url 'home:home' %}">Register</a>
+      {% load static %}
+      <img style="width: 40vw; margin-left: auto;margin-right:auto; display: block;" src="{% static 'appliMoose.png' %}"/>
     </div>
 </div>
 {% endblock %}
