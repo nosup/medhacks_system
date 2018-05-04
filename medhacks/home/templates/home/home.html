@@ -194,7 +194,7 @@
     </div>
 </div>
 
-{% else %}
+{% elif user.userprofile.campus_ambassador != 'Y' %}
 <div id="accordion">
     <div class="card-body">
     <h2>Hello {{ user }}! </h2>
