@@ -72,6 +72,7 @@
           <li class="active activeLi"><a id="statusTab" data-toggle="tab" href="#statusCA">Application Status</a></li>
           <li><a id="travelTab" data-toggle="tab" href="#travelCA">Travel Reimbursements</a></li>
           <li><a id="caTab" data-toggle="tab" href="#campus_ambassador">Campus Ambassador</a></li>
+          <li><a id="profTab" data-toggle"tab" href="#profCA">Profile</a></li>
         </ul>
 
         <div class="tab-content">
@@ -129,6 +130,13 @@
                   </p>
                 </div>
             </div>
+            <div id="profCA" class="tab-pane">
+                <h1>Profile</h1>
+                <p>Username: {{user}}</p>
+                <p>First name: {{user.first_name}}</p>
+                <p>Last name: {{user.last_name}}</p>
+                <p>Email: {{user.email}}</p>
+            </div>
         </div>
     </div>
 </div>
@@ -143,6 +151,7 @@
         <ul class="nav nav-tabs typeTab">
           <li class="active activeLi"><a id="statusTab" data-toggle="tab" href="#statusCA">Application Status</a></li>
           <li><a id="travelTab" data-toggle="tab" href="#travelCA">Travel Reimbursements</a></li>
+          <li><a id="profTab" data-toggle="tab" href="#profCA">Profile</a></li>
         </ul>
 
         <div class="tab-content">
@@ -191,6 +200,13 @@
                   {% endif %}
                 </div>
             </div>
+            <div id="profCA" class="tab-pane">
+                <h1>Profile</h1>
+                <p>Username: {{user}}</p>
+                <p>First name: {{user.first_name}}</p>
+                <p>Last name: {{user.last_name}}</p>
+                <p>Email: {{user.email}}</p>
+            </div>
         </div>
     </div>
 </div>
@@ -199,30 +215,44 @@
 <div id="accordion">
     <div class="card-body">
     <h2>Hello {{ user.first_name }}! </h2>
-      <div class="container">
+    <ul class="nav nav-tabs typeTab">
+      <li class="active activeLi"><a id="statusTab" data-toggle="tab" href="#statusCA">Application Status</a></li>
+      <li><a id="profTab" data-toggle="tab" href="#profCA">Profile</a></li>
+    </ul>
 
-         {% if user.userprofile.accepted == 'Y' %}
+    <div class="tab-content">
+        <div id="statusCA" class="tab-pane in active">
+            <h3>Application Status</h3>
+            <div class="container">
+               {% if user.userprofile.accepted == 'Y' %}
+               <p>
+                 Congratulations! You have been accepted into 2018 MedHacks! Your travel
+                 reimbursement details are listed below.
+               </p>
+               {% elif user.userprofile.accepted == 'N' %}
+               <p>
+                 I'm sorry, due to the large number of applicants this year, we are unable to
+                 accept you.
+               </p>
+               {% else %}
+               <p>
+                 Application status pending
 
-         <p>
-           Congratulations! You have been accepted into 2018 MedHacks! Your travel
-           reimbursement details are listed below.
-         </p>
-         {% elif user.userprofile.accepted == 'N' %}
-         <p>
-           I'm sorry, due to the large number of applicants this year, we are unable to
-           accept you.
-         </p>
-         {% else %}
-         <p>
-           Application status pending
-         </p>
-         {% for app in apps %}
-         <a href="{{app.resume.url}}" target="_blank"><strong>View your Resume</strong></a>
-
-         {% endfor %}
-
-         {% endif %}
-      </div>
+               </p>
+               {% for app in apps %}
+               <a href="{{app.resume.url}}" target="_blank"><strong>View your Resume</strong></a>
+               {% endfor %}
+               {% endif %}
+            </div>
+        </div>
+        <div id="profCA" class="tab-pane">
+            <h1>Profile</h1>
+            <p>Username: {{user}}</p>
+            <p>First name: {{user.first_name}}</p>
+            <p>Last name: {{user.last_name}}</p>
+            <p>Email: {{user.email}}</p>
+        </div>
+    </div>
     </div>
 </div>
 {% endif %}
@@ -234,16 +264,25 @@ $(document).ready(() => {
         $(this).parent().addClass('activeLi');
         $("#travelTab").parent().removeClass('activeLi');
         $("#caTab").parent().removeClass('activeLi');
+        $("#profTab").parent().removeClass('activeLi');
     });
     $("#travelTab").click(function() {
         $(this).parent().addClass('activeLi');
         $("#statusTab").parent().removeClass('activeLi');
         $("#caTab").parent().removeClass('activeLi');
+        $("#profTab").parent().removeClass('activeLi');
     });
     $("#caTab").click(function() {
         $(this).parent().addClass('activeLi');
         $("#travelTab").parent().removeClass('activeLi');
         $("#statusTab").parent().removeClass('activeLi');
+        $("#profTab").parent().removeClass('activeLi');
+    });
+    $("#profTab").click(function() {
+        $(this).parent().addClass('activeLi');
+        $("#travelTab").parent().removeClass('activeLi');
+        $("#statusTab").parent().removeClass('activeLi');
+        $("#caTab").parent().removeClass('activeLi');
     });
 });
 </script>
