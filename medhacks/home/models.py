@@ -30,3 +30,4 @@ class Application(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     resume = ContentTypeRestrictedFileField(upload_to='resume', content_types=['application/pdf','application/docx','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/doc','image/jpeg'],max_upload_size=2097152,blank=False, null=False)
     permission = models.BooleanField(default=True)
+    conduct = models.BooleanField(default=True)
