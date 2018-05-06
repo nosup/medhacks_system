@@ -38,7 +38,8 @@
            </li>
         -->
          </ul>
-         <a class="nav-item rightitem" href="{% url 'accounts:change_password' %}">Change Password</a>
+         {% block accountButton %}
+         {% endblock %}
          <a class="nav-item rightitem" href="{% url 'accounts:logout' %}">Logout</a>
          {% else %}
          <ul class="navbar-nav mr-auto">
