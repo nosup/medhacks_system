@@ -12,6 +12,7 @@
 <div class=card-body style="width: 90vw; margin-left: 5vw;">
     <h1>MedHacks 2018 Application</h1>
     <h2>Hello {{user.first_name}}! </h2>
+    <div style="height: 25px"></div>
     <form action={% url 'home:home' %} method="post" enctype='multipart/form-data'>
        {% csrf_token %}
        <!--{{ form.as_p }}-->
@@ -68,6 +69,7 @@
 <div id="accordion">
     <div class="card-body">
         <h2>Hello {{user.first_name}}! </h2>
+        <div style="height: 25px"></div>
         <ul class="nav nav-tabs typeTab">
           <li class="active activeLi"><a id="statusTab" data-toggle="tab" href="#statusCA">Application Status</a></li>
           <li><a id="travelTab" data-toggle="tab" href="#travelCA">Travel Reimbursements</a></li>
@@ -131,7 +133,7 @@
                 </div>
             </div>
             <div id="profCA" class="tab-pane">
-                <h1>Profile</h1>
+                <h3>Profile</h3>
                 <p>Username: {{user}}</p>
                 <p>First name: {{user.first_name}}</p>
                 <p>Last name: {{user.last_name}}</p>
@@ -152,7 +154,8 @@
 {% if appli.reimbursement == 'Yes' and user.userprofile.campus_ambassador != 'Y' %}
 <div id="accordion">
     <div class="card-body">
-        <h2>Hello {{user}}! </h2>
+        <h2>Hello {{user.first_name}}! </h2>
+        <div style="height: 25px"></div>
         <ul class="nav nav-tabs typeTab">
           <li class="active activeLi"><a id="statusTab" data-toggle="tab" href="#statusCA">Application Status</a></li>
           <li><a id="travelTab" data-toggle="tab" href="#travelCA">Travel Reimbursements</a></li>
@@ -206,7 +209,7 @@
                 </div>
             </div>
             <div id="profCA" class="tab-pane">
-                <h1>Profile</h1>
+                <h3>Profile</h3>
                 <p>Username: {{user}}</p>
                 <p>First name: {{user.first_name}}</p>
                 <p>Last name: {{user.last_name}}</p>
@@ -225,6 +228,7 @@
 <div id="accordion">
     <div class="card-body">
     <h2>Hello {{ user.first_name }}! </h2>
+    <div style="height: 25px"></div>
     <ul class="nav nav-tabs typeTab">
       <li class="active activeLi"><a id="statusTab" data-toggle="tab" href="#statusCA">Application Status</a></li>
       <li><a id="profTab" data-toggle="tab" href="#profCA">Profile</a></li>
@@ -256,7 +260,7 @@
             </div>
         </div>
         <div id="profCA" class="tab-pane">
-            <h1>Profile</h1>
+            <h3>Profile</h3>
             <p>Username: {{user}}</p>
             <p>First name: {{user.first_name}}</p>
             <p>Last name: {{user.last_name}}</p>
