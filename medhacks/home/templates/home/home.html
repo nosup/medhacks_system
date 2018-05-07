@@ -93,8 +93,7 @@
                    </p>
                    {% else %}
                    <p>
-                     Application status pending
-
+                       Thank you for applying to MedHacks 2018! Your application status is currently pending. Our team is reviewing your application.
                    </p>
                    {% for app in apps %}
                    <a href="{{app.resume.url}}" target="_blank"><strong>View your Resume</strong></a>
@@ -116,10 +115,7 @@
                   </p>
                   {% else %}
                   <p>
-
-                    Travel reimbursement application pending! (All reimbursements statuses
-                    will be marked as pending, even if you selected 'No' in the
-                    application).
+                    The travel reimbursement application has not yet been released. You will be notified via email when it is released!
                   </p>
                   {% endif %}
                 </div>
@@ -140,7 +136,7 @@
                 <p>Email: {{user.email}}</p>
                 <p>
                     <a style="color: black; font-style: italic; font-size: 12px" href="{% url 'accounts:reset_password' %}">
-                        Forgot password?
+                        Change Password
                     </a>
                 </p>
             </div>
@@ -178,8 +174,7 @@
                    </p>
                    {% else %}
                    <p>
-                     Application status pending
-
+                       Thank you for applying to MedHacks 2018! Your application status is currently pending. Our team is reviewing your application.
                    </p>
                    {% for app in apps %}
                    <a href="{{app.resume.url}}" target="_blank"><strong>View your Resume</strong></a>
@@ -200,10 +195,7 @@
                   </p>
                   {% else %}
                   <p>
-
-                    Travel reimbursement application pending! (All reimbursements statuses
-                    will be marked as pending, even if you selected 'No' in the
-                    application).
+                      The travel reimbursement application has not yet been released. You will be notified via email when it is released!
                   </p>
                   {% endif %}
                 </div>
@@ -216,7 +208,7 @@
                 <p>Email: {{user.email}}</p>
                 <p>
                     <a style="color: black; font-style: italic; font-size: 12px" href="{% url 'accounts:reset_password' %}">
-                        Forgot password?
+                        Change Password
                     </a>
                 </p>
             </div>
@@ -250,7 +242,7 @@
                </p>
                {% else %}
                <p>
-                 Application status pending
+                 Thank you for applying to MedHacks 2018! Your application status is currently pending. Our team is reviewing your application.
 
                </p>
                {% for app in apps %}
@@ -267,7 +259,7 @@
             <p>Email: {{user.email}}</p>
             <p>
                 <a style="color: black; font-style: italic; font-size: 12px" href="{% url 'accounts:change_password' %}">
-                    Forgot password?
+                    Change Password
                 </a>
             </p>
         </div>
