@@ -80,7 +80,7 @@ class HomeForm(forms.ModelForm):
     reimbursement = forms.ChoiceField(label='Will you be seeking a travel reimbursement?', choices=CHOICESMEDHACKS, widget=forms.RadioSelect())
     essay1 = forms.CharField(label='Why do you want to attend MedHacks 2018? (Max 300 characters)', widget=forms.Textarea)
     essay2 = forms.CharField(label='What skills can you bring to the hackathon? (Max 200 characters)', widget=forms.Textarea)
-    essay3 = forms.CharField(label='What would you like to see at MedHacks 2018? (Max 400 characters)', widget=forms.Textarea)
+    essay3 = forms.CharField(label='What would you like to see at MedHacks 2018? (Max 300 characters)', widget=forms.Textarea)
     essay4 = forms.CharField(label='Is there anything you would like us to know? (Max 200 characters)', widget=forms.Textarea, required=False)
     resume = forms.FileField(label='Upload Resume', widget = forms.FileInput, required=True)
     permission = forms.BooleanField(label='I am giving MedHacks use of my personal information',required=True)
