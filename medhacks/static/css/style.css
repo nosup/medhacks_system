@@ -104,7 +104,9 @@ body {
 }
 
 .profButton {
-
-    margin-left: 35vw;
-
+    margin-left: auto;
+    margin-right: auto;
+    width: 20vw;
+    text-align: center;
+    DISPLAY: block;
 }
