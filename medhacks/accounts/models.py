@@ -9,10 +9,19 @@ class UserProfileManager(models.Manager):
         # .filter(city='London')
 
 class UserProfile(models.Model):
-    CHOICES = (
+    # Generic Y/N choices
+    CHOICES_YN = (
         ('Y', 'Yes'),
         ('N', 'No'),
         ('-', 'Not Decided'),
+    )
+
+    # For Travel Reimbursement Specific Choices
+    CHOICES_TR = (
+        ('-', 'Not Decided'),
+        ('Regional', 'Regional'),
+        ('National', 'National'),
+        ('International', 'International')
     )
     # user = models.OneToOneField(User, on_delete=models.CASCADE)
     # description = models.CharField(max_length=100, default='')
@@ -20,9 +29,9 @@ class UserProfile(models.Model):
     # website = models.URLField(default='')
     # phone = models.IntegerField(default=0)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    travel_reimbursement = models.CharField(max_length=1, choices=CHOICES, default='-')
-    campus_ambassador = models.CharField(max_length=1, choices=CHOICES, default='-')
-    accepted = models.CharField(max_length=1, choices=CHOICES, default='-')
+    travel_reimbursement = models.CharField(max_length=13, choices=CHOICES_TR, default='-')
+    campus_ambassador = models.CharField(max_length=1, choices=CHOICES_YN, default='-')
+    accepted = models.CharField(max_length=1, choices=CHOICES_YN, default='-')
 
     # image = models.ImageField(upload_to='profile_image', blank=True)
 
