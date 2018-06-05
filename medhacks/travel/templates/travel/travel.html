@@ -1,0 +1,7 @@
+<div>
+  <form action={% url 'travel:travel' %} method="post" enctype='multipart/form-data'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class="applyButton" type="submit" value="Submit"/>
+  </form>
+</div>
