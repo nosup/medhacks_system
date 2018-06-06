@@ -57,7 +57,18 @@ class HomeForm(forms.ModelForm):
     states_list.insert(0, 'NA')
     tupled_list_states = list(zip(states_list,states_list))
 
-    CHOICESMEDHACKS=[('Yes','Yes'), ('No','No')]
+    CHOICESMEDHACKS=[('Yes',' Yes'), ('No',' No')]
+    no_selection_reimb = """ No - Local: within 25 miles of Johns Hopkins Homewood Campus (for example, UMD College Park). You will not be reimbursed, but
+        if there is enough interest from a local college, the college will be eligible for a free bus.
+        There are also a number of free public transportation options for local participants."""
+    regional_reimb = """ Yes - Regional: includes the Northeast and some parts of the South and Midwest where traveling is less than $50
+        (i.e. BoltBus and MegaBus). You will only be reimbursed up to $50 and no more."""
+    national_reimb = """ Yes - National: includes locations where costs to travel to MedHacks significantly exceeds $50.
+        Reimbursement amounts will vary depending on region from which a student is flying. Midwest - (up to $100), West - (up to $250)"""
+
+
+    CHOICES_REIMBURSEMENT = [('No Reimbursement', no_selection_reimb),
+        ('Yes: Regional Reimbursement', regional_reimb), ('Yes: National Reimbursement', national_reimb)]
 
     first_name = forms.CharField(label='First Name', max_length=50, widget = forms.HiddenInput())
     last_name = forms.CharField(label='Last Name', max_length=50, widget = forms.HiddenInput())
@@ -77,7 +88,7 @@ class HomeForm(forms.ModelForm):
     major = forms.ChoiceField(label='Major/Area of Expertise', choices=tupled_list_majors)
     secondmajor = forms.ChoiceField(label='Second Major/Area of Expertise', choices=tupled_list_majors, required=False)
     attended = forms.ChoiceField(label='Have you attended MedHacks previously?', choices=CHOICESMEDHACKS, widget=forms.RadioSelect())
-    reimbursement = forms.ChoiceField(label='Will you be seeking a travel reimbursement?', choices=CHOICESMEDHACKS, widget=forms.RadioSelect())
+    reimbursement = forms.ChoiceField(label='Will you be seeking a travel reimbursement?', choices=CHOICES_REIMBURSEMENT, widget=forms.RadioSelect())
     essay1 = forms.CharField(label='Why do you want to attend MedHacks 2018? (Max 300 characters)', widget=forms.Textarea)
     essay2 = forms.CharField(label='What skills can you bring to the hackathon? (Max 200 characters)', widget=forms.Textarea)
     essay3 = forms.CharField(label='What would you like to see at MedHacks 2018? (Max 300 characters)', widget=forms.Textarea)
