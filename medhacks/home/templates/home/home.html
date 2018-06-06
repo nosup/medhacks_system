@@ -107,16 +107,20 @@
                 <div class="container">
                   {% if user.userprofile.travel_reimbursement == 'Y' %}
                   <p>
-                    You have been awarded a travel reimbursement!
+                    Please read over the travel reimbursement receipt <a target="_blank" href="https://drive.google.com/open?id=1IRAy-KqUC7yyR0I8wi7oJ1IxWBkLKIlp">requirements</a>. If you fail to adhere to these strict guidelines, your reimbursement will not be processed. We are not responsible for notifying if you incorrectly submitted your reimbursement. If you have any questions email us at reimbursement@medhacks.org.
+                  </p>
+                  <p>
+                    You can now purchase your travel arrangements.
                   </p>
                   {% elif user.userprofile.travel_reimbursement == 'N' %}
                   <p>
-                    You are not eligible for a travel reimbursement.
+                    Thank you for your interest in receiving a travel reimbursement. Due to the high number of applications and limited budget, we unfortunately cannot offer you a travel reimbursement. Thank you!
                   </p>
                   {% else %}
                   <p>
-                    The travel reimbursement application has not yet been released. You will be notified via email when it is released!
+                      The travel reimbursement application is now <a href="{% url 'travel:travel' %}">live</a>. If you've already applied, please disregard.
                   </p>
+
                   {% endif %}
                 </div>
             </div>
@@ -187,16 +191,20 @@
                 <div class="container">
                   {% if user.userprofile.travel_reimbursement == 'Y' %}
                   <p>
-                    You have been awarded a travel reimbursement!
+                    Please read over the travel reimbursement receipt <a target="_blank" href="https://drive.google.com/open?id=1IRAy-KqUC7yyR0I8wi7oJ1IxWBkLKIlp">requirements</a>. If you fail to adhere to these strict guidelines, your reimbursement will not be processed. We are not responsible for notifying if you incorrectly submitted your reimbursement. If you have any questions email us at reimbursement@medhacks.org.
+                  </p>
+                  <p>
+                    You can now purchase your travel arrangements.
                   </p>
                   {% elif user.userprofile.travel_reimbursement == 'N' %}
                   <p>
-                    You are not eligible for a travel reimbursement.
+                    Thank you for your interest in receiving a travel reimbursement. Due to the high number of applications and limited budget, we unfortunately cannot offer you a travel reimbursement. Thank you!
                   </p>
                   {% else %}
                   <p>
-                      The travel reimbursement application has not yet been released. You will be notified via email when it is released!
+                      The travel reimbursement application is now <a href="{% url 'travel:travel' %}">live</a>. If you've already applied, please disregard.
                   </p>
+
                   {% endif %}
                 </div>
             </div>

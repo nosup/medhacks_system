@@ -1,7 +1,37 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body %}
 <div>
-  <form action={% url 'travel:travel' %} method="post" enctype='multipart/form-data'>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input class="applyButton" type="submit" value="Submit"/>
-  </form>
+  <div class=card-body style="width: 90vw; margin-left: 5vw;">
+    <h1>Travel Reimbursement Application</h1>
+    <div style="height: 25px"></div>
+    <h3>Reimbursement Types: </h3>
+    <ul>
+      <li>
+        <b>No selection- Local:</b> within 25 miles of Johns Hopkins Homewood Campus (for example, UMD College Park). You will not be reimbursed, but if there is enough interest from a local college, the college will be eligible for a free bus. There are also a number of free public transportation options for local participants.
+      </li>
+      <li>
+        <b>Selection: Regional:</b> includes the Northeast and some parts of the South and Midwest where traveling is less than $50 (i.e. BoltBus and MegaBus). You will only be reimbursed up to $50 and no more.
+      </li>
+      <li>
+        <b>Selection: National:</b> includes locations where costs to travel to MedHacks significantly exceeds $50. Reimbursement amounts will vary depending on region from which a student is flying.
+        <ul>
+          <li>Midwest (up to $100)</li>
+          <li>West (up to $250)</li>
+        </ul>
+      </li>
+      <li>
+        <b>Selection: International:</b> includes locations out of the United States. International participants will receive up to $250 on a case by case basis.
+      </li>
+    </ul>
+    <div style="height: 25px"></div>
+    <form action={% url 'travel:travel' %} method="post" enctype='multipart/form-data'>
+      {% csrf_token %}
+      {{form|crispy}}
+      <input class="applyButton" type="submit" value="Submit"/>
+    </form>
+  </div>
 </div>
+
+{% endblock %}
