@@ -70,6 +70,10 @@ class HomeForm(forms.ModelForm):
     CHOICES_REIMBURSEMENT = [('No Reimbursement', no_selection_reimb),
         ('Yes: Regional Reimbursement', regional_reimb), ('Yes: National Reimbursement', national_reimb)]
 
+    CHOICES_HEARD = [('Social Media', ' Social Media (Facebook, Instagram, Twitter)'),
+        ('MedHacks Website', ' MedHacks Website'), ('Email', ' Email'), ('MLH Website', ' MLH Website'),
+        ('Word of mouth', ' Word-of-mouth'), ('Other', ' Other')]
+
     first_name = forms.CharField(label='First Name', max_length=50, widget = forms.HiddenInput())
     last_name = forms.CharField(label='Last Name', max_length=50, widget = forms.HiddenInput())
     email = forms.EmailField(label='Email', max_length=50, widget = forms.HiddenInput())
@@ -96,6 +100,7 @@ class HomeForm(forms.ModelForm):
     resume = forms.FileField(label='Upload Resume', widget = forms.FileInput, required=True)
     permission = forms.BooleanField(label='I am giving MedHacks use of my personal information',required=True)
     conduct = forms.BooleanField(label='I accept the <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"target="_blank">MLH code of conduct</a>',required=True)
+    how_heard_medhacks = forms.ChoiceField(label='How did you hear about MedHacks 2018', choices=CHOICES_HEARD, widget=forms.RadioSelect())
     # def clean_other_uni(self):
     #     if self.cleaned_data['university'] == 'Other' and self.cleaned_data['other_uni'] == '':
     #         self.cleaned_data['other_uni'] = 'None'
@@ -116,6 +121,6 @@ class HomeForm(forms.ModelForm):
         fields = ('first_name', 'last_name', 'email', 'phone_number',
         'city', 'state', 'country', 'gender',
         'education', 'university', 'other_uni', 'major','secondmajor','graduating_class', 'reimbursement', 'attended',
-        'essay1', 'essay2', 'essay3', 'essay4', 'resume','permission', 'conduct'
+        'essay1', 'essay2', 'essay3', 'essay4', 'resume','permission', 'conduct', 'how_heard_medhacks'
         )
         model = Application

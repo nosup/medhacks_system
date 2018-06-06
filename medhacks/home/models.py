@@ -29,7 +29,7 @@ class Application(models.Model):
     permission = models.BooleanField(default=True)
     conduct = models.BooleanField(default=True)
     submit_time = models.DateTimeField(auto_now_add=True)
-
+    how_heard_medhacks = models.CharField(max_length=50, default='-')
 
 class Meta:
     ordering = ['first_name']

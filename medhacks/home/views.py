@@ -50,6 +50,7 @@ class HomeView(TemplateView):
             essay4 = form.cleaned_data['essay4']
             permission = form.cleaned_data['permission']
             conduct = form.cleaned_data['conduct']
+            how_heard_medhacks = form.cleaned_data['how_heard_medhacks']
             form.save()
             # contingency = form.cleaned_data['contingency']
             # team = form.cleaned_data['team']
