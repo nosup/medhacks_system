@@ -19,6 +19,7 @@ class UserProfile(models.Model):
     # For Travel Reimbursement Specific Choices
     CHOICES_TR = (
         ('-', 'Not Decided'),
+        ('Rejected', 'Rejected'),
         ('Regional', 'Regional'),
         ('National', 'National'),
         ('International', 'International')
