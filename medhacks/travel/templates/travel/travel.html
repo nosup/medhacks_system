@@ -1,7 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body %}
 <div>
+  <h1>Travel Reimbursement Application</h1>
+  <div class=card-body style="width: 90vw; margin-left: 5vw;">
   <form action={% url 'travel:travel' %} method="post" enctype='multipart/form-data'>
     {% csrf_token %}
-    {{ form.as_p }}
+    {{form|crispy}}
     <input class="applyButton" type="submit" value="Submit"/>
   </form>
 </div>
+</div>
+
+{% endblock %}
