@@ -19,15 +19,15 @@ class TravelForm(forms.ModelForm):
     tupled_list_states = list(zip(states_list,states_list))
 
     CHOICESMEDHACKS=[('Yes','Yes'), ('No','No')]
-    Regional = """ Selection: Regional: includes the Northeast and some
+    Regional = """ Regional: includes the Northeast and some
         parts of the South and Midwest where traveling is less than $50 (i.e.
         BoltBus and MegaBus). You will only be reimbursed up to $50 and no more."""
 
-    Midwest = """ Selection: Midwest: includes most of the midwest where traveling exceeds $50. You will only
+    Midwest = """ Midwest: includes most of the midwest where traveling exceeds $50. You will only
         be reimbursed up to $100 and no more."""
-    West = """ Selection: West: includes West Coast where traveling significantly exceeds $50. You will only
+    West = """ West: includes West Coast where traveling significantly exceeds $50. You will only
         be reimbursed up to $250 and no more."""
-    International = """ Selection: International: includes locations out of the
+    International = """ International: includes locations out of the
         United States. International participants will receive up to $250 on a case by case basis."""
 
     CHOICES_TRAVEL=[('R', Regional), ('MW', Midwest), ('W', West), ('I', International)]
