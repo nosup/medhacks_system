@@ -31,7 +31,7 @@ class TravelView(TemplateView):
             tr_essay = form.cleaned_data['tr_essay']
             contingency = form.cleaned_data['contingency']
             state = form.cleaned_data['state']
-
+            type_reim = form.cleaned_data['type_reim']
             form.save()
             # contingency = form.cleaned_data['contingency']
             # team = form.cleaned_data['team']

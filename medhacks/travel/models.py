@@ -12,3 +12,4 @@ class TRApplication(models.Model):
     tr_essay = models.CharField(max_length=300, default = '-')
     contingency = models.CharField(max_length=5)
     submit_time = models.DateTimeField(auto_now_add=True)
+    type_reim = models.CharField(max_length=5, default = '-')
