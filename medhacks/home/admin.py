@@ -8,7 +8,7 @@ class ApplicationAdmin(admin.ModelAdmin):
     list_display = ('user', 'first_name', 'last_name', 'email', 'phone_number',
     'city', 'state', 'country', 'gender','education',
     'university', 'graduating_class', 'major', 'secondmajor', 'reimbursement',
-    'attended', 'essay1', 'essay2', 'essay3', 'resume', 'submit_time',)
+    'attended', 'essay1', 'essay2', 'essay3', 'essay4', 'resume', 'submit_time', 'how_heard_medhacks')
 
     def school_info(self, obj):
         return obj.university

@@ -57,7 +57,9 @@ class HomeForm(forms.ModelForm):
     states_list.insert(0, 'NA')
     tupled_list_states = list(zip(states_list,states_list))
 
-    CHOICESMEDHACKS=[('Yes','Yes'), ('No','No')]
+    CHOICESMEDHACKS=[('Yes',' Yes'), ('No',' No')]
+    CHOICES_HEARD = [('Facebook', ' Facebook'), ('Instagram', ' Instagram'), ('MLH', ' MLH'),
+    ('Campus Ambassador', ' MedHacks Campus Ambassador'), ('Other', ' Other')]
 
     first_name = forms.CharField(label='First Name', max_length=50, widget = forms.HiddenInput())
     last_name = forms.CharField(label='Last Name', max_length=50, widget = forms.HiddenInput())
@@ -83,6 +85,7 @@ class HomeForm(forms.ModelForm):
     essay3 = forms.CharField(label='What would you like to see at MedHacks 2018? (Max 300 characters)', widget=forms.Textarea)
     essay4 = forms.CharField(label='Is there anything you would like us to know? (Max 200 characters)', widget=forms.Textarea, required=False)
     resume = forms.FileField(label='Upload Resume', widget = forms.FileInput, required=True)
+    how_heard_medhacks = forms.ChoiceField(label='How did you hear about MedHacks 2018', choices=CHOICES_HEARD, widget=forms.RadioSelect())
     permission = forms.BooleanField(label='I am giving MedHacks use of my personal information',required=True)
     conduct = forms.BooleanField(label='I accept the <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"target="_blank">MLH code of conduct</a>',required=True)
     # def clean_other_uni(self):
@@ -105,6 +108,6 @@ class HomeForm(forms.ModelForm):
         fields = ('first_name', 'last_name', 'email', 'phone_number',
         'city', 'state', 'country', 'gender',
         'education', 'university', 'other_uni', 'major','secondmajor','graduating_class', 'reimbursement', 'attended',
-        'essay1', 'essay2', 'essay3', 'essay4', 'resume','permission', 'conduct'
+        'essay1', 'essay2', 'essay3', 'essay4','how_heard_medhacks','resume', 'permission', 'conduct',
         )
         model = Application
