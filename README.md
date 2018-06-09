@@ -1,4 +1,4 @@
-# Medhacks
+# Medhacks Backend
 
 ## Table of Contents
  * [About Medhacks](#about-medhacks)

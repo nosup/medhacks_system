@@ -37,6 +37,7 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     'home',
     'accounts',
+    'travel',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -166,4 +167,3 @@ EMAIL_HOST = 'smtp.zoho.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'no.reply@medhacks.org'
 EMAIL_HOST_PASSWORD = 'medhacks'
-
