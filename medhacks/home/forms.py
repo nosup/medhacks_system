@@ -108,6 +108,6 @@ class HomeForm(forms.ModelForm):
         fields = ('first_name', 'last_name', 'email', 'phone_number',
         'city', 'state', 'country', 'gender',
         'education', 'university', 'other_uni', 'major','secondmajor','graduating_class', 'reimbursement', 'attended',
-        'essay1', 'essay2', 'essay3', 'essay4', 'resume', 'how_heard_medhacks', 'permission', 'conduct',
+        'essay1', 'essay2', 'essay3', 'essay4','how_heard_medhacks','resume', 'permission', 'conduct',
         )
         model = Application
