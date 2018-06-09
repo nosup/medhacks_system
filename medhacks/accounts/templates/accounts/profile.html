@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Profile</title>
+{% endblock %}
+
+{% block body %}
+<div id="accordion">
+   <div class="card-body">
+
+  <h1>Profile</h1>
+  <p>Username: {{user}}</p>
+  <p>First name: {{user.first_name}}</p>
+  <p>Last name: {{user.last_name}}</p>
+  <p>Email: {{user.email}}</p>
+  <!-- <h1>
+    Travel Reimbursement Status
+  </h1>
+  {% if user.userprofile.travel_reimbursement == 'Y' %}
+  <p>
+    You have been awarded a travel reimbursement!
+  </p>
+  {% elif user.userprofil.travel_reimbursement == 'N' %}
+  <p>
+    You are not eligible for a travel reimbursement.
+  </p>
+  {% else %}
+  <p>
+    Travel reimbursement application pending!
+  </p>
+  {% endif %}
+</div>
+  <div class="container">
+    {% if user.userprofile.campus_ambassador == 'Y' %}
+    <p>
+      Thank you for being a campus amabassador!
+    </p>
+    {% else %}
+    <p>
+      Not a MedHacks campus ambassador? Find out the perks of becoming one!
+    </p>
+    {% endif %}
+  </div> -->
+  <!-- <p>Description: {{ user.userprofile.description }}</p>
+  <p>Phone: {{user.userprofile.phone }}</p>
+  <p>City: {{user.userprofile.city }}</p>
+  <p>Website: {{user.userprofile.website }}</p>
+  <img src="{{ user.userprofile.image.url }}" width="240"> -->
+</div>
+</div>
+
+{% endblock %}
+</body>

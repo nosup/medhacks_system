@@ -1,0 +1,308 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block specificcss %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" />
+{% endblock %}
+
+{% block body %}
+
+{% if form != None %}
+<div class=card-body style="width: 90vw; margin-left: 5vw;">
+    <h1>MedHacks 2018 Application</h1>
+    <h2>Hello {{user.first_name}}! </h2>
+    <div style="height: 25px"></div>
+    <form action={% url 'home:home' %} method="post" enctype='multipart/form-data'>
+       {% csrf_token %}
+       <!--{{ form.as_p }}-->
+      {{form|crispy}}
+
+      <!-- <script type="text/javascript">
+      var uni = form.getElementById("uni-dropdown");
+      var other_uni = form.getElementById("other-uni");
+      window.onload = function() {
+        other_uni.style.display = 'none';
+      }
+      function showOtherField() {
+        if (uni.options[uni.selectedIndex].value == "Other") {
+          other_uni.style.display = 'block';
+        } else {
+          other_uni.style.display = 'none';
+        };
+      }
+      </script> -->
+
+      {% if form.errors %}
+      {% for field in form %}
+          {% for error in field.errors %}
+              <div class="alert alert-danger">
+                  <strong>{{ error|escape }}</strong>
+              </div>
+          {% endfor %}
+      {% endfor %}
+      {% for error in form.non_field_errors %}
+          <div class="alert alert-danger">
+              <strong>{{ error|escape }}</strong>
+          </div>
+      {% endfor %}
+      {% endif %}
+
+      <p>{{ form.non_field_errors }}</p>
+      <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+      <p>
+           {{ form.docfile.errors }}
+           {{ form.docfile }}
+      </p>
+      <p>
+         Be sure to like our <a href="https://www.facebook.com/medhacks/?ref=br_rs" target="_blank">Facebook</a> for more updates!
+      </p>
+      <!--<p><input type="submit" value="Submit" /></p>-->
+
+      <input class="applyButton" type="submit" value="Submit"/>
+
+
+    </form>
+</div>
+<div style="height: 50px"></div>
+{% elif user.userprofile.campus_ambassador == 'Y' %}
+<div id="accordion">
+    <div class="card-body">
+        <h2>Hello {{user.first_name}}! </h2>
+        <div style="height: 25px"></div>
+        <ul class="nav nav-tabs typeTab">
+          <li class="active activeLi"><a id="statusTab" data-toggle="tab" href="#statusCA">Application Status</a></li>
+          <li><a id="travelTab" data-toggle="tab" href="#travelCA">Travel Reimbursements</a></li>
+          <li><a id="caTab" data-toggle="tab" href="#campus_ambassador">Campus Ambassador</a></li>
+          <li><a id="profTab" data-toggle"tab" href="#profCA">Profile</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="statusCA" class="tab-pane in active">
+                <h3>Application Status</h3>
+                <div class="container">
+                   {% if user.userprofile.accepted == 'Y' %}
+                   <p>
+                     Congratulations! You have been accepted into 2018 MedHacks! Your travel
+                     reimbursement details are listed below.
+                   </p>
+                   {% elif user.userprofile.accepted == 'N' %}
+                   <p>
+                     I'm sorry, due to the large number of applicants this year, we are unable to
+                     accept you.
+                   </p>
+                   {% else %}
+                   <p>
+                       Thank you for applying to MedHacks 2018! Your application status is currently pending. Our team is reviewing your application.
+                   </p>
+                   {% for app in apps %}
+                   <a href="{{app.resume.url}}" target="_blank"><strong>View your Resume</strong></a>
+                   {% endfor %}
+                   {% endif %}
+
+                </div>
+            </div>
+            <div id="travelCA" class="tab-pane">
+                <h3>Travel Reimbursements</h3>
+                <div class="container">
+                  {% if user.userprofile.travel_reimbursement == 'Y' %}
+                  <p>
+                    Please read over the travel reimbursement receipt <a target="_blank" href="https://drive.google.com/open?id=1IRAy-KqUC7yyR0I8wi7oJ1IxWBkLKIlp">requirements</a>. If you fail to adhere to these strict guidelines, your reimbursement will not be processed. We are not responsible for notifying if you incorrectly submitted your reimbursement. If you have any questions email us at reimbursement@medhacks.org.
+                  </p>
+                  <p>
+                    You can now purchase your travel arrangements.
+                  </p>
+                  {% elif user.userprofile.travel_reimbursement == 'N' %}
+                  <p>
+                    Thank you for your interest in receiving a travel reimbursement. Due to the high number of applications and limited budget, we unfortunately cannot offer you a travel reimbursement. Thank you!
+                  </p>
+                  {% else %}
+                  <p>
+                      The travel reimbursement application is now <a href="{% url 'travel:travel' %}">live</a>. If you've already applied, please disregard.
+                  </p>
+
+                  {% endif %}
+                </div>
+            </div>
+            <div id="campus_ambassador" class="tab-pane">
+                <h3>Campus Ambassador</h3>
+                <div class="container">
+                  <p>
+                    Thank you for being a campus amabassador! Here are some helpful links.
+                  </p>
+                </div>
+            </div>
+            <div id="profCA" class="tab-pane">
+                <h3>Profile</h3>
+                <p>Username: {{user}}</p>
+                <p>First name: {{user.first_name}}</p>
+                <p>Last name: {{user.last_name}}</p>
+                <p>Email: {{user.email}}</p>
+                <p>
+                    <a style="color: black; " href="{% url 'accounts:change_password' %}">
+                        Change Password
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+{% for appli in apps %}
+{% if appli.reimbursement == 'Yes' and user.userprofile.campus_ambassador != 'Y' %}
+<div id="accordion">
+    <div class="card-body">
+        <h2>Hello {{user.first_name}}! </h2>
+        <div style="height: 25px"></div>
+        <ul class="nav nav-tabs typeTab">
+          <li class="active activeLi"><a id="statusTab" data-toggle="tab" href="#statusCA">Application Status</a></li>
+          <li><a id="travelTab" data-toggle="tab" href="#travelCA">Travel Reimbursements</a></li>
+          <li><a id="profTab" data-toggle="tab" href="#profCA">Profile</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="statusCA" class="tab-pane in active">
+                <h3>Application Status</h3>
+                <div class="container">
+                   {% if user.userprofile.accepted == 'Y' %}
+                   <p>
+                     Congratulations! You have been accepted into 2018 MedHacks! Your travel
+                     reimbursement details are listed below.
+                   </p>
+                   {% elif user.userprofile.accepted == 'N' %}
+                   <p>
+                     I'm sorry, due to the large number of applicants this year, we are unable to
+                     accept you.
+                   </p>
+                   {% else %}
+                   <p>
+                       Thank you for applying to MedHacks 2018! Your application status is currently pending. Our team is reviewing your application.
+                   </p>
+                   {% for app in apps %}
+                   <a href="{{app.resume.url}}" target="_blank"><strong>View your Resume</strong></a>
+                   {% endfor %}
+                   {% endif %}
+                </div>
+            </div>
+            <div id="travelCA" class="tab-pane">
+                <h3>Travel Reimbursements</h3>
+                <div class="container">
+                  {% if user.userprofile.travel_reimbursement == 'Y' %}
+                  <p>
+                    Please read over the travel reimbursement receipt <a target="_blank" href="https://drive.google.com/open?id=1IRAy-KqUC7yyR0I8wi7oJ1IxWBkLKIlp">requirements</a>. If you fail to adhere to these strict guidelines, your reimbursement will not be processed. We are not responsible for notifying if you incorrectly submitted your reimbursement. If you have any questions email us at reimbursement@medhacks.org.
+                  </p>
+                  <p>
+                    You can now purchase your travel arrangements.
+                  </p>
+                  {% elif user.userprofile.travel_reimbursement == 'N' %}
+                  <p>
+                    Thank you for your interest in receiving a travel reimbursement. Due to the high number of applications and limited budget, we unfortunately cannot offer you a travel reimbursement. Thank you!
+                  </p>
+                  {% else %}
+                  <p>
+                      The travel reimbursement application is now <a href="{% url 'travel:travel' %}">live</a>. If you've already applied, please disregard.
+                  </p>
+
+                  {% endif %}
+                </div>
+            </div>
+            <div id="profCA" class="tab-pane">
+                <h3>Profile</h3>
+                <p>Username: {{user}}</p>
+                <p>First name: {{user.first_name}}</p>
+                <p>Last name: {{user.last_name}}</p>
+                <p>Email: {{user.email}}</p>
+                <p>
+                    <a style="color: black; " href="{% url 'accounts:change_password' %}">
+                        Change Password
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% elif user.userprofile.campus_ambassador != 'Y' %}
+<div id="accordion">
+    <div class="card-body">
+    <h2>Hello {{ user.first_name }}! </h2>
+    <div style="height: 25px"></div>
+    <ul class="nav nav-tabs typeTab">
+      <li class="active activeLi"><a id="statusTab" data-toggle="tab" href="#statusCA">Application Status</a></li>
+      <li><a id="profTab" data-toggle="tab" href="#profCA">Profile</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="statusCA" class="tab-pane in active">
+            <h3>Application Status</h3>
+            <div class="container">
+               {% if user.userprofile.accepted == 'Y' %}
+               <p>
+                 Congratulations! You have been accepted into 2018 MedHacks! Your travel
+                 reimbursement details are listed below.
+               </p>
+               {% elif user.userprofile.accepted == 'N' %}
+               <p>
+                 I'm sorry, due to the large number of applicants this year, we are unable to
+                 accept you.
+               </p>
+               {% else %}
+               <p>
+                 Thank you for applying to MedHacks 2018! Your application status is currently pending. Our team is reviewing your application.
+
+               </p>
+               {% for app in apps %}
+               <a href="{{app.resume.url}}" target="_blank"><strong>View your Resume</strong></a>
+               {% endfor %}
+               {% endif %}
+            </div>
+        </div>
+        <div id="profCA" class="tab-pane">
+            <h3>Profile</h3>
+            <p>Username: {{user}}</p>
+            <p>First name: {{user.first_name}}</p>
+            <p>Last name: {{user.last_name}}</p>
+            <p>Email: {{user.email}}</p>
+            <p>
+                <a style="color: black; " href="{% url 'accounts:change_password' %}">
+                    Change Password
+                </a>
+            </p>
+        </div>
+    </div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(() => {
+    $("#statusTab").click(function() {
+        $(this).parent().addClass('activeLi');
+        $("#travelTab").parent().removeClass('activeLi');
+        $("#caTab").parent().removeClass('activeLi');
+        $("#profTab").parent().removeClass('activeLi');
+    });
+    $("#travelTab").click(function() {
+        $(this).parent().addClass('activeLi');
+        $("#statusTab").parent().removeClass('activeLi');
+        $("#caTab").parent().removeClass('activeLi');
+        $("#profTab").parent().removeClass('activeLi');
+    });
+    $("#caTab").click(function() {
+        $(this).parent().addClass('activeLi');
+        $("#travelTab").parent().removeClass('activeLi');
+        $("#statusTab").parent().removeClass('activeLi');
+        $("#profTab").parent().removeClass('activeLi');
+    });
+    $("#profTab").click(function() {
+        $(this).parent().addClass('activeLi');
+        $("#travelTab").parent().removeClass('activeLi');
+        $("#statusTab").parent().removeClass('activeLi');
+        $("#caTab").parent().removeClass('activeLi');
+    });
+});
+</script>
+{% endblock %}
