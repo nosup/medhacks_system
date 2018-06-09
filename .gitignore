@@ -1,5 +1,6 @@
 djangoenv/
 *.pyc
+/databasedir
 *.sqlite3
 /medhacks/medhacks/media/*
 **/media
