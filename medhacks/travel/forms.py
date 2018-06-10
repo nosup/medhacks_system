@@ -29,7 +29,6 @@ class TravelForm(forms.ModelForm):
     CHOICES_YN = (
         ('Y', 'Yes'),
         ('N', 'No'),
-        ('-', 'Not Decided'),
     )
 
     # TODO Need question in the html
