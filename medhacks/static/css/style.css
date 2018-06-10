@@ -43,7 +43,7 @@ body {
    padding: 10px 20px;
    text-decoration: none;
    background-color: #193f55;
-   color: white;
+   color: white !important;
    font-size: 1.3rem;
    border-radius: 0.5rem;
    transform: scale(0.85);
