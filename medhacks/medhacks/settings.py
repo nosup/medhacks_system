@@ -26,9 +26,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '0.0.0.0',
     '127.0.0.1',
-    '159.89.155.87',
     'apply.medhacks.org',
-    #get rid of 127.0.0.1!!!TODO
 ]
 
 
