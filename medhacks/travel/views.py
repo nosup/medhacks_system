@@ -15,6 +15,9 @@ class TravelView(TemplateView):
         # if application.count() > 0:
         #     return render(request, self.template_name, {'form': None, 'apps': application, 'user': request.user})
         form = TravelForm
+        trApplication = TRApplication.objects.filter(user=request.user)[:1]
+        if trApplication.count() > 0:
+            return render(request, 'travel/applied.html')
         return render(request, self.template_name, {'form': form, 'apps': None})
 
     def post(self, request):
