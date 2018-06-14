@@ -151,7 +151,7 @@
 
 
 {% for appli in apps %}
-{% if appli.reimbursement == 'Yes' and user.userprofile.campus_ambassador != 'Y' %}
+{% if appli.reimbursement == 'Yes' and user.userprofile.campus_ambassador != 'Y' and user.userprofile.accepted != 'N' %}
 <div id="accordion">
     <div class="card-body">
         <h2>Hello {{user.first_name}}! </h2>
