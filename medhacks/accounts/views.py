@@ -1,18 +1,17 @@
-from django.shortcuts import render, HttpResponse, redirect
-from accounts.forms import (
-    RegistrationForm,
-    # EditProfileForm,
-)
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
+from accounts.forms import RegistrationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
-from django.contrib.auth import login
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import login, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from home.models import Application
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from django.views.generic import TemplateView
+from .forms import ConfirmAcceptanceForm
+from .models import UserProfile
 
 def home(request):
     posts = Application.objects.filter(email=request.user.email)[:1]
@@ -43,11 +42,6 @@ def change_password(request):
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
-            # sender = settings.DEFAULT_FROM_EMAIL
-            # recipient = [form.user['email']]
-            # subject = 'Change Password'
-            # content = render_to_string('accounts/change_password_email.html')
-            # send_mail(subject,content,sender,recipient,fail_silently=False)
             return redirect(reverse('accounts:view_profile'))
         else:
             # TODO print error message: "incorrect password entry", etc
@@ -57,3 +51,29 @@ def change_password(request):
         form = PasswordChangeForm(user=request.user)
         args = {'form': form}
         return render(request, 'accounts/change_password.html', args)
+
+class ConfirmView(TemplateView):
+    template_name = 'accounts/confirm.html'
+
+    def get(self, request):
+        form = ConfirmAcceptanceForm
+        # q1 = UserProfile.objects.filter(user=request.user)
+        q2 = UserProfile.objects.filter(confirmation='Y')
+        q3 = q2.filter(user=request.user)
+        if q3.count() > 0:
+            return render(request, '/home/edit_profile.html')
+        return render(request, self.template_name, {'form': form, 'apps': None})
+
+    def post(self, request):
+        user = get_object_or_404(UserProfile, user=request.user)
+        form = ConfirmAcceptanceForm(request.POST, instance=user)
+        print(form)
+        print(form.is_valid())
+        if form.is_valid():
+            post_data = form.save(commit=False)
+            post_data.user = request.user
+            post_data.save()
+            print(post_data)
+            form.save()
+            return render(request, 'home/applied.html')
+        return render(request, self.template_name, {'form', form})

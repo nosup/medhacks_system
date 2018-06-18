@@ -12,7 +12,7 @@ def reject_hacker(modeladmin, request, queryset):
 reject_hacker.short_description = "Reject selected users"
 
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'travel_reimbursement', 'campus_ambassador', 'accepted')
+    list_display = ('user', 'travel_reimbursement', 'campus_ambassador', 'accepted', 'confirmation')
     actions = [accept_hacker, reject_hacker,]
 
     def user_info(self, obj):

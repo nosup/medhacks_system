@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import UserChangeForm
+from .models import UserProfile
 
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -55,6 +56,21 @@ class RegistrationForm(UserCreationForm):
             self.fields['last_name'].error_messages["error4"] = "Last name is required"
             raise forms.ValidationError(self.fields['last_name'].error_messages["error4"])
         return self.cleaned_data["last_name"]
+
+class ConfirmAcceptanceForm(forms.ModelForm):
+    CHOICESMEDHACKS=[('Y', 'Yes'),
+    ('N', 'No'),
+    ('-', 'Not Decided')]
+    confirmation = forms.ChoiceField(label='Congratulations on your acceptance into MedHacks! Confirm your attendance below.', choices=CHOICESMEDHACKS, widget=forms.RadioSelect())
+
+    # def cleaned_confirmation(self):
+    #     print("a;sdfjasd;fljaksdf;ljasdkf;asljdkf")
+    #     print(self.cleaned.keys())
+    #     data = self.cleaned_confirmation['confirm']
+    #     return data
+    class Meta:
+        fields  = ('confirmation',)
+        model = UserProfile
 
 # class EditProfileForm(UserChangeForm):
 #

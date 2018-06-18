@@ -33,6 +33,7 @@ class UserProfile(models.Model):
     travel_reimbursement = models.CharField(max_length=13, choices=CHOICES_TR, default='-')
     campus_ambassador = models.CharField(max_length=1, choices=CHOICES_YN, default='-')
     accepted = models.CharField(max_length=1, choices=CHOICES_YN, default='-')
+    confirmation = models.CharField(max_length=1, choices=CHOICES_YN, default='-')
 
     # image = models.ImageField(upload_to='profile_image', blank=True)
 

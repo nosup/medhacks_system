@@ -6,12 +6,14 @@ from django.contrib.auth.views import (
     login, logout, password_reset, password_reset_done, password_reset_confirm,
     password_reset_complete,
     )
+from accounts.views import ConfirmView
 
 
 
 app_name = 'accounts'
 
 urlpatterns = [
+    path('confirm/', ConfirmView.as_view(), name='confirm'),
     path('', HomeView.as_view(), name='home'),
     # path('', views.home, name='home'),
     path('login/', login, {'template_name': 'accounts/login.html'}, name='login'),
