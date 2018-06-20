@@ -20,7 +20,7 @@ class HomeForm(forms.ModelForm):
 
     CHOICESMEDHACKS=[('Yes',' Yes'), ('No',' No')]
     CHOICES_HEARD = [('Facebook', ' Facebook'), ('Instagram', ' Instagram'), ('MLH', ' MLH'),
-                     ('Campus Ambassador', ' MedHacks Campus Ambassador'),('Email', 'Email'), ('Other', ' Other')]
+                     ('Campus Ambassador', ' MedHacks Campus Ambassador'),('Email', ' Email'), ('Other', ' Other')]
 
     first_name = forms.CharField(label='First Name', max_length=50, widget = forms.HiddenInput())
     last_name = forms.CharField(label='Last Name', max_length=50, widget = forms.HiddenInput())
