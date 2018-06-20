@@ -6,56 +6,17 @@ from django.conf import settings
 import json
 import os
 import csv
+import pickle
 
 class HomeForm(forms.ModelForm):
-    path_to_colleges = os.path.join(settings.STATIC_ROOT, 'colleges.json')
+    with open('static/colleges.pickle', 'rb') as handle:
+        tupled_list_colleges = pickle.load(handle)
 
-    json_data = []
+    with open('static/majors.pickle', 'rb') as handle:
+        tupled_list_majors = pickle.load(handle)
 
-    #need encoding to prevent error on live server
-    with open(path_to_colleges, encoding='utf-8') as json_file:
-        json_data = json.load(json_file)
-
-    onlyCollegeList = []
-    for piece in json_data:
-        this_ip = piece['institution']
-        onlyCollegeList.append(this_ip)
-
-    #sorted and deletes duplicates from onlyCollegeList
-    onlyCollegeList = sorted(set(onlyCollegeList))
-
-    onlyCollegeList.insert(0, 'Other')
-    onlyCollegeList.insert(0, 'NA')
-    #puts onlyCollegeList into a tupled list of choices for forms
-    tupled_list_colleges = list(zip(onlyCollegeList, onlyCollegeList))
-    #tupledList = (('1', 'Temp1'), ('2', 'Temp2'))
-
-    path_to_majors = os.path.join(settings.STATIC_ROOT, 'major_list.csv')
-    with open(path_to_majors, 'r') as f:
-        reader = csv.reader(f)
-        complete_majors_list = list(reader)
-    only_majors_list = [a[1] for a in complete_majors_list]
-
-    #delete first index of major list because it is not a major(it's a header)
-    only_majors_list.pop(0)
-    only_majors_list = sorted(only_majors_list)
-    majors_lower = [x.lower() for x in only_majors_list]
-    for x in range(len(majors_lower)):
-        majors_lower[x] = majors_lower[x].title()
-        x = x + 1
-    majors_lower.insert(0, 'Other')
-    majors_lower.insert(0, 'NA')
-    tupled_list_majors = list(zip(majors_lower, majors_lower))
-
-    # get list of states for dropdown
-    path_to_states = os.path.join(settings.STATIC_ROOT, 'states.csv')
-    with open(path_to_states, 'r', encoding='utf-8') as file:
-        states = csv.reader(file)
-        states_list = list(states)
-    states_list = [a[0] for a in states_list]
-    states_list.pop(0)
-    states_list.insert(0, 'NA')
-    tupled_list_states = list(zip(states_list,states_list))
+    with open('static/states.pickle', 'rb') as handle:
+        tupled_list_states = pickle.load(handle)
 
     CHOICESMEDHACKS=[('Yes',' Yes'), ('No',' No')]
     CHOICES_HEARD = [('Facebook', ' Facebook'), ('Instagram', ' Instagram'), ('MLH', ' MLH'),
