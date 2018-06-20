@@ -18,6 +18,10 @@ class HomeForm(forms.ModelForm):
     with open('static/states.pickle', 'rb') as handle:
         tupled_list_states = pickle.load(handle)
 
+    races_list = [('Prefer not to answer', 'Prefer not to answer'), ('Indian or Alaskan', 'American Indian or Alaskan Native'), ('Asian', 'Asian/Pacific Islander'),
+        ('Black', 'Black or African American'), ('Hispanic', 'Hispanic'), ('White', 'White/Caucasion'),
+        ('Multiple', 'Multiple Ethnicity/Other')]
+
     CHOICESMEDHACKS=[('Yes',' Yes'), ('No',' No')]
     CHOICES_HEARD = [('Facebook', ' Facebook'), ('Instagram', ' Instagram'), ('MLH', ' MLH'),
                     ('Campus Ambassador', ' MedHacks Campus Ambassador'),('Email', ' Email'), ('Other', ' Other')]
