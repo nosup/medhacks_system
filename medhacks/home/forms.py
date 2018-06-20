@@ -77,7 +77,7 @@ class HomeForm(forms.ModelForm):
         ('Graduate', 'Graduate'), ('Professional', 'Professional')))
     university = forms.ChoiceField(label='University', choices=tupled_list_colleges)
     other_uni = forms.CharField(label='Other University', max_length=100, required=False)
-    birthday = forms.CharField(label='Birthday', max_length=100, help_text='Input birthday in form ##/##/####')
+    birthday = forms.CharField(label='Birthday', max_length=100, help_text='Input birthday in form MM/DD/YYY')
     graduating_class = forms.ChoiceField(label='Graduating Class', choices=(('NA','NA'),('2018','2018'), ('2019','2019'), ('2020','2020'), ('2021+','2021+')))
     major = forms.ChoiceField(label='Major/Area of Expertise', choices=tupled_list_majors)
     secondmajor = forms.ChoiceField(label='Second Major/Area of Expertise', choices=tupled_list_majors, required=False)
