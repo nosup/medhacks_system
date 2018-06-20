@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div id="accordion">
+   <div class="card-body">
+
+      <h1 style="text-align: center">Hooray!</h1>
+      <br />
+      <p style="text-align: center">You have confirmed your attendance to MedHacks: Snow Day!</p>
+      <p style="text-align: center">
+        We can't wait to see 
+      </p>
+      <div style="height: 25px"></div>
+      <a class="rightitem profButton" href="{% url 'home:home' %}">Back to Profile</a>
+      {% load static %}
+      <img style="width: 40vw; margin-left: auto;margin-right:auto; display: block;" src="{% static 'appliMoose.png' %}"/>
+    </div>
+</div>
+{% endblock %}

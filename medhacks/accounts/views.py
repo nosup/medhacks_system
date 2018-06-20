@@ -61,7 +61,7 @@ class ConfirmView(TemplateView):
         q2 = UserProfile.objects.filter(confirmation='Y')
         q3 = q2.filter(user=request.user)
         if q3.count() > 0:
-            return render(request, '/home/edit_profile.html')
+            return render(request, 'accounts/thankyou-confirm.html')
         return render(request, self.template_name, {'form': form, 'apps': None})
 
     def post(self, request):
