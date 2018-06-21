@@ -74,7 +74,7 @@
           <li class="active activeLi"><a id="statusTab" data-toggle="tab" href="#statusCA">Application Status</a></li>
           <li><a id="travelTab" data-toggle="tab" href="#travelCA">Travel Reimbursements</a></li>
           <li><a id="caTab" data-toggle="tab" href="#campus_ambassador">Campus Ambassador</a></li>
-          <li><a id="profTab" data-toggle"tab" href="#profCA">Profile</a></li>
+          <li><a id="profCA" data-toggle"tab" href="#profCA">Profile</a></li>
         </ul>
 
         <div class="tab-content">
@@ -139,7 +139,7 @@
                 <p>Last name: {{user.last_name}}</p>
                 <p>Email: {{user.email}}</p>
                 <p>
-                    <a style="color: black; " href="{% url 'accounts:change_password' %}">
+                    <a style="color: black" href="{% url 'accounts:change_password' %}">
                         Change Password
                     </a>
                 </p>
