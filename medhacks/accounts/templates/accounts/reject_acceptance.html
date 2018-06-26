@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div id="accordion">
+   <div class="card-body">
+
+      <h1 style="text-align: center">Oh no!</h1>
+      <br />
+      <p style="text-align: center">You have selected to give up your spot at MedHacks: Snow Day!</p>
+      <p style="text-align: center"> Sorry to see you go. We hope to see you next year!</p>
+      <div style="height: 25px"></div>
+      <a class="rightitem profButton" href="{% url 'home:home' %}">Back to Profile</a>
+      {% load static %}
+
+    </div>
+</div>
+{% endblock %}

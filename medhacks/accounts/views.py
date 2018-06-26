@@ -57,23 +57,36 @@ class ConfirmView(TemplateView):
 
     def get(self, request):
         form = ConfirmAcceptanceForm
-        # q1 = UserProfile.objects.filter(user=request.user)
-        q2 = UserProfile.objects.filter(confirmation='Y')
-        q3 = q2.filter(user=request.user)
-        if q3.count() > 0:
-            return render(request, 'accounts/thankyou-confirm.html')
+        get_q1 = UserProfile.objects.filter(user=request.user)
+        get_yes = get_q1.filter(confirmation='Y')
+        get_no = get_q1.filter(confirmation='N')
+        # print("get_yes: ", get_yes)
+        # print("get_no: ", get_no)
+        if get_yes.count() > 0:
+            return render(request, 'accounts/confirm_acceptance.html')
+        elif get_no.count() > 0:
+            return render(request, 'accounts/reject_acceptance.html')
         return render(request, self.template_name, {'form': form, 'apps': None})
 
     def post(self, request):
         user = get_object_or_404(UserProfile, user=request.user)
         form = ConfirmAcceptanceForm(request.POST, instance=user)
-        print(form)
-        print(form.is_valid())
         if form.is_valid():
             post_data = form.save(commit=False)
             post_data.user = request.user
             post_data.save()
-            print(post_data)
             form.save()
-            return render(request, 'home/applied.html')
+            post_q1 = UserProfile.objects.filter(user=request.user)
+            post_yes = post_q1.filter(confirmation='Y')
+            post_no = post_q1.filter(confirmation='N')
+            if post_no.count() > 0:
+                return render(request, 'accounts/reject_acceptance.html')
+            else:
+                user = form.save()
+                sender = settings.DEFAULT_FROM_EMAIL
+                recipient = [get_object_or_404(User, username=request.user).email]
+                subject = 'Welcome to MedHacks: Snow Day!'
+                content = render_to_string('accounts/welcome_email.html', {'user':user})
+                send_mail(subject,content,sender,recipient,fail_silently=False)
+                return render(request, 'accounts/confirm_acceptance.html')
         return render(request, self.template_name, {'form', form})

@@ -59,9 +59,8 @@ class RegistrationForm(UserCreationForm):
 
 class ConfirmAcceptanceForm(forms.ModelForm):
     CHOICESMEDHACKS=[('Y', 'Yes'),
-    ('N', 'No'),
-    ('-', 'Not Decided')]
-    confirmation = forms.ChoiceField(label='Congratulations on your acceptance into MedHacks! Confirm your attendance below.', choices=CHOICESMEDHACKS, widget=forms.RadioSelect())
+    ('N', 'No'),]
+    confirmation = forms.ChoiceField(label='Confirm your attendance below.', choices=CHOICESMEDHACKS, widget=forms.RadioSelect())
 
     # def cleaned_confirmation(self):
     #     print("a;sdfjasd;fljaksdf;ljasdkf;asljdkf")
