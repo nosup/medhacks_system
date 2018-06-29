@@ -81,27 +81,36 @@
             <div id="statusCA" class="tab-pane in active">
                 <h3>Application Status</h3>
                 <div class="container">
-                   {% if user.userprofile.accepted == 'Y' %}
-                   <p>
-                     Congratulations! You have been accepted into 2018 MedHacks! Your travel
-                     reimbursement details are listed below.
-                   </p>
-                   {% elif user.userprofile.accepted == 'N' %}
-                   <p>
-                     Thank you for applying to MedHacks 2018. We received our most competitive round of applications yet and as much as we’d like to, we’re unable to accept everyone who applied. Therefore, we are not able to offer you a spot at MedHacks 2018.
-                   </p>
-                   <p>
-                     We appreciate your interest in MedHacks and encourage you to apply again in future years!
-                   </p>
-                   {% else %}
-                   <p>
-                       Thank you for applying to MedHacks 2018! Your application status is currently pending. Our team is reviewing your application.
-                   </p>
-                   {% for app in apps %}
-                   <a href="{{app.resume.url}}" target="_blank"><strong>View your Resume</strong></a>
-                   {% endfor %}
-                   {% endif %}
-
+                        {% if user.userprofile.accepted == 'Y' %}
+                            {% if user.userprofile.confirmation == "Y" %}
+                                <p>
+                                    Thank you for confirming your registration!
+                                    <br>
+                                    Feel free to join the community of hackers at <a href="https://www.facebook.com/groups/1862288673814510/">our Facebook for hackers.</a>
+                                </p>
+                            {% elif userprofile.confirmation == "N" %}
+                                <p>
+                                    We are disapointed that you cannot join us this fall, please feel free to apply to us next year!
+                                </p>
+                            {% else %}
+                                <p>
+                                    Congratulations! You have been accepted into 2018 MedHacks!
+                                </p>
+                                </br>
+                                <p>
+                                    Please confirm your attendance <a href="{% url 'accounts:confirm' %}"></a>
+                                </p>
+                            {% endif %}
+                        {% elif user.userprofile.accepted == 'N' %}
+                            <p>
+                                I'm sorry, due to the large number of applicants this year, we are unable to
+                                accept you.
+                            </p>
+                        {% else %}
+                            <p>
+                                Thank you for applying to MedHacks 2018! Your application status is currently pending. Our team is reviewing your application.
+                            </p>
+                        {% endif %}
                 </div>
             </div>
             <div id="travelCA" class="tab-pane">
@@ -168,24 +177,36 @@
             <div id="statusCA" class="tab-pane in active">
                 <h3>Application Status</h3>
                 <div class="container">
-                   {% if user.userprofile.accepted == 'Y' %}
-                   <p>
-                     Congratulations! You have been accepted into 2018 MedHacks! Your travel
-                     reimbursement details are listed below.
-                   </p>
-                   {% elif user.userprofile.accepted == 'N' %}
-                   <p>
-                     I'm sorry, due to the large number of applicants this year, we are unable to
-                     accept you.
-                   </p>
-                   {% else %}
-                   <p>
-                       Thank you for applying to MedHacks 2018! Your application status is currently pending. Our team is reviewing your application.
-                   </p>
-                   {% for app in apps %}
-                   <a href="{{app.resume.url}}" target="_blank"><strong>View your Resume</strong></a>
-                   {% endfor %}
-                   {% endif %}
+                        {% if user.userprofile.accepted == 'Y' %}
+                            {% if user.userprofile.confirmation == "Y" %}
+                                <p>
+                                    Thank you for confirming your registration!
+                                    <br>
+                                    Feel free to join the community of hackers at <a href="https://www.facebook.com/groups/1862288673814510/">our Facebook for hackers.</a>
+                                </p>
+                            {% elif userprofile.confirmation == "N" %}
+                                <p>
+                                    We are disapointed that you cannot join us this fall, please feel free to apply to us next year!
+                                </p>
+                            {% else %}
+                                <p>
+                                    Congratulations! You have been accepted into 2018 MedHacks!
+                                </p>
+                                </br>
+                                <p>
+                                    Please confirm your attendance <a href="{% url 'accounts:confirm' %}"></a>
+                                </p>
+                            {% endif %}
+                        {% elif user.userprofile.accepted == 'N' %}
+                            <p>
+                                I'm sorry, due to the large number of applicants this year, we are unable to
+                                accept you.
+                            </p>
+                        {% else %}
+                            <p>
+                                Thank you for applying to MedHacks 2018! Your application status is currently pending. Our team is reviewing your application.
+                            </p>
+                        {% endif %}
                 </div>
             </div>
             <div id="travelCA" class="tab-pane">
@@ -228,54 +249,65 @@
 
 {% elif user.userprofile.campus_ambassador != 'Y' %}
 <div id="accordion">
-    <div class="card-body">
-    <h2>Hello {{ user.first_name }}! </h2>
-    <div style="height: 25px"></div>
-    <ul class="nav nav-tabs typeTab">
-      <li class="active activeLi"><a id="statusTab" data-toggle="tab" href="#statusCA">Application Status</a></li>
-      <li><a id="profTab" data-toggle="tab" href="#profCA">Profile</a></li>
-    </ul>
-
-    <div class="tab-content">
-        <div id="statusCA" class="tab-pane in active">
-            <h3>Application Status</h3>
-            <div class="container">
-               {% if user.userprofile.accepted == 'Y' %}
-               <p>
-                 Congratulations! You have been accepted into 2018 MedHacks! Your travel
-                 reimbursement details are listed below.
-               </p>
-               {% elif user.userprofile.accepted == 'N' %}
-               <p>
-                 I'm sorry, due to the large number of applicants this year, we are unable to
-                 accept you.
-               </p>
-               {% else %}
-               <p>
-                 Thank you for applying to MedHacks 2018! Your application status is currently pending. Our team is reviewing your application.
-
-               </p>
-               {% for app in apps %}
-               <a href="{{app.resume.url}}" target="_blank"><strong>View your Resume</strong></a>
-               {% endfor %}
-               {% endif %}
+        <div class="card-body">
+        <h2>Hello {{ user.first_name }}! </h2>
+        <div style="height: 25px"></div>
+        <ul class="nav nav-tabs typeTab">
+          <li class="active activeLi"><a id="statusTab" data-toggle="tab" href="#statusCA">Application Status</a></li>
+          <li><a id="profTab" data-toggle="tab" href="#profCA">Profile</a></li>
+        </ul>
+    
+        <div class="tab-content">
+            <div id="statusCA" class="tab-pane in active">
+                <h3>Application Status</h3>
+                    <div class="container">
+                        {% if user.userprofile.accepted == 'Y' %}
+                            {% if user.userprofile.confirmation == "Y" %}
+                                <p>
+                                    Thank you for confirming your registration!
+                                    <br>
+                                    Feel free to join the community of hackers at <a href="https://www.facebook.com/groups/1862288673814510/">our Facebook for hackers.</a>
+                                </p>
+                            {% elif userprofile.confirmation == "N" %}
+                                <p>
+                                    We are disapointed that you cannot join us this fall, please feel free to apply to us next year!
+                                </p>
+                            {% else %}
+                                <p>
+                                    Congratulations! You have been accepted into 2018 MedHacks!
+                                </p>
+                                </br>
+                                <p>
+                                    Please confirm your attendance <a href="{% url 'accounts:confirm' %}"></a>
+                                </p>
+                            {% endif %}
+                        {% elif user.userprofile.accepted == 'N' %}
+                            <p>
+                                I'm sorry, due to the large number of applicants this year, we are unable to
+                                accept you.
+                            </p>
+                        {% else %}
+                            <p>
+                                Thank you for applying to MedHacks 2018! Your application status is currently pending. Our team is reviewing your application.
+                            </p>
+                        {% endif %}
+                    </div>
+            </div>
+            <div id="profCA" class="tab-pane">
+                <h3>Profile</h3>
+                <p>Username: {{user}}</p>
+                <p>First name: {{user.first_name}}</p>
+                <p>Last name: {{user.last_name}}</p>
+                <p>Email: {{user.email}}</p>
+                <p>
+                    <a style="color: black; " href="{% url 'accounts:change_password' %}">
+                        Change Password
+                    </a>
+                </p>
             </div>
         </div>
-        <div id="profCA" class="tab-pane">
-            <h3>Profile</h3>
-            <p>Username: {{user}}</p>
-            <p>First name: {{user.first_name}}</p>
-            <p>Last name: {{user.last_name}}</p>
-            <p>Email: {{user.email}}</p>
-            <p>
-                <a style="color: black; " href="{% url 'accounts:change_password' %}">
-                    Change Password
-                </a>
-            </p>
         </div>
     </div>
-    </div>
-</div>
 {% endif %}
 {% endfor %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
