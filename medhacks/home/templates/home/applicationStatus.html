@@ -1,11 +1,18 @@
 <h3>Application Status</h3>
 <div class="container">
     {% if user.userprofile.accepted == 'Y' %}
-        {%if user.userprofile.confirm == "Y" %}
+        {%if user.userprofile.confirmation == "Y" %}
             <p>
-                Thank you for confirming your registration!
-                <br>
-                Feel free to join the community of hackers at <a href="">our Facebook for hackers.</a>
+
+                            Thanks for confirming your attendance to MedHacks: Snow Day! We are so excited to have you join us at the Johns Hopkins Medical Campus this September!
+                            
+                            We will be releasing updates regarding sponsors, tracks, prizes, workshops and more through the next couple of weeks so please be sure to like our FB page (Hyperlink).
+                            
+                            Also, in the meantime feel free to join our MedHacks: Snow Day FB Participant group <a href="https://www.facebook.com/groups/1862288673814510/">here.</a>. You can use this group to interact with all of our participants and brainstorm ideas.
+                            
+                            We can't wait to see you soon!
+            </br>
+                            The MedHacks team
             </p>
         {% elif userprofile.confirmation == "N" %}
             <p>
@@ -17,7 +24,7 @@
             </p>
             </br>
             <p>
-                Please confirm your attendance <a href="{% url 'accounts:confirm' %}"></a>
+                Please confirm your attendance <a href="{% url 'accounts:confirm' %}">here.</a>
             </p>
         {% endif %}
     {% elif user.userprofile.accepted == 'N' %}
