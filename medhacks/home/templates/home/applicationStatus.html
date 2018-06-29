@@ -4,19 +4,24 @@
         {%if user.userprofile.confirmation == "Y" %}
             <p>
 
-                            Thanks for confirming your attendance to MedHacks: Snow Day! We are so excited to have you join us at the Johns Hopkins Medical Campus this September!
-                            
-                            We will be releasing updates regarding sponsors, tracks, prizes, workshops and more through the next couple of weeks so please be sure to like our FB page (Hyperlink).
-                            
-                            Also, in the meantime feel free to join our MedHacks: Snow Day FB Participant group <a href="https://www.facebook.com/groups/1862288673814510/">here.</a>. You can use this group to interact with all of our participants and brainstorm ideas.
-                            
-                            We can't wait to see you soon!
-            </br>
-                            The MedHacks team
+                Thanks for confirming your attendance to MedHacks: Snow Day! 
+                We are so excited to have you join us at the Johns Hopkins Medical 
+                Campus this September! We will be releasing updates regarding sponsors, tracks, 
+                prizes, workshops and more through the next couple of weeks so please be sure to 
+                like our FB page (Hyperlink). Also, in the meantime feel free to join our 
+                MedHacks: Snow Day FB Participant group 
+                <a href="https://www.facebook.com/groups/1862288673814510/">here.</a>. 
+                You can use this group to interact with all of our participants and brainstorm ideas.
+                <br>
+                We can't wait to see you soon!
+                <br>
+                <br>
+                The MedHacks Team
             </p>
         {% elif userprofile.confirmation == "N" %}
             <p>
-                We are disapointed that you cannot join us this fall, please feel free to apply to us next year!
+                We are disapointed that you cannot join us this fall, please feel 
+                free to apply to us next year!
             </p>
         {% else %}
             <p>
@@ -34,7 +39,8 @@
         </p>
     {% else %}
         <p>
-            Thank you for applying to MedHacks 2018! Your application status is currently pending. Our team is reviewing your application.
+            Thank you for applying to MedHacks 2018! Your application status is 
+            currently pending. Our team is reviewing your application.
         </p>
     {% endif %}
 </div>
