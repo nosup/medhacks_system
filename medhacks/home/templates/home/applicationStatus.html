@@ -1,0 +1,33 @@
+<h3>Application Status</h3>
+<div class="container">
+    {% if user.userprofile.accepted == 'Y' %}
+        {%if user.userprofile.confirm == "Y" %}
+            <p>
+                Thank you for confirming your registration!
+                <br>
+                Feel free to join the community of hackers at <a href="">our Facebook for hackers.</a>
+            </p>
+        {% elif userprofile.confirmation == "N" %}
+            <p>
+                We are disapointed that you cannot join us this fall, please feel free to apply to us next year!
+            </p>
+        {% else %}
+            <p>
+                Congratulations! You have been accepted into 2018 MedHacks!
+            </p>
+            </br>
+            <p>
+                Please confirm your attendance <a href="{% url 'accounts:confirm' %}"></a>
+            </p>
+        {% endif %}
+    {% elif user.userprofile.accepted == 'N' %}
+        <p>
+            I'm sorry, due to the large number of applicants this year, we are unable to
+            accept you.
+        </p>
+    {% else %}
+        <p>
+            Thank you for applying to MedHacks 2018! Your application status is currently pending. Our team is reviewing your application.
+        </p>
+    {% endif %}
+</div>
