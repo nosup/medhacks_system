@@ -8,9 +8,9 @@
                 We are so excited to have you join us at the Johns Hopkins Medical 
                 Campus this September! We will be releasing updates regarding sponsors, tracks, 
                 prizes, workshops and more through the next couple of weeks so please be sure to 
-                like our FB page (Hyperlink). Also, in the meantime feel free to join our 
+                like our FB page <a href="https://www.facebook.com/medhacks/" target="_blank">here</a>. Also, in the meantime feel free to join our 
                 MedHacks: Snow Day FB Participant group 
-                <a href="https://www.facebook.com/groups/1862288673814510/">here.</a>. 
+                <a href="https://www.facebook.com/groups/1862288673814510/" target="_blank">here.</a>. 
                 You can use this group to interact with all of our participants and brainstorm ideas.
                 <br>
                 We can't wait to see you soon!
@@ -25,15 +25,16 @@
             </p>
         {% else %}
             <p>
-                Congratulations! You have been accepted into 2018 MedHacks!
+                Congratulations and welcome to MedHacks! After our most competitive application round yet, including highly qualified applicants from all around the world, we are pleased to offer you acceptance to MedHacks 2018. We hope you’re excited to join 750 of the brightest and most diverse minds from across the United States and abroad to create something groundbreaking this fall.
+            </p>
+            </br>
+            <p>
+                Congratulations again, and we hope you confirm your attendance <a href="{% url 'accounts:confirm' %}">here.</a> We’re all excited to meet you, as is Melvin!
             </p>
             {%load static%}
             <img style="width: 20vw; margin-left: 5vw; display: block;" src="{% static 'appliMoose.png' %}"/>
 
-            </br>
-            <p>
-                Please confirm your attendance <a href="{% url 'accounts:confirm' %}">here.</a>
-            </p>
+            
         {% endif %}
     {% elif user.userprofile.accepted == 'N' %}
         <p>
