@@ -27,6 +27,9 @@
             <p>
                 Congratulations! You have been accepted into 2018 MedHacks!
             </p>
+            {%load static%}
+            <img style="width: 20vw; margin-left: 5vw; display: block;" src="{% static 'appliMoose.png' %}"/>
+
             </br>
             <p>
                 Please confirm your attendance <a href="{% url 'accounts:confirm' %}">here.</a>
