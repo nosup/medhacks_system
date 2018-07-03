@@ -10,7 +10,7 @@
                 prizes, workshops and more through the next couple of weeks so please be sure to 
                 like our FB page <a href="https://www.facebook.com/medhacks/" target="_blank">here</a>. Also, in the meantime feel free to join our 
                 MedHacks: Snow Day FB Participant group 
-                <a href="https://www.facebook.com/groups/1862288673814510/" target="_blank">here.</a>. 
+                <a href="https://www.facebook.com/groups/1862288673814510/" target="_blank">here</a>. 
                 You can use this group to interact with all of our participants and brainstorm ideas.
                 <br>
                 We can't wait to see you soon!
@@ -20,31 +20,49 @@
             </p>
         {% elif user.userprofile.confirmation == "N" %}
             <p>
-                We are disapointed that you cannot join us this fall, please feel 
-                free to apply to us next year!
+                We are disappointed that you cannot join us at MedHacks Snow Day! 
+                We highly encourage you to apply next year! <br> If you would still 
+                like to stay updated on our event, check us out on 
+                <a href="https://www.facebook.com/medhacks/" target="_blank">Facebook</a>, 
+                <a href="https://twitter.com/medhacks" target="_blank">Twitter</a>, 
+                and <a href="https://www.instagram.com/medhacks/" target="_blank">Instagram</a>!
             </p>
         {% else %}
             <p>
-                Congratulations and welcome to MedHacks! After our most competitive application round yet, including highly qualified applicants from all around the world, we are pleased to offer you acceptance to MedHacks 2018. We hope you’re excited to join 750 of the brightest and most diverse minds from across the United States and abroad to create something groundbreaking this fall.
+                Congratulations and welcome to MedHacks! After our most competitive 
+                application round yet, including highly qualified applicants from all 
+                around the world, we are pleased to offer you acceptance to MedHacks 2018. 
+                We hope you’re excited to join 750 of the brightest and most diverse minds 
+                from across the United States and abroad to create something groundbreaking this 
+                fall.
             </p>
             </br>
             <p>
-                Congratulations again, and we hope you confirm your attendance <a href="{% url 'accounts:confirm' %}">here.</a> We’re all excited to meet you, as is Melvin!
+                Congratulations again, and we hope you confirm your attendance <a href="{% url 'accounts:confirm' %}">here.</a>  We’re all excited to meet you, as is Melvin!
             </p>
             {%load static%}
-            <img style="width: 20vw; margin-left: 5vw; display: block;" src="{% static 'appliMoose.png' %}"/>
+            <img style="width: 30vw; margin-left: auto; margin-right: auto;display: block;" src="{% static 'appliMoose.png' %}"/>
 
             
         {% endif %}
     {% elif user.userprofile.accepted == 'N' %}
         <p>
-            I'm sorry, due to the large number of applicants this year, we are unable to
-            accept you.
+            Unfortunately due to an extremely talented and large group of applicants, 
+            we were unable to offer you a spot at MedHacks Snow Day We hope that this doesn't 
+            stop you from tackling some of the world's most pressing medical problems. 
+            <br>
+            If you would still like to stay updated on our event, check us out on 
+            <a href="https://www.facebook.com/medhacks/" target="_blank">Facebook</a>, 
+            <a href="https://twitter.com/medhacks" target="_blank">Twitter</a>, 
+            and <a href="https://www.instagram.com/medhacks/" target="_blank">Instagram</a>!
         </p>
     {% else %}
         <p>
-            Thank you for applying to MedHacks 2018! Your application status is 
-            currently pending. Our team is reviewing your application.
+            Thank you for applying to MedHacks Snow Day! Your application 
+            status is currently pending, our team is reviewing your application. 
+            <br>
+            Check out our <a href="https://www.facebook.com/medhacks/" target="_blank">Facebook page</a> 
+            for updates regarding applications, sponsors, tracks, prizes and more!
         </p>
     {% endif %}
 </div>
