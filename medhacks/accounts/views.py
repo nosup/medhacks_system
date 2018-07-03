@@ -58,15 +58,21 @@ class ConfirmView(TemplateView):
     def get(self, request):
         form = ConfirmAcceptanceForm
         get_q1 = UserProfile.objects.filter(user=request.user)
-        get_yes = get_q1.filter(confirmation='Y')
-        get_no = get_q1.filter(confirmation='N')
+        get_acceptance_yes = get_q1.filter(accepted='Y')
+        print("get acceptance: ", get_acceptance_yes)
+        get_confirmation_yes = get_q1.filter(confirmation='Y')
+        get_confirmation_no = get_q1.filter(confirmation='N')
         # print("get_yes: ", get_yes)
         # print("get_no: ", get_no)
-        if get_yes.count() > 0:
-            return render(request, 'accounts/confirm_acceptance.html')
-        elif get_no.count() > 0:
-            return render(request, 'accounts/reject_acceptance.html')
-        return render(request, self.template_name, {'form': form, 'apps': None})
+        # if user already has chosen the confirmation, redirect to that page
+        if get_acceptance_yes.count() > 0:
+            if get_confirmation_yes.count() > 0:
+                return render(request, 'accounts/confirm_acceptance.html')
+            elif get_confirmation_no.count() > 0:
+                return render(request, 'accounts/reject_acceptance.html')
+            return render(request, self.template_name, {'form': form, 'apps': None})
+        else:
+            return redirect(reverse('accounts:home'))
 
     def post(self, request):
         user = get_object_or_404(UserProfile, user=request.user)
