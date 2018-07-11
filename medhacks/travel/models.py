@@ -13,3 +13,14 @@ class TRApplication(models.Model):
     contingency = models.CharField(max_length=5)
     submit_time = models.DateTimeField(auto_now_add=True)
     type_reim = models.CharField(max_length=5, default = '-')
+    # below starts the travel reciepts
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    # Permanent Address
+    travel_date_from = models.DateTimeField(blank=True, null=True)
+    travel_date_to = models.DateTimeField(blank=True, null=True)
+    travel_location_city = models.CharField(max_length=50)
+    travel_location_state = models.CharField(max_length=50)
+    receipt_amount = models.IntegerField()
+    reimburse_amount = models.IntegerField()
+    # radio: I accept that if wrong submission, no reimbursement

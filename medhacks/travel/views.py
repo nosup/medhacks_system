@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
 from .models import TRApplication
-from .forms import TravelForm
+from .forms import TravelForm, TravelReceiptForm
 
 class TravelView(TemplateView):
     template_name = 'travel/travel.html'
@@ -40,3 +40,8 @@ class TravelView(TemplateView):
             # team = form.cleaned_data['team']
             return render(request, 'travel/applied.html')
         return render(request, self.template_name, {'form': form})
+
+
+class RecieptView(TemplateView):
+    template_name = 'travel/receipt.html'
+    form = TravelReceiptForm
