@@ -21,8 +21,9 @@ class UserProfile(models.Model):
         ('-', 'Not Decided'),
         ('Rejected', 'Rejected'),
         ('Regional', 'Regional'),
-        ('National', 'National'),
-        ('International', 'International')
+        ('Midwest', 'Midwest'),
+        ('West', 'West'),
+        ('International', 'International'),
     )
     # user = models.OneToOneField(User, on_delete=models.CASCADE)
     # description = models.CharField(max_length=100, default='')
