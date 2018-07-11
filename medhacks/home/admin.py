@@ -10,6 +10,9 @@ class ApplicationAdmin(admin.ModelAdmin):
     'university', 'graduating_class', 'major', 'secondmajor', 'reimbursement',
     'attended', 'essay1', 'essay2', 'essay3', 'essay4', 'resume', 'submit_time', 'how_heard_medhacks')
 
+    # Adds search bar
+    search_fields = ['user__username']
+
     def school_info(self, obj):
         return obj.university
 

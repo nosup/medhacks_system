@@ -9,4 +9,7 @@ class TRApplicationAdmin(admin.ModelAdmin):
     'contingency', 'type_reim', 'submit_time',
     )
 
+    # Adds search bar
+    search_fields = ['user__username']
+
 admin.site.register(TRApplication, TRApplicationAdmin)

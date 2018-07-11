@@ -18,6 +18,9 @@ class UserProfileAdmin(admin.ModelAdmin):
     def user_info(self, obj):
         return obj.description
 
+    # Adds search bar
+    search_fields = ['user__username']
+    
     # how to sort the queryset
     def get_queryset(self, request):
         queryset = super(UserProfileAdmin, self).get_queryset(request)
