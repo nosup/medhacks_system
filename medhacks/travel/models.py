@@ -20,7 +20,7 @@ class TRApplication(models.Model):
     travel_date_from = models.DateTimeField(blank=True, null=True)
     travel_date_to = models.DateTimeField(blank=True, null=True)
     travel_location_city = models.CharField(max_length=50)
-    travel_location_state = models.CharField(max_length=50)
-    receipt_amount = models.IntegerField()
-    reimburse_amount = models.IntegerField()
+    travel_location_state = models.CharField(max_length=50, default = 'NA')
+    receipt_amount = models.IntegerField(default = 0)
+    reimburse_amount = models.IntegerField(default = 0)
     # radio: I accept that if wrong submission, no reimbursement

@@ -15,7 +15,7 @@ from .models import UserProfile
 
 def home(request):
     posts = Application.objects.filter(email=request.user.email)[:1]
-    args = {'posts': posts}
+    args = {'apps': posts}
     return render(request, 'home/home.html', args)
 
 def register(request):
