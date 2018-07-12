@@ -8,39 +8,46 @@
         <br/> ##### TODO: View your receipt #####
     </p>
 
-    
+
     <!-- If the user has already submitted their reimbursement form but not their receipt form -->
     {% elif user.userprofile.travel_reimbursement == 'Regional' %}
     <p>
-        Congratulations! You have been awarded a travel reimbursement for up to $50. Click <a href="{% url 'travel:receipt' %}">here</a> to redeem your travel reimbursement and submit the necessary forms.
+        Congratulations! You have been awarded a travel reimbursement for up to $50. Click <a href="{% url 'travel:receipt' %}">here</a>
+        to redeem your travel reimbursement and submit the necessary forms.
         </br>
         You will receive your reimbursement after the event- once we received the correct paperwork and we confirmed your attendance to MedHacks.
     </p>
 
     {% elif user.userprofile.travel_reimbursement == 'Midwest' %}
     <p>
-        Congratulations! You have been awarded a travel reimbursement for up to $100. Click <a href="{% url 'travel:receipt' %}">here</a> to redeem your travel reimbursement and submit the necessary forms.
+        Congratulations! You have been awarded a travel reimbursement for up to $100. Click <a href="{% url 'travel:receipt' %}">here</a>
+        to redeem your travel reimbursement and submit the necessary forms.
         </br>
         You will receive your reimbursement after the event- once we received the correct paperwork and we confirmed your attendance to MedHacks.
     </p>
 
     {% elif user.userprofile.travel_reimbursement == 'West' %}
     <p>
-        Congratulations! You have been awarded a travel reimbursement for up to $250. Click <a href="{% url 'travel:receipt' %}">here</a> to redeem your travel reimbursement and submit the necessary forms.
+        Congratulations! You have been awarded a travel reimbursement for up to $250. Click <a href="{% url 'travel:receipt' %}">here</a>
+        to redeem your travel reimbursement and submit the necessary forms.
         </br>
         You will receive your reimbursement after the event- once we received the correct paperwork and we confirmed your attendance to MedHacks.
     </p>
 
     {% elif user.userprofile.travel_reimbursement == 'International' %}
     <p>
-        Congratulations! You have been awarded a travel reimbursement for up to $250. Click <a href="{% url 'travel:receipt' %}">here</a> to redeem your travel reimbursement and submit the necessary forms.
+        Congratulations! You have been awarded a travel reimbursement for up to $250. Click <a href="{% url 'travel:receipt' %}">here</a>
+        to redeem your travel reimbursement and submit the necessary forms.
         </br>
         You will receive your reimbursement after the event- once we received the correct paperwork and we confirmed your attendance to MedHacks.
     </p>
 
     {% elif user.userprofile.travel_reimbursement == 'Rejected' %}
     <p>
-        Thank you for your interest in receiving a travel reimbursement. Due to the high number of applications and limited budget, we unfortunately cannot offer you a travel reimbursement. Thank you!
+        Thank you for applying for a travel reimbursement. Unfortunately, due to limited funds, we are unable to offer you a reimbursement at this time.
+        <br/>
+        If you will still be attending MedHacks without a reimbursement, please confirm your attendance <a href="{% url 'accounts:confirm' %}">here.</a>,
+        and if not, please also confirm that you will not be able to make it and we hope to see you next year!
     </p>
 
 

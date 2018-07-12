@@ -60,5 +60,5 @@ class RecieptView(TemplateView):
 
             user = form.save()
 
-            return render(request, 'home/home.html')
+            return render(request, 'home/home.html', {'user': request.user})
         return render(request, self.template_name, {'form': form})
