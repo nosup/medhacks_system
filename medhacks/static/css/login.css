@@ -5,8 +5,6 @@
 img {
     width: 40vw;
     position: relative;
-    left: 50vw;
-    bottom: 30vw;
 }
 
 .card-body {
@@ -26,6 +24,16 @@ img {
         width: 70vw;
     }
 
+}
+
+.Aligner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10vw;
+}
+.align-item {
+    width: 75%;
 }
 /*
 https://img1.picmix.com/output/stamp/normal/9/7/0/8/1078079_cf64b.gif

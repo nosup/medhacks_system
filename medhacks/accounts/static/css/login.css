@@ -5,8 +5,6 @@
 img {
     width: 40vw;
     position: relative;
-    left: 50vw;
-    bottom: 30vw;
 }
 
 .card-body {
@@ -26,4 +24,14 @@ img {
         width: 70vw;
     }
 
+}
+
+.Aligner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10vw;
+}
+.align-item {
+    width: 75%;
 }
