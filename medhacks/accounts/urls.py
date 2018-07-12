@@ -15,7 +15,6 @@ app_name = 'accounts'
 urlpatterns = [
     path('confirm/', ConfirmView.as_view(), name='confirm'),
     path('', HomeView.as_view(), name='home'),
-    # path('', views.home, name='home'),
     path('login/', login, {'template_name': 'accounts/login.html'}, name='login'),
     path('login/', logout, {'template_name': 'accounts/login.html'}, name='logout'),
     path('register/', views.register, name='register'),
