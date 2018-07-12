@@ -3,6 +3,7 @@ from .models import TRApplication
 from django.forms.widgets import SelectDateWidget
 from django.core.exceptions import ValidationError
 from django.conf import settings
+from accounts.models import UserProfile
 import json, os, csv, pickle
 
 class TravelForm(forms.ModelForm):
@@ -60,3 +61,7 @@ class TravelReceiptForm(forms.ModelForm):
         fields  = ('travel_date_from', 'travel_date_to', 'travel_location_city',
         'travel_location_state', 'receipt_amount', 'reimburse_amount',)
         model = TRApplication
+
+    class Meta:
+        fields = ('receipt_amount',)
+        model = UserProfile

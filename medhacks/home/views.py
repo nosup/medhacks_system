@@ -50,7 +50,5 @@ class HomeView(TemplateView):
             permission = form.cleaned_data['permission']
             conduct = form.cleaned_data['conduct']
             form.save()
-            # contingency = form.cleaned_data['contingency']
-            # team = form.cleaned_data['team']
             return render(request, 'home/applied.html')
         return render(request, self.template_name, {'form': form})
