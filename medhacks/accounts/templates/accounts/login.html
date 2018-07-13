@@ -1,71 +1,75 @@
-{% extends 'base.html' %}
+{% extends 'login_base.html' %}
 {% load crispy_forms_tags %}
 
 
-{% block specificcss %}
-    {% load static %}
-    <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" />
-{% endblock %}
-
-{% block loginButton %}
-{% endblock %}
 {% block body %}
-<div style="height: 50px"></div>
-
-<body background = "https://i.imgur.com/56UZL7H.gif" />
-
-<div id="accordion">
-   <div class="card-body">
-       <div width="25vw" class="login-container">
-         <h2>Login</h2>
-         <div style="height: 25px"></div>
-         <form method="post">
-           {% csrf_token %}
-           <!--{{ form.as_p }}-->
-           {{ form|crispy}}
-           <p>
-               <a style="color: black; font-style: italic;" href="{% url 'accounts:reset_password' %}">
-                   Forgot password?
-               </a>
-           </p>
-          <div style="height: 25px"></div>
-           <button class="applyButton" type="submit">Login</button>
-           <a href="{% url 'accounts:register' %}">
-               <button type="button" class="applyButton">Register</button>
-           </a>
-         </form>
+{% load static %}
+<div class="h-100 row align-items-center">
+  <div class="card mx-auto rounded logcard">
+    <article class="card-body logcard rounded">
+      <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4 crossbox">
+          <img class="box" src="{% static "frozen_cross.png"%}" />
         </div>
-
-
-  </div>
+        <div class="col-sm-4"></div>
+      </div>
+      <div class="logobox">
+        <img class="box" src="{% static "medhacks_logo_snow.png" %}" />
+      </div>
+      <div class="row mt-4"></div>
+    <h4 class="card-title mb-4 mt-1"><strong>Log into your account</strong></h4>
+    	 <form method="post">
+         {% csrf_token %}
+         {{ form|crispy}}
+        <!-- <div class="form-group">
+        	<label>Username</label>
+            <input name="" class="form-control" placeholder="Username" type="email">
+        </div> -->
+        <!-- <div class="form-group">
+        	<a class="float-right" href="{% url 'accounts:reset_password' %}">Forgot Password?</a>
+        	<label>Password</label>
+            <input class="form-control" placeholder="******" type="password">
+        </div> -->
+        <div class="form-group">
+        <div class="checkbox">
+          <label> <input type="checkbox"> Remember me </label>
+        </div> <!-- checkbox .// -->
+        </div> <!-- form-group// -->
+        <div class="row">
+          <div class="form-group col-sm-6">
+              <button type="submit" class="btn btn-primary btn-block"> Login  </button>
+          </div> <!-- form-group// -->
+          <div class="form-group col-sm-6">
+              <a class="btn btn-primary btn-block" href="{% url 'accounts:register' %}" role="button" > Sign Up</a>
+          </div>
+        </div>
+    </form>
+    </article>
+  </div> <!-- card.// -->
+  <!-- <div class="col" style="background:red">
+    <div id="accordion">
+       <div class="card-body">
+           <div width="25vw">
+             <h2>Login</h2>
+             <div style="height: 25px"></div>
+             <form method="post">
+               {% csrf_token %}
+               {{ form|crispy}}
+               <p>
+                   <a style="color: black; font-style: italic;" href="{% url 'accounts:reset_password' %}">
+                       Forgot password?
+                   </a>
+               </p>
+              <div style="height: 25px"></div>
+               <button class="applyButton" type="submit">Login</button>
+               <a href="{% url 'accounts:register' %}">
+                   <button type="button" class="applyButton">Register</button>
+               </a>
+             </form>
+           </div>
+       </div>
+    </div>
+  </div> -->
 </div>
-<div class="slideshow" style="max-width: 40vw; margin-top: 20px; vertical-align: middle">
-  <img class="mySlides" src="{%static '2017imgs/1.jpg'%}" style="width:100%">
-  <img class="mySlides" src="{%static '2017imgs/2.jpg'%}" style="width:100%">
-  <img class="mySlides" src="{%static '2017imgs/3.jpg'%}" style="width:100%">
-  <img class="mySlides" src="{%static '2017imgs/4.jpg'%}" style="width:100%">
-  <img class="mySlides" src="{%static '2017imgs/5.jpg'%}" style="width:100%">
-  <img class="mySlides" src="{%static '2017imgs/6.jpg'%}" style="width:100%">
-  <img class="mySlides" src="{%static '2017imgs/7.jpg'%}" style="width:100%">
-  <img class="mySlides" src="{%static '2017imgs/8.jpg'%}" style="width:100%">
-  <img class="mySlides" src="{%static '2017imgs/9.jpg'%}" style="width:100%">
-</div>
-
-<script>
-var myIndex = Math.floor(Math.random() * 9);
-carousel();
-
-function carousel() {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";
-    }
-    myIndex++;
-    if (myIndex > x.length) {myIndex = 1}
-    x[myIndex-1].style.display = "block";
-    setTimeout(carousel, 5000); // Change image every 2 seconds
-}
-</script>
 {% endblock %}

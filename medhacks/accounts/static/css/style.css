@@ -110,3 +110,39 @@ body {
     text-align: center;
     display: block;
 }
+
+.bg {
+  background-color: #fff;
+  background-image: url("../website-background.jpg");
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.logcard {
+  background-color: #c0dded
+}
+
+.box {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logobox {
+  height: auto;
+  width: 360px;
+}
+
+.crossbox {
+  height: auto;
+  width: 100px;
+}
+
+h4 a p {
+  font-family: 'Roboto', sans-serif;
+}
