@@ -56,10 +56,12 @@ class TravelReceiptForm(forms.ModelForm):
     travel_location_state = forms.ChoiceField(label='State', choices=tupled_list_states)
     receipt_amount = forms.IntegerField()
     reimburse_amount = forms.IntegerField()
+    receipt_file = forms.FileField(label='Upload Receipt', widget = forms.FileInput, required=True)
+
 
     class Meta:
         fields  = ('travel_date_from', 'travel_date_to', 'travel_location_city',
-        'travel_location_state', 'receipt_amount', 'reimburse_amount',)
+        'travel_location_state', 'receipt_amount', 'reimburse_amount', 'receipt_file', )
         model = TRApplication
 
     class Meta:
