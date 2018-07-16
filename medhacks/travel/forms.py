@@ -63,7 +63,3 @@ class TravelReceiptForm(forms.ModelForm):
         fields  = ('travel_date_from', 'travel_date_to', 'travel_location_city',
         'travel_location_state', 'receipt_amount', 'reimburse_amount', 'receipt_file', )
         model = TRApplication
-
-    class Meta:
-        fields = ('receipt_amount',)
-        model = UserProfile

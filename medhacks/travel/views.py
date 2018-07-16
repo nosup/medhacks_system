@@ -1,9 +1,9 @@
 from django.views.generic import TemplateView
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from .models import TRApplication
 from .forms import TravelForm, TravelReceiptForm
 from accounts.models import UserProfile
-
+from home.models import Application
 
 class TravelView(TemplateView):
     template_name = 'travel/travel.html'
@@ -42,20 +42,25 @@ class RecieptView(TemplateView):
 
     def post(self, request):
         user = get_object_or_404(UserProfile, user=request.user)
+        trApplication = TRApplication.objects.get(user=request.user)
         form = TravelReceiptForm(request.POST, request.FILES, instance=user)
+        form2 = TravelReceiptForm(request.POST, request.FILES, instance=trApplication)
+
         if form.is_valid():
-            #post = form.save(commit=False)
-            #post.user = request.user
-            #post.save()
+
+            post_data = form.save(commit=False)
+            post_data.user = request.user
+            post_data.save()
             travel_date_from = form.cleaned_data['travel_date_from']
             travel_date_to = form.cleaned_data['travel_date_to']
             travel_location_city = form.cleaned_data['travel_location_city']
             travel_location_state = form.cleaned_data['travel_location_state']
             receipt_amount = form.cleaned_data['receipt_amount']
             reimburse_amount = form.cleaned_data['reimburse_amount']
-            trApplication = get_object_or_404(TRApplication, user=request.user)
-            trApplication = form.save()
-            user = form.save()
             form.save()
-            return render(request, 'home/home.html', {'user': request.user})
+            form2.save()
+
+            posts = Application.objects.filter(email=request.user.email)[:1]
+            args = {'apps': posts}
+            return render(request, 'home/home.html', args)
         return render(request, self.template_name, {'form': form})
