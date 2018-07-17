@@ -50,6 +50,13 @@ class TravelReceiptForm(forms.ModelForm):
     with open(path_to_states, 'rb') as handle:
         tupled_list_states = pickle.load(handle)
 
+    permanent_address1 = forms.CharField(label="Address Line 1", max_length=100)
+    permanent_address2 = forms.CharField(label="Address Line 2", max_length=100, required=False)
+    permanent_city = forms.CharField(label="City", max_length=50)
+    permanent_state = forms.ChoiceField(label='State', choices=tupled_list_states)
+    permanent_zip = forms.CharField(label="Zip", max_length=15)
+
+
     travel_date_from = forms.DateField(widget=SelectDateWidget(empty_label=("Choose Year", "Choose Month", "Choose Day"),),)
     travel_date_to = forms.DateField(widget=SelectDateWidget(empty_label=("Choose Year", "Choose Month", "Choose Day"),),)
     travel_location_city = forms.CharField(label="City", max_length=50)
@@ -60,6 +67,6 @@ class TravelReceiptForm(forms.ModelForm):
 
 
     class Meta:
-        fields  = ('travel_date_from', 'travel_date_to', 'travel_location_city',
-        'travel_location_state', 'receipt_amount', 'reimburse_amount', 'receipt_file', )
+        fields  = ('permanent_address1', 'permanent_address2', 'permanent_city', 'permanent_state', 'permanent_zip', 'travel_date_from', 'travel_date_to',
+        'travel_location_city', 'travel_location_state', 'receipt_amount', 'reimburse_amount', 'receipt_file', )
         model = TRApplication

@@ -38,6 +38,9 @@ class RecieptView(TemplateView):
 
     def get(self, request):
         form = TravelReceiptForm
+        q1 = TRApplication.objects.filter(user=request.user)
+        if len(q1[0].travel_location_city) > 0:
+            return render(request, 'travel/applied.html')
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
