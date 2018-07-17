@@ -60,7 +60,5 @@ class RecieptView(TemplateView):
             form.save()
             form2.save()
 
-            posts = Application.objects.filter(email=request.user.email)[:1]
-            args = {'apps': posts}
-            return render(request, 'home/home.html', args)
+            return render(request, 'travel/receipt_submitted.html')
         return render(request, self.template_name, {'form': form})
