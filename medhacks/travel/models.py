@@ -18,11 +18,11 @@ class TRApplication(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     # Permanent Address
-    permanent_address1 = models.CharField(max_length=100, default='-')
-    permanent_address2 = models.CharField(max_length=100, default='-')
-    permanent_city = models.CharField(max_length=50, default='-')
-    permanent_state = models.CharField(max_length=50, default='-')
-    permanent_zip = models.CharField(max_length=15, default='-')
+    permanent_address1 = models.CharField(max_length=100, default='-',blank=True, null=True)
+    permanent_address2 = models.CharField(max_length=100, default='-', blank=True, null=True)
+    permanent_city = models.CharField(max_length=50, default='-',blank=True, null=True)
+    permanent_state = models.CharField(max_length=50, default='-', blank=True, null=True)
+    permanent_zip = models.CharField(max_length=15, default='-', blank=True, null=True)
 
     travel_date_from = models.DateTimeField(blank=True, null=True)
     travel_date_to = models.DateTimeField(blank=True, null=True)

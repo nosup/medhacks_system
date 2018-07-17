@@ -51,7 +51,7 @@ class TravelReceiptForm(forms.ModelForm):
         tupled_list_states = pickle.load(handle)
 
     permanent_address1 = forms.CharField(label="Address Line 1", max_length=100)
-    permanent_address2 = forms.CharField(label="Address Line 2", max_length=100)
+    permanent_address2 = forms.CharField(label="Address Line 2", max_length=100, required=False)
     permanent_city = forms.CharField(label="City", max_length=50)
     permanent_state = forms.ChoiceField(label='State', choices=tupled_list_states)
     permanent_zip = forms.CharField(label="Zip", max_length=15)
