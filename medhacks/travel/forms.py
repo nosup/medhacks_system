@@ -6,6 +6,8 @@ from django.conf import settings
 from accounts.models import UserProfile
 import json, os, csv, pickle
 
+from django.contrib.admin.widgets import AdminDateWidget
+
 class TravelForm(forms.ModelForm):
     # get list of states for dropdown
     path_to_states = os.path.join(settings.STATIC_ROOT, 'states.csv')
@@ -59,14 +61,22 @@ class TravelReceiptForm(forms.ModelForm):
 
     travel_date_from = forms.DateField(widget=SelectDateWidget(empty_label=("Choose Year", "Choose Month", "Choose Day"),),)
     travel_date_to = forms.DateField(widget=SelectDateWidget(empty_label=("Choose Year", "Choose Month", "Choose Day"),),)
-    travel_location_city = forms.CharField(label="City", max_length=50)
-    travel_location_state = forms.ChoiceField(label='State', choices=tupled_list_states)
-    receipt_amount = forms.IntegerField()
-    reimburse_amount = forms.IntegerField()
+    travel_location_city = forms.CharField(label="What city are you departing from?", max_length=50)
+    travel_location_state = forms.ChoiceField(label='What state are you departing from?', choices=tupled_list_states)
+    receipt_amount = forms.DecimalField(max_digits=6, decimal_places=2)
+    reimburse_amount = forms.DecimalField(max_digits=6, decimal_places=2)
     receipt_file = forms.FileField(label='Upload Receipt', widget = forms.FileInput, required=True)
+    policy_check = forms.BooleanField(label="I have read the <a href='https://drive.google.com/open?id=1IRAy-KqUC7yyR0I8wi7oJ1IxWBkLKIlp'>Receipt Guidelines for Reimbursements</a> and understand that if my information is incorrect or not submitted properly, I will not eligible for a reimbursement.")
+
+
+    def clean(self):
+        cd = self.cleaned_data
+        if cd.get('receipt_amount') < cd.get('reimburse_amount'):
+            self.add_error('reimburse_amount', "Reimbursement amount cannot be larger than the receipt amount!")
+        return cd
 
 
     class Meta:
         fields  = ('permanent_address1', 'permanent_address2', 'permanent_city', 'permanent_state', 'permanent_zip', 'travel_date_from', 'travel_date_to',
-        'travel_location_city', 'travel_location_state', 'receipt_amount', 'reimburse_amount', 'receipt_file', )
+        'travel_location_city', 'travel_location_state', 'receipt_amount', 'reimburse_amount', 'receipt_file', 'policy_check')
         model = TRApplication

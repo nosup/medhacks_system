@@ -8,16 +8,19 @@
     <h2>Hello {{user.first_name}}! </h2>
     <div style="height: 25px"></div>
     <p>
-        Please submit the necessary paperwork to redeem your travel reimbursement.
-        You may submit the forms no later than September 16 to receive your reimbursement.
+        Submit the necessary paperwork to redeem your travel reimbursement.
+        You may submit the forms <strong>no later than September 16</strong> to receive your reimbursement.
         Your receipts must also adhere to the guidelines noted
         <a target="_blank" href="https://drive.google.com/open?id=1IRAy-KqUC7yyR0I8wi7oJ1IxWBkLKIlp">here</a>
         - if they do not adhere, we take no responsibility in following up to request the correct form.
+      </p>
+      <p>
         Please keep in mind that after we submit all reimbursements to our Finance Department, we cannot speed up the process.
-        <br/>
         If you have any questions please contact travel@medhacks.org.
-    </p>
+      </p>
+
     <form action={% url 'travel:receipt' %} method="post" enctype="multipart/form-data">
+        <p>Please enter your <strong>Permanent</strong> Address below</p>
         {% csrf_token %} {{form|crispy}} {% if form.errors %} {% for field in form %} {% for error in field.errors %}
         <div class="alert alert-danger">
             <strong>{{ error|escape }}</strong>

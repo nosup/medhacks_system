@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
 from .models import TRApplication
 from .forms import TravelForm, TravelReceiptForm
 from accounts.models import UserProfile
@@ -39,7 +40,10 @@ class RecieptView(TemplateView):
     def get(self, request):
         form = TravelReceiptForm
         q1 = TRApplication.objects.filter(user=request.user)
-        if len(q1[0].travel_location_city) > 0:
+        print(len(q1))
+        if len(q1) == 0:
+            return redirect(reverse('home:home'))
+        if len(q1[0].travel_location_city) > 1:
             return render(request, 'travel/applied.html')
         return render(request, self.template_name, {'form': form})
 
