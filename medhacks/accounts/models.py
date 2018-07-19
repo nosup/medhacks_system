@@ -32,6 +32,8 @@ class UserProfile(models.Model):
     # phone = models.IntegerField(default=0)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     travel_reimbursement = models.CharField(max_length=13, choices=CHOICES_TR, default='-')
+    travel_confirm = models.CharField(max_length=1, choices=CHOICES_YN, default='-')
+    receipt_amount = models.IntegerField(default=0)
     campus_ambassador = models.CharField(max_length=1, choices=CHOICES_YN, default='-')
     accepted = models.CharField(max_length=1, choices=CHOICES_YN, default='-')
     confirmation = models.CharField(max_length=1, choices=CHOICES_YN, default='-')

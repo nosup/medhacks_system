@@ -3,10 +3,7 @@ from home.models import Application
 from django.forms.widgets import SelectDateWidget
 from django.core.exceptions import ValidationError
 from django.conf import settings
-import json
-import os
-import csv
-import pickle
+import json, os, csv, pickle
 
 class HomeForm(forms.ModelForm):
     path_to_colleges = os.path.join(settings.STATIC_ROOT, 'colleges.pickle')
@@ -66,7 +63,6 @@ class HomeForm(forms.ModelForm):
     #     return self.cleaned_data['other_uni']
 
     def clean(self):
-
         if self.cleaned_data['university'] == 'Other':
             if self.cleaned_data['other_uni'] == '':
                 self.add_error('other_uni', "Please enter your university")

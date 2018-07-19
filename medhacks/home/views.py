@@ -4,6 +4,7 @@ from home.models import Application
 from django.shortcuts import render, redirect
 from .models import Application
 from .forms import HomeForm
+from travel.models import TRApplication
 
 class HomeView(TemplateView):
     template_name = 'home/home.html'
@@ -14,8 +15,15 @@ class HomeView(TemplateView):
         uemail = request.user.email;
         form = HomeForm(initial={'first_name':ufirst_name, 'last_name':ulast_name, 'email':uemail})
         application = Application.objects.filter(user=request.user)[:1]
+        # travel reciept info
+        tr_app = TRApplication.objects.filter(user=request.user)
+        args = {}
         if application.count() > 0:
-            return render(request, self.template_name, {'form': None, 'apps': application, 'user': request.user})
+            args = {'form': None, 'apps': application, 'user': request.user}
+            if len(tr_app) != 0:
+                args['tr_app'] = tr_app[0]
+            return render(request, self.template_name, args)
+
         return render(request, self.template_name, {'form': form, 'apps': None})
 
     def post(self, request):
@@ -29,9 +37,6 @@ class HomeView(TemplateView):
             last = form.cleaned_data['last_name']
             email = form.cleaned_data['email']
             phone_number = form.cleaned_data['phone_number']
-            # address1 = form.cleaned_data['address1']
-            # address2 = form.cleaned_data['address2']
-            # zipcode = form.cleaned_data['zipcode']
             city = form.cleaned_data['city']
             state = form.cleaned_data['state']
             country = form.cleaned_data['country']
@@ -43,7 +48,6 @@ class HomeView(TemplateView):
             gclass = form.cleaned_data['graduating_class']
             major = form.cleaned_data['major']
             secondmajor = form.cleaned_data['secondmajor']
-            # track = form.cleaned_data['track']
             attended = form.cleaned_data['attended']
             reimbursement = form.cleaned_data['reimbursement']
             essay1 = form.cleaned_data['essay1']
@@ -54,7 +58,5 @@ class HomeView(TemplateView):
             permission = form.cleaned_data['permission']
             conduct = form.cleaned_data['conduct']
             form.save()
-            # contingency = form.cleaned_data['contingency']
-            # team = form.cleaned_data['team']
             return render(request, 'home/applied.html')
         return render(request, self.template_name, {'form': form})

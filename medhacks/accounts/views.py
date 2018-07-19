@@ -15,8 +15,8 @@ from .models import UserProfile
 
 def home(request):
     posts = Application.objects.filter(email=request.user.email)[:1]
-    args = {'posts': posts}
-    return render(request, 'accounts/home.html', args)
+    args = {'apps': posts}
+    return render(request, 'home/home.html', args)
 
 def register(request):
     form = RegistrationForm(request.POST or None)
@@ -28,12 +28,8 @@ def register(request):
             subject = 'MedHacks Account'
             content = render_to_string('accounts/account_created_email.html', {'user':user})
             send_mail(subject,content,sender,recipient,fail_silently=False)
-            return redirect(reverse('accounts:home'))
+            return redirect(reverse('home:home'))
     return render(request, 'accounts/reg_form.html', {'form': form})
-
-def view_profile(request):
-    args = {'user': request.user}
-    return render(request, 'accounts/profile.html', args)
 
 def change_password(request):
     if request.method == 'POST':
@@ -62,8 +58,6 @@ class ConfirmView(TemplateView):
         print("get acceptance: ", get_acceptance_yes)
         get_confirmation_yes = get_q1.filter(confirmation='Y')
         get_confirmation_no = get_q1.filter(confirmation='N')
-        # print("get_yes: ", get_yes)
-        # print("get_no: ", get_no)
         # if user already has chosen the confirmation, redirect to that page
         if get_acceptance_yes.count() > 0:
             if get_confirmation_yes.count() > 0:
@@ -72,7 +66,7 @@ class ConfirmView(TemplateView):
                 return render(request, 'accounts/reject_acceptance.html')
             return render(request, self.template_name, {'form': form, 'apps': None})
         else:
-            return redirect(reverse('accounts:home'))
+            return redirect(reverse('home:home'))
 
     def post(self, request):
         user = get_object_or_404(UserProfile, user=request.user)

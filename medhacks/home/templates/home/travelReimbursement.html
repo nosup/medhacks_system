@@ -1,51 +1,72 @@
-<div id="accordion">
-    <div class="card-body">
-        <h2 style="font-size: 2.5rem">Hello {{user.first_name}}! </h2>
-        <div style="height: 25px"></div>
-        <ul class="nav nav-tabs typeTab">
-        <li class="active activeLi"><a id="statusTab" data-toggle="tab" href="#statusCA">Application Status</a></li>
-        <li><a id="travelTab" data-toggle="tab" href="#travelCA">Travel Reimbursements</a></li>
-        <li><a id="profTab" data-toggle="tab" href="#profCA">Profile</a></li>
-        </ul>
+<h3>Travel Reimbursements</h3>
+<div class="container">
 
-        <div class="tab-content">
-            <div id="statusCA" class="tab-pane in active">
-                {% include './applicationStatus.html' %}
-            </div>
-            <div id="travelCA" class="tab-pane">
-                <h3>Travel Reimbursements</h3>
-                <div class="container">
-                {% if user.userprofile.travel_reimbursement == 'Y' %}
-                <p>
-                    Please read over the travel reimbursement receipt <a target="_blank" href="https://drive.google.com/open?id=1IRAy-KqUC7yyR0I8wi7oJ1IxWBkLKIlp">requirements</a>. If you fail to adhere to these strict guidelines, your reimbursement will not be processed. We are not responsible for notifying if you incorrectly submitted your reimbursement. If you have any questions email us at reimbursement@medhacks.org.
-                </p>
-                <p>
-                    You can now purchase your travel arrangements.
-                </p>
-                {% elif user.userprofile.travel_reimbursement == 'N' %}
-                <p>
-                    Thank you for your interest in receiving a travel reimbursement. Due to the high number of applications and limited budget, we unfortunately cannot offer you a travel reimbursement. Thank you!
-                </p>
-                {% else %}
-                <p>
-                    The travel reimbursement application is now <a href="{% url 'travel:travel' %}">live</a>. If you've already applied, please disregard.
-                </p>
+    <!-- If the user has submitted both forms (travel reimbursement form and receipt form) -->
+    {% if user.userprofile.receipt_amount > 0 %}
+    <p>
+        Your travel reimbursement was successfully submitted. Email us at travel@medhacks.org if you need to change your submission.
+        <p>Permanent Address: <br/>
+          {{ tr_app.permanent_address1 }} <br/>
+          {% if tr_app.permanent_address2|length > 0 %}
+           {{ tr_app.permanent_address2}} <br/>
+          {% endif %}
+           {{ tr_app.permanent_city}}, {{ tr_app.permanent_state}} <br />
+           {{ tr_app.permanent_zip}}
+        </p>
+        <p><a href={{tr_app.receipt_file.url}}>View Your Receipt</a> <br/>
+           Receipt Amount: {{ tr_app.receipt_amount}} <br/>
+           Reimbursement Amount: {{ tr_app.reimburse_amount}} <br/>
+        </p>
+    </p>
 
-                {% endif %}
-                </div>
-            </div>
-            <div id="profCA" class="tab-pane">
-                <h3>Profile</h3>
-                <p>Username: {{user}}</p>
-                <p>First name: {{user.first_name}}</p>
-                <p>Last name: {{user.last_name}}</p>
-                <p>Email: {{user.email}}</p>
-                <p>
-                    <a style="color: black; font-style: italic;" href="{% url 'accounts:change_password' %}">
-                        Change Password
-                    </a>
-                </p>
-            </div>
-        </div>
-    </div>
+
+    <!-- If the user has already submitted their reimbursement form but not their receipt form -->
+    {% elif user.userprofile.travel_reimbursement == 'Regional' %}
+    <p>
+        Congratulations! You have been awarded a travel reimbursement for up to $50. Click <a href="{% url 'travel:receipt' %}">here</a>
+        to redeem your travel reimbursement and submit the necessary forms.
+        </br>
+        You will receive your reimbursement after the event- once we received the correct paperwork and we confirmed your attendance to MedHacks.
+    </p>
+
+    {% elif user.userprofile.travel_reimbursement == 'Midwest' %}
+    <p>
+        Congratulations! You have been awarded a travel reimbursement for up to $100. Click <a href="{% url 'travel:receipt' %}">here</a>
+        to redeem your travel reimbursement and submit the necessary forms.
+        </br>
+        You will receive your reimbursement after the event- once we received the correct paperwork and we confirmed your attendance to MedHacks.
+    </p>
+
+    {% elif user.userprofile.travel_reimbursement == 'West' %}
+    <p>
+        Congratulations! You have been awarded a travel reimbursement for up to $250. Click <a href="{% url 'travel:receipt' %}">here</a>
+        to redeem your travel reimbursement and submit the necessary forms.
+        </br>
+        You will receive your reimbursement after the event- once we received the correct paperwork and we confirmed your attendance to MedHacks.
+    </p>
+
+    {% elif user.userprofile.travel_reimbursement == 'International' %}
+    <p>
+        Congratulations! You have been awarded a travel reimbursement for up to $250. Click <a href="{% url 'travel:receipt' %}">here</a>
+        to redeem your travel reimbursement and submit the necessary forms.
+        </br>
+        You will receive your reimbursement after the event- once we received the correct paperwork and we confirmed your attendance to MedHacks.
+    </p>
+
+    {% elif user.userprofile.travel_reimbursement == 'Rejected' %}
+    <p>
+        Thank you for applying for a travel reimbursement. Unfortunately, due to limited funds, we are unable to offer you a reimbursement at this time.
+        <br/>
+        If you will still be attending MedHacks without a reimbursement, please confirm your attendance <a href="{% url 'accounts:confirm' %}">here.</a>,
+        and if not, please also confirm that you will not be able to make it and we hope to see you next year!
+    </p>
+
+
+    <!-- If the user hasn't submitted their travel reimbursement form yet -->
+    {% else %}
+    <p>
+        The travel reimbursement application is now <a href="{% url 'travel:travel' %}">live</a>. If you've already applied, please disregard.
+    </p>
+
+    {% endif %}
 </div>
