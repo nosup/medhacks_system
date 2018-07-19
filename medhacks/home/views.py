@@ -4,6 +4,7 @@ from home.models import Application
 from django.shortcuts import render, redirect
 from .models import Application
 from .forms import HomeForm
+from travel.models import TRApplication
 
 class HomeView(TemplateView):
     template_name = 'home/home.html'
@@ -14,8 +15,15 @@ class HomeView(TemplateView):
         uemail = request.user.email;
         form = HomeForm(initial={'first_name':ufirst_name, 'last_name':ulast_name, 'email':uemail})
         application = Application.objects.filter(user=request.user)[:1]
+        # travel reciept info
+        tr_app = TRApplication.objects.filter(user=request.user)
+        args = {}
         if application.count() > 0:
-            return render(request, self.template_name, {'form': None, 'apps': application, 'user': request.user})
+            args = {'form': None, 'apps': application, 'user': request.user}
+            if len(tr_app) != 0:
+                args['tr_app'] = tr_app[0]
+            return render(request, self.template_name, args)
+
         return render(request, self.template_name, {'form': form, 'apps': None})
 
     def post(self, request):
