@@ -1,14 +1,9 @@
-{% extends 'base.html' %} {% load crispy_forms_tags %}
-{% block specificcss %} {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" />
-{% endblock %}
-
-
-{% block body %}
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block specificcss %} {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" /> {% endblock %} {% block body %} {% load static %}
 
 <!-- If the user hasn't submitted an application yet -->
 {% if form != None %}
-<div class=card-body style="width: 90vw; margin-left: 5vw;">
+<!-- <div class=card-body style="width: 90vw; margin-left: 5vw;">
     <h1>MedHacks 2018 Application</h1>
     <h2>Hello {{user.first_name}}! </h2>
     <div style="height: 25px"></div>
@@ -35,64 +30,70 @@
         <input class="applyButton" type="submit" value="Submit" />
     </form>
 </div>
-<div style="height: 50px"></div>
+<div style="height: 50px"></div> -->
 
 
 
 <!-- If user has applied -->
-{% else %}
-{% for appli in apps %}
-<div id="accordion">
-    <div class="card-body">
-        <h2 style="font-size: 2.5rem">Hello {{user.first_name}}! </h2>
-        <div style="height: 25px"></div>
-        <ul class="nav nav-tabs typeTab">
-            <li class="active activeLi"><a id="statusTab" data-toggle="tab" href="#statusCA">Application Status</a></li>
-            {% if appli.reimbursement == 'Yes' %}
-            <li><a id="travelTab" data-toggle="tab" href="#travelCA">Travel Reimbursements</a></li>
-            {% endif %}
-            {% if user.userprofile.campus_ambassador == 'Y' %}
-            <li><a id="caTab" data-toggle="tab" href="#campus_ambassador">Campus Ambassador</a></li>
-            {% endif %}
-            <li><a id="profTab" data-toggle="tab" href="#profile">Profile</a></li>
-        </ul>
-
-        <div class="tab-content">
-
-            <div id="statusCA" class="tab-pane in active">
-                {% include './applicationStatus.html' %}
+{% else %} {% for appli in apps %}
+<div class="h-100 row align-items-center">
+    <div class="card mx-auto rounded w-25 text-center">
+        <div class="card-body rounded">
+            <div class="col-sm-4 crossbox">
+                <img class="box" src="{% static "frozen_cross.png" %}" />
             </div>
-
-            {% if appli.reimbursement == 'Yes' %}
-            <div id="travelCA" class="tab-pane">
-                {% include './travelReimbursement.html' %}
+            <div class="col-sm-4 crossbox">
+                <img class="box" src="{% static "medhacks_logo_snow.png" %}" />
             </div>
-            {% endif %}
+            <br/>
+            <h5 class="card-title">{{user.first_name}} {{user.last_name}}</h5>
+            <ul class="nav flex-column">
+                <li class="active activeLi"><a id="statusTab" data-toggle="tab" href="#statusCA">Application</a></li>
+                {% if appli.reimbursement == 'Yes' %}
+                <li><a id="travelTab" data-toggle="tab" href="#travelCA">Travel</a></li>
+                {% endif %} {% if user.userprofile.campus_ambassador == 'Y' %}
+                <li><a id="caTab" data- toggle="tab" href="#campus_ambassador">Campus Ambassador</a></li>
+                {% endif %}
+                <li><a id="profTab" data-toggle="tab" href="#profile">Profile</a></li>
+            </ul>
+            <br/>
+            <a href="{% url 'accounts:logout' %}">Logout</a>
+        </div>
+    </div>
 
-            {% if user.userprofile.campus_ambassador == 'Y' %}
-            <div id="campus_ambassador" class="tab-pane">
-                {% include './campusAmbassadorHome.html' %}
-            </div>
-            {% endif %}
+    <div class="card mx-auto rounded w-50">
+        <div class="card-body rounded">
+            <div class="tab-content">
+                <div id="statusCA" class="tab-pane in active">
+                    {% include './applicationStatus.html' %}
+                </div>
+                {% if appli.reimbursement == 'Yes' %}
+                <div id="travelCA" class="tab-pane">
+                    {% include './travelReimbursement.html' %}
+                </div>
+                {% endif %} {% if user.userprofile.campus_ambassador == 'Y' %}
+                <div id="campus_ambassador" class="tab-pane">
+                    {% include './campusAmbassadorHome.html' %}
+                </div>
+                {% endif %}
 
-            <div id="profile" class="tab-pane">
-                <h3>Profile</h3>
-                <p>Username: {{user}}</p>
-                <p>First name: {{user.first_name}}</p>
-                <p>Last name: {{user.last_name}}</p>
-                <p>Email: {{user.email}}</p>
-                <p>
-                    <a style="color: black; font-style: italic;" href="{% url 'accounts:change_password' %}">
-                        Change Password
-                    </a>
-                </p>
+                <div id="profile" class="tab-pane">
+                    <h3>Profile</h3>
+                    <p>Username: {{user}}</p>
+                    <p>First name: {{user.first_name}}</p>
+                    <p>Last name: {{user.last_name}}</p>
+                    <p>Email: {{user.email}}</p>
+                    <p>
+                        <a style="color: black; font-style: italic;" href="{% url 'accounts:change_password' %}">
+                            Change Password
+                        </a>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 </div>
-{% endfor %}
-{% endif %}
-
+{% endfor %} {% endif %}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
