@@ -32,8 +32,12 @@ def west_travel(modeladmin, request, queryset):
     queryset.update(travel_reimbursement='West')
 west_travel.short_description = "Accept TRAVEL: West"
 
+def international_travel(modeladmin, request, queryset):
+    queryset.update(travel_reimbursement='International')
+international_travel.short_description = "Accept TRAVEL: International"
+
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'travel_reimbursement', 'campus_ambassador', 'accepted', 'confirmation')
+    list_display = ('user', 'travel_reimbursement', 'travel_confirm', 'campus_ambassador', 'accepted', 'confirmation')
     actions = [accept_hacker, reject_hacker, reject_travel, regional_travel, midwest_travel, west_travel,]
 
     def user_info(self, obj):

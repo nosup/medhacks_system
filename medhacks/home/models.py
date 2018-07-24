@@ -4,6 +4,7 @@ from django.core.validators import RegexValidator
 from .formatChecker import ContentTypeRestrictedFileField
 # Create your models here.
 class Application(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=50, default='-')
     last_name = models.CharField(max_length=50)
     email = models.EmailField(max_length=50)
@@ -26,7 +27,6 @@ class Application(models.Model):
     essay4 = models.CharField(max_length=350, default = '-')
     reimbursement = models.CharField(max_length=50)
     attended = models.CharField(max_length=50, default = 'No')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     resume = ContentTypeRestrictedFileField(upload_to='resume', content_types=['application/pdf','application/docx','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/doc','image/jpeg'],max_upload_size=2097152,blank=False, null=False)
     permission = models.BooleanField(default=True)
     conduct = models.BooleanField(default=True)
