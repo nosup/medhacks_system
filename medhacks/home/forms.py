@@ -21,7 +21,7 @@ class HomeForm(forms.ModelForm):
         tupled_list_states = pickle.load(handle)
 
     races_list = [('Prefer not to answer', 'Prefer not to answer'), ('Indian or Alaskan', 'American Indian or Alaskan Native'), ('Asian', 'Asian/Pacific Islander'),
-        ('Black', 'Black or African American'), ('Hispanic', 'Hispanic'), ('White', 'White/Caucasion'),
+        ('Black', 'Black or African American'), ('Hispanic', 'Hispanic'), ('White', 'White/Caucasian'),
         ('Multiple', 'Multiple Ethnicity/Other')]
 
     CHOICESMEDHACKS=[('Yes',' Yes'), ('No',' No')]
