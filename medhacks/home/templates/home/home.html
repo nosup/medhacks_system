@@ -45,13 +45,15 @@
 <div id="accordion">
     <div class="card-body">
         <h2 style="font-size: 2.5rem">Hello {{user.first_name}}! </h2>
-        <div style="height: 25px"></div>
+        
         <p style="font-size: 1.1rem">
-                <br>
-                The deadline for International and West Coast travel reimbursement applications is <strong>July 20</strong>. The deadline for Midwest and Regional travel reimbursement applications is <strong>August 14</strong>. The general application deadline is <strong>August 25</strong>.
-                <br>
-                Applications are reviewed on a rolling basis so the earlier you apply, the sooner you'll hear back and better your chances are before all spots fill up!
+            <br>
+            The deadline for International and West Coast travel reimbursement applications is <strong>July 20</strong>. The deadline for Midwest and Regional travel reimbursement applications is <strong>August 14</strong>. The general application deadline is <strong>August 25</strong>.
+            <br>
+            Applications are reviewed on a rolling basis so the earlier you apply, the sooner you'll hear back and better your chances are before all spots fill up!
         </p>
+        
+        <div style="height: 25px"></div>
         <ul class="nav nav-tabs typeTab">
             <li class="active activeLi"><a id="statusTab" data-toggle="tab" href="#statusCA">Application Status</a></li>
             {% if appli.reimbursement == 'Yes' %}
