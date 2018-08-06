@@ -27,7 +27,7 @@ class Application(models.Model):
     essay4 = models.CharField(max_length=350, default = '-')
     reimbursement = models.CharField(max_length=50)
     attended = models.CharField(max_length=50, default = 'No')
-    resume = ContentTypeRestrictedFileField(upload_to='resume', content_types=['application/pdf','application/docx','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/doc','image/jpeg'],max_upload_size=2097152,blank=False, null=False)
+    resume = ContentTypeRestrictedFileField(upload_to='resume', content_types=['application/pdf'],max_upload_size=2097152,blank=False, null=False)
     permission = models.BooleanField(default=True)
     conduct = models.BooleanField(default=True)
     submit_time = models.DateTimeField(auto_now_add=True)
