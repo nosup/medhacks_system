@@ -1,53 +1,20 @@
-{% load staticfiles %}
-{% load static %}
+{% load staticfiles %} {% load static %}
 
 <html>
-  <head>
+
+<head>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="shortcut icon" href="{% static 'medhacks_cross.png' %}" type="image/png"/>
-    {% block specificcss %} {% endblock %}
-    {% block head %}
+    <link rel="shortcut icon" href="{% static 'medhacks_cross.png' %}" type="image/png" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> {% block specificcss %} {% endblock %} {% block head %}
     <title>MedHacks Application Portal</title>
     {% endblock %}
-  </head>
-  <body>
-    <div class="profilebg">
-     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="{% url 'accounts:home' %}"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-         <span class="navbar-toggler-icon"></span>
-      </button>
+</head>
+<div class="bg">
+    {% block body %} {% endblock %}
+    </body>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-         {% if user.is_authenticated %}
-         <ul class="navbar-nav mr-auto">
-         </ul>
-         {% block accountButton %}
-         {% endblock %}
-         <a class="nav-item rightitem" href="{% url 'accounts:logout' %}">Logout</a>
-         {% else %}
-         <ul class="navbar-nav mr-auto">
-           <!--<li class="nav-item active">
-             <a class="nav-link leftitem" href="{% url 'home:home' %}">Home</a>
-          </li>-->
-         </ul>
-         {% block loginButton %}
-         <a class="nav-link rightitem" href="{% url 'accounts:login' %}">Login</a>
-         {% endblock %}
-         <a class="nav-link rightitem" href="{% url 'accounts:register' %}">Register</a>
-         <!-- <a class="nav-link rightitem" href="{% url 'accounts:reset_password' %}">Reset Password</a> -->
-         {% endif %}
-      </div>
-     </nav>
-
-    <br />
-    {% block body %}
-    <h1>Base</h1>
-    {% endblock %}
-    </div>
-  </body>
 </html>
