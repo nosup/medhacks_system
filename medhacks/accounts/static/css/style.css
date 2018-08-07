@@ -6,6 +6,12 @@ body {
    background-color: #193f55;
    font-family: custom;
 }
+
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
 @font-face {
    font-family: custom;
    src: url("../Raleway-Light.ttf");
@@ -15,8 +21,14 @@ body {
    width: 20rem;
    height: 4rem;
    background-size: contain;
-   background-repeat: no-repeat;
+   background-repeat: repeat-x;
 }
+
+.btn-login {
+  background-color: #193F55;
+  color:#fff;
+  border-color: #193F55;
+}ne of three columns
 
 .navbar {
    background-color: #ffffff !important;
@@ -63,14 +75,9 @@ body {
    width: 90vw;
 }
 
-.container {
-   width:100vw;
-   margin: 0;
-}
-
 .card-body {
    background-color: #ffffff;
-   border-radius: 1rem;
+   border-radius: 1.25rem;
 }
 .leftitem {
    padding: 10px 20px;
@@ -121,8 +128,18 @@ body {
   background-size: cover;
 }
 
+.profilebg {
+  background-color: #fff;
+  background-image: url("../loginbg.jpg");
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .logcard {
-  background-color: #c0dded
+  background-color: #c0dded;
 }
 
 .box {
@@ -138,11 +155,22 @@ body {
   width: 360px;
 }
 
+.proflogobox {
+  height: auto;
+  width: 280px;
+}
+
 .crossbox {
   height: auto;
   width: 100px;
 }
 
-h4 a p {
+h1 h2 h3 h4 a p {
   font-family: 'Roboto', sans-serif;
+}
+
+.shadow {
+  -webkit-box-shadow: 3px 3px 5px 6px #808080;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    3px 3px 5px 6px #808080;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         3px 3px 5px 6px #808080;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }

@@ -14,7 +14,8 @@
     <title>MedHacks Application Portal</title>
     {% endblock %}
   </head>
-  <body style="background-color: #193f55">
+  <body>
+    <div class="profilebg">
      <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="{% url 'accounts:home' %}"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,6 +48,6 @@
     {% block body %}
     <h1>Base</h1>
     {% endblock %}
-
+    </div>
   </body>
 </html>

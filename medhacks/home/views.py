@@ -7,7 +7,7 @@ from .forms import HomeForm
 from travel.models import TRApplication
 
 class HomeView(TemplateView):
-    template_name = 'home/home.html'
+    template_name = 'home/new_home.html'
 
     def get(self, request):
         ufirst_name = request.user.first_name;
@@ -19,7 +19,7 @@ class HomeView(TemplateView):
         tr_app = TRApplication.objects.filter(user=request.user)
         args = {}
         if application.count() > 0:
-            args = {'form': None, 'apps': application, 'user': request.user}
+            args = {'form': None, 'apps': application[0], 'user': request.user}
             if len(tr_app) != 0:
                 args['tr_app'] = tr_app[0]
             return render(request, self.template_name, args)
