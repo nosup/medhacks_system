@@ -49,7 +49,7 @@ class HomeView(TemplateView):
             major = form.cleaned_data['major']
             secondmajor = form.cleaned_data['secondmajor']
             attended = form.cleaned_data['attended']
-            reimbursement = form.cleaned_data['reimbursement']
+            # reimbursement = form.cleaned_data['reimbursement']
             essay1 = form.cleaned_data['essay1']
             essay2 = form.cleaned_data['essay2']
             essay3 = form.cleaned_data['essay3']

@@ -44,7 +44,7 @@ class HomeForm(forms.ModelForm):
     major = forms.ChoiceField(label='Major/Area of Expertise', choices=tupled_list_majors)
     secondmajor = forms.ChoiceField(label='Second Major/Area of Expertise', choices=tupled_list_majors, required=False)
     attended = forms.ChoiceField(label='Have you attended MedHacks previously?', choices=CHOICESMEDHACKS, widget=forms.RadioSelect())
-    reimbursement = forms.ChoiceField(label='Will you be seeking a travel reimbursement?', choices=CHOICESMEDHACKS, widget=forms.RadioSelect())
+    # reimbursement = forms.ChoiceField(label='Will you be seeking a travel reimbursement?', choices=CHOICESMEDHACKS, widget=forms.RadioSelect())
     essay1 = forms.CharField(label='Why do you want to attend MedHacks 2018? (Max 350 characters)', widget=forms.Textarea, max_length=350)
     essay2 = forms.CharField(label='What skills can you bring to the hackathon? (Max 350 characters)', widget=forms.Textarea, max_length=350)
     essay3 = forms.CharField(label='What would you like to see at MedHacks 2018? (Max 350 characters)', widget=forms.Textarea, max_length=350)
@@ -74,7 +74,7 @@ class HomeForm(forms.ModelForm):
     class Meta:
         fields = ('first_name', 'last_name', 'email', 'phone_number',
         'city', 'state', 'country', 'birthday', 'gender', 'race',
-        'education', 'university', 'other_uni', 'major','secondmajor','graduating_class', 'reimbursement', 'attended',
+        'education', 'university', 'other_uni', 'major','secondmajor','graduating_class', 'attended',
         'essay1', 'essay2', 'essay3', 'essay4','how_heard_medhacks','resume', 'permission', 'conduct',
         )
         model = Application
