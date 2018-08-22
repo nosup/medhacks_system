@@ -169,6 +169,19 @@ h1 h2 h3 h4 a p {
   font-family: 'Roboto', sans-serif;
 }
 
+.fixed-panel {
+  min-height: 500;
+  max-height: 800;
+  min-width: 850;
+  overflow-y: scroll;
+}
+
+.fixed-panel-sidebar {
+
+  min-height: 800;
+  max-height: 800;
+}
+
 .shadow {
   -webkit-box-shadow: 3px 3px 5px 6px #808080;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
   -moz-box-shadow:    3px 3px 5px 6px #808080;  /* Firefox 3.5 - 3.6 */

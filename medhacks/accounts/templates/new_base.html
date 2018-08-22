@@ -1,0 +1,66 @@
+{% load staticfiles %}
+{% load static %}
+
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="{% static 'medhacks_cross.png' %}" type="image/png"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    {% block specificcss %} {% endblock %}
+    {% block head %}
+    <title>MedHacks Application Portal</title>
+    {% endblock %}
+  </head>
+  <body>
+    <div class="profilebg">
+      <div class="container-fluid">
+        <div class="h-100 row align-items-center">
+          <div class="col-sm-1">
+
+          </div>
+          <div class="col-sm-2">
+            <article class="card-body rounded shadow fixed-panel-sidebar">
+              <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4 crossbox">
+                  <img class="box" src="{% static "frozen_cross.png"%}" />
+                </div>
+                <div class="col-sm-4"></div>
+              </div>
+              <img class="img-fluid box" src="{% static "medhacks_logo_snow.png" %}"/>
+              <div class="row mt-4"></div>
+              <h1 class="card-title mb-4 mt-1"><center><strong>{{apps.first_name}} {{apps.last_name}}</strong></center></h1>
+              <br />
+              <br />
+              <h3><center><strong>Application</strong></center></h3>
+              <h3><center><strong>Travel</strong></center></h3>
+              <h3><center><strong>Campus</strong></center></h3>
+              <h3><center><strong>Profile</strong></center></h3>
+              <br />
+              <br />
+              <br />
+              <br />
+              <div class="form-group col-sm-12">
+                <a class="btn btn-block btn-light" href="{% url 'accounts:logout' %}" role="button"> <strong>Logout</strong></a>
+              </div>
+             </article>
+          </div>
+
+          <div class="col-sm-1">
+          </div>
+
+          <div class="col-sm-6">
+            <article class="card-body fixed-panel rounded shadow">
+              {% block body %}
+              {% endblock %}
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
