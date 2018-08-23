@@ -60,3 +60,10 @@ class HomeView(TemplateView):
             form.save()
             return render(request, 'home/applied.html')
         return render(request, self.template_name, {'form': form})
+
+class ProfileView(TemplateView):
+    template_name = 'home/profile.html'
+
+    def get(self, request):
+        args = {'form': None, 'user': request.user}
+        return render(request, self.template_name, args)

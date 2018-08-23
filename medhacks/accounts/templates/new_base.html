@@ -24,7 +24,29 @@
           </div>
           <div class="col-sm-2">
             <article class="card-body rounded shadow fixed-panel-sidebar">
-              <div class="row">
+              <div class="row menu-logo">
+                  <img class="box" src="{% static "frozen_cross.png"%}" />
+              </div>
+              <img class="img-fluid logobox" src="{% static "medhacks_logo_snow.png" %}"/>
+              <div class="d-flex flex-column">
+                <div class="p-2"><br /></div>
+                <div class="p-2"></div>
+                <div class="p-2"><h1 class="card-title mb-4 mt-1"><center><strong>{{user.first_name}} {{user.last_name}}</strong></center></h1></div>
+                <div class="p-2"><h3><center><strong><a href="{% url 'home:home' %}">Application</strong></a></center></h3></div>
+                <div class="p-2"><h3><center><strong><a href="{% url 'travel:travel' %}">Travel</a></strong></center></h3></div>
+                {% if user.userprofile.campus_ambassador == 'Y' %}<div class="p-2"><h3><center><strong>Campus</strong></center></h3></div>{% endif %}
+                <div class="p-2"><h3><center><strong><a href="{% url 'home:profile'%}">Profile</a></strong></center></h3></div>
+                <div class="p-2"><br /></div>
+                <div class="p-2"><br /></div>
+                  <div class="p-2">
+                    <div class="form-group col-sm-12">
+                      <a class="btn btn-block btn-light" href="{% url 'accounts:logout' %}" role="button"> <strong>Logout</strong></a>
+                    </div>
+                  </div>
+
+              </div>
+
+              <!-- <div class="row">
                 <div class="col-sm-4"></div>
                 <div class="col-sm-4 crossbox">
                   <img class="box" src="{% static "frozen_cross.png"%}" />
@@ -46,7 +68,7 @@
               <br />
               <div class="form-group col-sm-12">
                 <a class="btn btn-block btn-light" href="{% url 'accounts:logout' %}" role="button"> <strong>Logout</strong></a>
-              </div>
+              </div> -->
              </article>
           </div>
 

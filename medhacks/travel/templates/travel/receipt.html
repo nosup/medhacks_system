@@ -1,9 +1,8 @@
-{% extends 'base.html' %} {% load crispy_forms_tags %} {% block specificcss %} {% load static %}
+{% extends 'new_base.html' %} {% load crispy_forms_tags %} {% block specificcss %} {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" /> {% endblock %} {% block body %}
 
 
 <!-- The user hasn't submitted a receipt yet -->
-<div class=card-body style="width: 90vw; margin-left: 5vw;">
     <h1>Travel Reimbursement Receipt Form</h1>
     <h2>Hello {{user.first_name}}! </h2>
     <div style="height: 25px"></div>
@@ -40,7 +39,6 @@
 
         <input class="applyButton" type="submit" value="Submit" />
     </form>
-</div>
 
 <div style="height: 50px"></div>
 {% endblock %}

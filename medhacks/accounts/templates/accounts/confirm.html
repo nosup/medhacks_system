@@ -1,23 +1,18 @@
-{% extends 'base.html' %}
+{% extends 'new_base.html' %}
 {% load crispy_forms_tags %}
 {% block body %}
-<div id="accordion">
-  <div class="card-body">
     <form method="post">
       {% csrf_token %}
-      <h1>Congratulations!</h1>
-      <p>
-        Please confirm your acceptance to MedHacks: Snow Day.
-      </p>
+      <center>
+        <h1>Congratulations!</h1>
+      </center>
       <p>
         This gives us an accurate number of attendees to expect. Please note that this is a
         binding decision. If for some reason your decision is changed after you
-        have submitted, please email
+        have submitted, please email us at 
         <a href="mailto:info@mehacks.org?Subject=Decision%20Change%20MedHacks2018" target="_top">info@medhacks.org</a>
       </p>
       {{ form.as_p }}
       <button type="submit">Submit</button>
     </form>
-  </div>
-</div>
 {% endblock %}

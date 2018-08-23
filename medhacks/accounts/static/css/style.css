@@ -150,6 +150,18 @@ body, html {
   margin-right: auto;
 }
 
+.menu-logo {
+  margin-top: 80;
+  margin: auto;
+  height: 80;
+  width: 80;
+}
+
+.menu-logobox {
+  height: 50px;
+  width: 360px;
+}
+
 .logobox {
   height: auto;
   width: 360px;
@@ -177,7 +189,6 @@ h1 h2 h3 h4 a p {
 }
 
 .fixed-panel-sidebar {
-
   min-height: 800;
   max-height: 800;
 }

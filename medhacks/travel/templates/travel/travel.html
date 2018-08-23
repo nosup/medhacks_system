@@ -1,9 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'new_base.html' %}
 {% load crispy_forms_tags %}
 
 {% block body %}
-<div>
-  <div class=card-body style="width: 90vw; margin-left: 5vw;">
     <h1>Travel Reimbursement Application</h1>
     <div style="height: 25px"></div>
     <p>
@@ -34,7 +32,4 @@
       {{form|crispy}}
       <input class="applyButton" type="submit" value="Submit"/>
     </form>
-  </div>
-</div>
-
 {% endblock %}
