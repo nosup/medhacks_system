@@ -25,7 +25,7 @@ class TravelForm(forms.ModelForm):
     West = """ West"""
     International = """ International"""
 
-    CHOICES_TRAVEL=[('R', Regional), ('MW', Midwest), ('W', West), ('I', International)]
+    CHOICES_TRAVEL=[('R', Regional),]
 
     CHOICES_YN = (
         ('Y', 'Yes'),

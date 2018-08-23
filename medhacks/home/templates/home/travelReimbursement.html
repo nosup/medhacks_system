@@ -5,7 +5,7 @@
     {% if user.userprofile.receipt_amount > 0 %}
     <p>
         Your travel reimbursement was successfully submitted. Email us at travel@medhacks.org if you need to change your submission.
-        <p>Permanent Address: <br/>
+        <p>Permanent Address (where we’ll be sending your check):  <br/>
           {{ tr_app.permanent_address1 }} <br/>
           {% if tr_app.permanent_address2|length > 0 %}
            {{ tr_app.permanent_address2}} <br/>
@@ -17,6 +17,8 @@
            Receipt Amount: {{ tr_app.receipt_amount}} <br/>
            Reimbursement Amount: {{ tr_app.reimburse_amount}} <br/>
         </p>
+        Please keep in mind that after we submit all reimbursements to our Finance Department, we cannot speed up the process. Additionally, if the paperwork submitted did not adhere to the receipt guidelines on the form, MedHacks takes no responsibility in following up to request the correct form. If you have any questions please contact travel@medhacks.org.
+
     </p>
 
 
@@ -26,7 +28,7 @@
         Congratulations! You have been awarded a travel reimbursement for up to $50. Click <a href="{% url 'travel:receipt' %}">here</a>
         to redeem your travel reimbursement and submit the necessary forms.
         </br>
-        You will receive your reimbursement after the event- once we received the correct paperwork and we confirmed your attendance to MedHacks.
+        You will receive your reimbursement after the event- once we received the correct paperwork and we confirmed your attendance to MedHacks. Please remember that in order to receive a reimbursement, you must have submitted the correct paperwork to the link above by Sept 16 and have attended MedHacks!
     </p>
 
     {% elif user.userprofile.travel_reimbursement == 'Midwest' %}
@@ -66,6 +68,13 @@
     {% else %}
     <p>
         The travel reimbursement application is now <a href="{% url 'travel:travel' %}">live</a>. If you've already applied, please disregard.
+        <br>
+        <br>
+        July 20 : Deadline for Interational and West Coast travel reimbursement applications.
+        <br>
+        August 14 : Deadline for Midwest and Regional travel reimbursement applications.
+        <br>
+        Applications are reviewed on a rolling basis so the earlier you apply, the sooner you'll hear back and better your chances are before all spots fill up!
     </p>
 
     {% endif %}

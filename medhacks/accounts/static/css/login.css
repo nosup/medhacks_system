@@ -30,12 +30,8 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 10vw;
+  margin: 10vw;
 }
 .align-item {
     width: 75%;
 }
-/*
-https://img1.picmix.com/output/stamp/normal/9/7/0/8/1078079_cf64b.gif
-https://im5.ezgif.com/tmp/ezgif-5-d843365238.gif
-*/
