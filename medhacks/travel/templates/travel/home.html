@@ -1,0 +1,86 @@
+{% extends 'new_base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block body %}
+<h3>Travel Reimbursements</h3>
+<div class="container">
+
+    <!-- If the user has submitted both forms (travel reimbursement form and receipt form) -->
+    {% if user.userprofile.receipt_amount > 0 %}
+    <p>
+        Your travel reimbursement was successfully submitted. Email us at travel@medhacks.org if you need to change your submission.
+        <p>Permanent Address (where we’ll be sending your check):  <br/>
+          {{ tr_app.permanent_address1 }} <br/>
+          {% if tr_app.permanent_address2|length > 0 %}
+           {{ tr_app.permanent_address2}} <br/>
+          {% endif %}
+           {{ tr_app.permanent_city}}, {{ tr_app.permanent_state}} <br />
+           {{ tr_app.permanent_zip}}
+        </p>
+        <p><a href={{tr_app.receipt_file.url}}>View Your Receipt</a> <br/>
+           Receipt Amount: {{ tr_app.receipt_amount}} <br/>
+           Reimbursement Amount: {{ tr_app.reimburse_amount}} <br/>
+        </p>
+        Please keep in mind that after we submit all reimbursements to our Finance Department, we cannot speed up the process. Additionally, if the paperwork submitted did not adhere to the receipt guidelines on the form, MedHacks takes no responsibility in following up to request the correct form. If you have any questions please contact travel@medhacks.org.
+
+    </p>
+
+
+    <!-- If the user has already submitted their reimbursement form but not their receipt form -->
+    {% elif user.userprofile.travel_reimbursement == 'Regional' %}
+    <p>
+        Congratulations! You have been awarded a travel reimbursement for up to $50. Click <a href="{% url 'travel:receipt' %}">here</a>
+        to redeem your travel reimbursement and submit the necessary forms.
+        </br>
+        You will receive your reimbursement after the event- once we received the correct paperwork and we confirmed your attendance to MedHacks. Please remember that in order to receive a reimbursement, you must have submitted the correct paperwork to the link above by Sept 16 and have attended MedHacks!
+    </p>
+
+    {% elif user.userprofile.travel_reimbursement == 'Midwest' %}
+    <p>
+        Congratulations! You have been awarded a travel reimbursement for up to $100. Click <a href="{% url 'travel:receipt' %}">here</a>
+        to redeem your travel reimbursement and submit the necessary forms.
+        </br>
+        You will receive your reimbursement after the event- once we received the correct paperwork and we confirmed your attendance to MedHacks.
+    </p>
+
+    {% elif user.userprofile.travel_reimbursement == 'West' %}
+    <p>
+        Congratulations! You have been awarded a travel reimbursement for up to $250. Click <a href="{% url 'travel:receipt' %}">here</a>
+        to redeem your travel reimbursement and submit the necessary forms.
+        </br>
+        You will receive your reimbursement after the event- once we received the correct paperwork and we confirmed your attendance to MedHacks.
+    </p>
+
+    {% elif user.userprofile.travel_reimbursement == 'International' %}
+    <p>
+        Congratulations! You have been awarded a travel reimbursement for up to $250. Click <a href="{% url 'travel:receipt' %}">here</a>
+        to redeem your travel reimbursement and submit the necessary forms.
+        </br>
+        You will receive your reimbursement after the event- once we received the correct paperwork and we confirmed your attendance to MedHacks.
+    </p>
+
+    {% elif user.userprofile.travel_reimbursement == 'Rejected' %}
+    <p>
+        Thank you for applying for a travel reimbursement. Unfortunately, due to limited funds, we are unable to offer you a reimbursement at this time.
+        <br/>
+        If you will still be attending MedHacks without a reimbursement, please confirm your attendance <a href="{% url 'accounts:confirm' %}">here.</a>,
+        and if not, please also confirm that you will not be able to make it and we hope to see you next year!
+    </p>
+
+
+    <!-- If the user hasn't submitted their travel reimbursement form yet -->
+    {% else %}
+    <p>
+        The travel reimbursement application is now <a href="{% url 'travel:travel' %}">live</a>. If you've already applied, please disregard.
+        <br>
+        <br>
+        July 20 : Deadline for Interational and West Coast travel reimbursement applications.
+        <br>
+        August 14 : Deadline for Midwest and Regional travel reimbursement applications.
+        <br>
+        Applications are reviewed on a rolling basis so the earlier you apply, the sooner you'll hear back and better your chances are before all spots fill up!
+    </p>
+
+    {% endif %}
+</div>
+{% endblock %}
