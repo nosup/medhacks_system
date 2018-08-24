@@ -1,0 +1,21 @@
+{% extends 'new_base.html' %}
+{% block body %}
+<center>
+  <h3>Profile</h3>
+</center>
+
+<div class="container">
+  <p>
+    Username: {{user.username}}
+  </p>
+  <p>
+    First Name: {{user.first_name}}
+  </p>
+  <p>
+    Last Name: {{user.last_name}}
+  </p>
+  <p>
+    <a href="{% url 'accounts:change_password' %}">Change Password</a>
+  </p>
+</div>
+{% endblock %}

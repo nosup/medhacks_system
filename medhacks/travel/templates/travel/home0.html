@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+  <h1>Home inside accounts</h1>
+  <p>
+     should display status of:
+     <ol>
+        <li>
+           Application
+           <div class="container">
+             {% if apps == None %}
+               {% for post in posts %}
+                  <p>{{post.first_name}}</p>
+                  <p>{{post.last_name}}</p>
+                  <p>{{post.email}}</p>
+                  <p>{{post.phone_number}}</p>
+                  <p>{{post.address1}}</p>
+                  <p>{{post.address2}}</p>
+                  <p>{{post.zipcode}}</p>
+                  <p>{{post.city}}</p>
+                  <p>{{post.country}}</p>
+                  <p>{{post.gender}}</p>
+                  <p>{{post.university}}</p>
+                  <p>{{post.graduating_class}}</p>
+                  <p>{{post.major}}</p>
+                  <p>{{post.track}}</p>
+                  <p>{{post.reimbursement}}</p>
+                  <p>{{post.team}}</p>
+                  <p>{{post.user}}</p>
+               {% endfor %}
+             {% else %}
+             <p>
+               Don't forget to submit your application before 09/13/2018!
+               <a href={% url 'home:home' %}>Application</a>
+             </p>
+            {% endif %}
+           </div>
+        </li>
+        <li>
+           Campus Ambassador
+           <div class="container">
+             {% if user.userprofile.campus_ambassador == 'Y' %}
+             <p>
+               Thank you for being a campus amabassador!
+             </p>
+             {% else %}
+             <p>
+               Not a MedHacks campus ambassador? Find out the perks of becoming one!
+             </p>
+             {% endif %}
+           </div>
+        </li>
+        <li>
+           Travel Reimbursement
+           <div class="container">
+             {% if user.userprofile.travel_reimbursement == 'Y' %}
+             <p>
+               You have been awarded a travel reimbursement!
+             </p>
+             {% elif user.userprofil.travel_reimbursement == 'N' %}
+             <p>
+               You are not eligible for a travel reimbursement.
+             </p>
+             {% else %}
+             <p>
+               Travel reimbursement application pending!
+             </p>
+             {% endif %}
+           </div>
+        </li>
+     </ol>
+  </p>
+</div>
+
+{% endblock %}
