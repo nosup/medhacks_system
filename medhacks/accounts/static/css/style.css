@@ -185,7 +185,7 @@ h1 h2 h3 h4 a p {
   min-height: 500;
   max-height: 800;
   min-width: 850;
-  overflow-y: scroll;
+  overflow-y: hidden;
 }
 
 .fixed-panel-sidebar {

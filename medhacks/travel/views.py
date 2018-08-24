@@ -5,6 +5,28 @@ from .models import TRApplication
 from .forms import TravelForm, TravelReceiptForm
 from accounts.models import UserProfile
 from home.models import Application
+from home.forms import HomeForm
+
+
+class TravelHomeView(TemplateView):
+    template_name = 'travel/home.html'
+
+    def get(self, request):
+        ufirst_name = request.user.first_name;
+        ulast_name = request.user.last_name;
+        uemail = request.user.email;
+        form = HomeForm(initial={'first_name':ufirst_name, 'last_name':ulast_name, 'email':uemail})
+        application = Application.objects.filter(user=request.user)[:1]
+        # travel reciept info
+        tr_app = TRApplication.objects.filter(user=request.user)
+        args = {}
+        if application.count() > 0:
+            args = {'form': None, 'apps': application[0], 'user': request.user}
+            if len(tr_app) != 0:
+                args['tr_app'] = tr_app[0]
+            return render(request, self.template_name, args)
+
+        return render(request, self.template_name, {'form': form, 'apps': None})
 
 class TravelView(TemplateView):
     template_name = 'travel/travel.html'
