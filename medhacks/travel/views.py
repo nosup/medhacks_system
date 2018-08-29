@@ -49,11 +49,13 @@ class RecieptView(TemplateView):
 
     def post(self, request):
         user = get_object_or_404(UserProfile, user=request.user)
-        trApplication = TRApplication.objects.get(user=request.user)
         form = TravelReceiptForm(request.POST, request.FILES, instance=user)
-        form2 = TravelReceiptForm(request.POST, request.FILES, instance=trApplication)
 
         if form.is_valid():
+            #BUG is here. Form is not valid cause file is too big, but then
+            # everything fails. Figure out why
+            trApplication = TRApplication.objects.get(user=request.user)
+            form2 = TravelReceiptForm(request.POST, request.FILES, instance=trApplication)
 
             post_data = form.save(commit=False)
             post_data.user = request.user
@@ -66,6 +68,5 @@ class RecieptView(TemplateView):
             reimburse_amount = form.cleaned_data['reimburse_amount']
             form.save()
             form2.save()
-
             return render(request, 'travel/receipt_submitted.html')
         return render(request, self.template_name, {'form': form})

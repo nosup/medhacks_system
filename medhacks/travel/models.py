@@ -30,5 +30,6 @@ class TRApplication(models.Model):
     travel_location_state = models.CharField(max_length=50, default = 'NA')
     receipt_amount = models.DecimalField(max_digits=6, decimal_places=2, default=0)
     reimburse_amount = models.DecimalField(max_digits=6, decimal_places=2, default=0)
-    receipt_file = ContentTypeRestrictedFileField(upload_to='receipts', default='-', content_types=['application/pdf','application/docx','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/doc','image/jpeg'],max_upload_size=2097152,blank=False, null=False)
+    #receipt_file = ContentTypeRestrictedFileField(upload_to='receipts', default='-', content_types=['application/pdf','application/docx','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/doc','image/jpeg'],max_upload_size=2097152,blank=False, null=False)
+    receipt_file = models.FileField(upload_to='receipts', default='-')
     policy_check = models.BooleanField(default=False)

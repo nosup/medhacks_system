@@ -29,10 +29,10 @@ class ContentTypeRestrictedFileField(FileField):
             print(content_type)
 
             if content_type in self.content_types:
-
                 if file._size > self.max_upload_size:
                     raise forms.ValidationError(_('Please keep filesize under %s. Current filesize is %s') % (filesizeformat(self.max_upload_size), filesizeformat(file._size)))
             else:
+                print('hi')
                 raise forms.ValidationError(_('Only .pdf, .docx, and .jpeg accepted'))
         except AttributeError:
             pass

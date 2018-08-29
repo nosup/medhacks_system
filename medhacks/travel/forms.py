@@ -68,7 +68,6 @@ class TravelReceiptForm(forms.ModelForm):
     receipt_file = forms.FileField(label='Upload Receipt', widget = forms.FileInput, required=True)
     policy_check = forms.BooleanField(label="I have read the <a href='https://drive.google.com/open?id=1IRAy-KqUC7yyR0I8wi7oJ1IxWBkLKIlp'>Receipt Guidelines for Reimbursements</a> and understand that if my information is incorrect or not submitted properly, I will not eligible for a reimbursement.")
 
-
     def clean(self):
         cd = self.cleaned_data
         if cd.get('receipt_amount') < cd.get('reimburse_amount'):
