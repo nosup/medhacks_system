@@ -99,8 +99,16 @@
             </div>
             <div id="registerTeam" class="tab-pane">
                <h3>Temporary stuff</h3>
-            </div>
+               <!-- have something like {% if user.userprofile.travel_reimbursement == 'Y' %} to check
+               if user already created a team, also display current team members? -->
+               <!-- have two options, create team or join team -->
+               <!-- for url, it's registerTeamApp:'name of url' -->
+               <p>
+                   If you wish to create a team: <a href="{% url 'registerTeamApp:registerteam' %}">Click here</a>
+               </p>
+               <!-- BUG ERROR HERE-->
 
+            </div>
         </div>
     </div>
 </div>

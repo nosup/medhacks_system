@@ -29,11 +29,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterField(
             model_name='application',
-            name='contingency',
-            field=models.CharField(blank='True', max_length=50),
-        ),
-        migrations.AlterField(
-            model_name='application',
             name='country',
             field=models.CharField(blank='True', max_length=50),
         ),
@@ -81,16 +76,6 @@ class Migration(migrations.Migration):
             model_name='application',
             name='resume',
             field=models.FileField(blank='True', default='nothing', upload_to='resume'),
-        ),
-        migrations.AlterField(
-            model_name='application',
-            name='team',
-            field=models.CharField(blank='True', max_length=50),
-        ),
-        migrations.AlterField(
-            model_name='application',
-            name='track',
-            field=models.CharField(blank='True', max_length=50),
         ),
         migrations.AlterField(
             model_name='application',
