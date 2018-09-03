@@ -10,17 +10,18 @@ class RegisterTeamView(TemplateView):
     template_name = 'registerTeamApp/registerTeamApp.html'
 
     def get(self, request):
-        form = TravelForm
+        form = CreateTeamRegisterForm
         #RTApp = RTApp.objects.filter(user=request.user)[:1]
         #if RTApp.count() > 0:
             #return render(request, 'travel/applied.html')
         return render(request, self.template_name, {'form': form, 'apps': None})
 
     def post(self, request):
-        form = TravelForm(request.POST, request.FILES)
+        form = CreateTeamRegisterForm(request.POST, request.FILES)
         if form.is_valid():
             team_name = form.cleaned_data['team_name']
 
             form.save()
-            return render(request, 'registerTeamApp/registeredTeamSucess.html')
+            #return render(request, 'registerTeamApp/registeredTeamSucess.html')
+            return render(request, 'home/applied.html')
         return render(request, self.template_name, {'form': form})

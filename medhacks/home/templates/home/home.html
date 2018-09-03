@@ -99,7 +99,7 @@
             <div id="registerTeam" class="tab-pane">
                <h3>Temporary stuff</h3>
                <p>
-                   If you wish to create a team: <a href="{% url 'registerTeamApp:registerteam' %}">Click here</a>
+                   If you wish to create a team: <a href="{% url 'registerTeamApp:registerTeamApp' %}">Click here</a>
                </p>
             </div>
         </div>
@@ -117,24 +117,35 @@
             $("#travelTab").parent().removeClass('activeLi');
             $("#caTab").parent().removeClass('activeLi');
             $("#profTab").parent().removeClass('activeLi');
+            $("#teamTab").parent().removeClass('activeLi');
         });
         $("#travelTab").click(function() {
             $(this).parent().addClass('activeLi');
             $("#statusTab").parent().removeClass('activeLi');
             $("#caTab").parent().removeClass('activeLi');
             $("#profTab").parent().removeClass('activeLi');
+            $("#teamTab").parent().removeClass('activeLi');
         });
         $("#caTab").click(function() {
             $(this).parent().addClass('activeLi');
             $("#travelTab").parent().removeClass('activeLi');
             $("#statusTab").parent().removeClass('activeLi');
             $("#profTab").parent().removeClass('activeLi');
+            $("#teamTab").parent().removeClass('activeLi');
         });
         $("#profTab").click(function() {
             $(this).parent().addClass('activeLi');
             $("#travelTab").parent().removeClass('activeLi');
             $("#statusTab").parent().removeClass('activeLi');
             $("#caTab").parent().removeClass('activeLi');
+            $("#teamTab").parent().removeClass('activeLi');
+        });
+        $("#teamTab").click(function() {
+            $(this).parent().addClass('activeLi');
+            $("#travelTab").parent().removeClass('activeLi');
+            $("#statusTab").parent().removeClass('activeLi');
+            $("#caTab").parent().removeClass('activeLi');
+            $("#profTab").parent().removeClass('activeLi');
         });
     });
 </script>

@@ -3,8 +3,8 @@ from django.urls import path, include
 from registerTeamApp.views import RegisterTeamView
 
 
-app_name = 'home'
+app_name = 'registerTeamApp'
 urlpatterns = [
-    #path('', TravelView.as_view(), name='registerTeamApp'),
-    path('', RegisterTeamView.as_view(), name='registerteam')
+    #path('register_success/', logout, {'template_name': 'accounts/login.html'}, name='logout'),
+    path('', RegisterTeamView.as_view(), name='registerTeamApp')
 ]
