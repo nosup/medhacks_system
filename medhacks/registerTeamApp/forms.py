@@ -1,5 +1,5 @@
 from django import forms
-#from .models import TRApplication TODO
+from .models import RTApp
 from django.forms.widgets import SelectDateWidget
 from django.core.exceptions import ValidationError
 from django.conf import settings
@@ -13,6 +13,6 @@ class CreateTeamRegisterForm(forms.ModelForm):
     team_name = forms.CharField(label="team_name", max_length=50)
 
     class Meta:
-        fields = ('team_name,
+        fields = ('team_name',
         )
         model = RTApp

@@ -54,7 +54,6 @@
 
         <div style="height: 25px"></div>
         <ul class="nav nav-tabs typeTab">
-
             <li class="active activeLi"><a id="statusTab" data-toggle="tab" href="#statusCA">Application Status</a></li>
             {% if appli.reimbursement == 'Yes' %}
             <li><a id="travelTab" data-toggle="tab" href="#travelCA">Travel Reimbursements</a></li>
@@ -65,10 +64,10 @@
             <li><a id="profTab" data-toggle="tab" href="#profile">Profile</a></li>
             <li><a id="teamTab" data-toggle="tab" href="#registerTeam"> Register Team </a> </li>
 
-            <!-- This is where you add href="#"-->
         </ul>
 
         <div class="tab-content">
+
             <div id="statusCA" class="tab-pane in active">
                 {% include './applicationStatus.html' %}
             </div>
@@ -99,15 +98,9 @@
             </div>
             <div id="registerTeam" class="tab-pane">
                <h3>Temporary stuff</h3>
-               <!-- have something like {% if user.userprofile.travel_reimbursement == 'Y' %} to check
-               if user already created a team, also display current team members? -->
-               <!-- have two options, create team or join team -->
-               <!-- for url, it's registerTeamApp:'name of url' -->
                <p>
                    If you wish to create a team: <a href="{% url 'registerTeamApp:registerteam' %}">Click here</a>
                </p>
-               <!-- BUG ERROR HERE-->
-
             </div>
         </div>
     </div>
@@ -124,35 +117,24 @@
             $("#travelTab").parent().removeClass('activeLi');
             $("#caTab").parent().removeClass('activeLi');
             $("#profTab").parent().removeClass('activeLi');
-            $("#teamTab").parent().removeClass('activeLi');
         });
         $("#travelTab").click(function() {
             $(this).parent().addClass('activeLi');
             $("#statusTab").parent().removeClass('activeLi');
             $("#caTab").parent().removeClass('activeLi');
             $("#profTab").parent().removeClass('activeLi');
-            $("#teamTab").parent().removeClass('activeLi');
         });
         $("#caTab").click(function() {
             $(this).parent().addClass('activeLi');
             $("#travelTab").parent().removeClass('activeLi');
             $("#statusTab").parent().removeClass('activeLi');
             $("#profTab").parent().removeClass('activeLi');
-            $("#teamTab").parent().removeClass('activeLi');
         });
         $("#profTab").click(function() {
             $(this).parent().addClass('activeLi');
             $("#travelTab").parent().removeClass('activeLi');
             $("#statusTab").parent().removeClass('activeLi');
             $("#caTab").parent().removeClass('activeLi');
-            $("#teamTab").parent().removeClass('activeLi');
-        });
-        $("#teamTab").click(function() {
-            $(this).parent().addClass('activeLi');
-            $("#travelTab").parent().removeClass('activeLi');
-            $("#statusTab").parent().removeClass('activeLi');
-            $("#caTab").parent().removeClass('activeLi');
-            $("#profTab").parent().removeClass('activeLi');
         });
     });
 </script>

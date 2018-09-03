@@ -26,4 +26,5 @@ urlpatterns = [
     path('account/', include(('accounts.urls', 'accounts'), namespace='accounts')),
     path('home/', include(('home.urls', 'home'), namespace='home')),
     path('travel/', include(('travel.urls', 'travel'), namespace='travel')),
+    path('register-team/', include(('registerTeamApp.urls', 'registerTeamApp'), namespace='registerTeamApp')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
