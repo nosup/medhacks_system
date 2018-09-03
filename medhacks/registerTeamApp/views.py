@@ -11,9 +11,6 @@ class RegisterTeamView(TemplateView):
 
     def get(self, request):
         form = CreateTeamRegisterForm
-        #RTApp = RTApp.objects.filter(user=request.user)[:1]
-        #if RTApp.count() > 0:
-            #return render(request, 'travel/applied.html')
         return render(request, self.template_name, {'form': form, 'apps': None})
 
     def post(self, request):
