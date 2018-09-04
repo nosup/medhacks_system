@@ -6,4 +6,5 @@ from datetime import datetime
 # Create your models here.
 class RTApp(models.Model):
     team_name = models.CharField(max_length=50)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default='na')
+    team_join = models.CharField(max_length=50)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
