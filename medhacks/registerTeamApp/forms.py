@@ -20,7 +20,7 @@ class CreateTeamRegisterForm(forms.ModelForm):
 class SelectTeamForm(forms.ModelForm):
 
     #team_join = forms.ModelChoiceField(queryset=RTApp.objects.all())
-    team_join = forms.ModelChoiceField(queryset=RTApp.objects.all().order_by('team_name'))
+    team_join = forms.ModelChoiceField(queryset=RTApp.objects.all().values_list('team_name', flat=True))
                                         #queryset=Books.objects.all().order_by('name')
     #team_join = forms.ChoiceField(label='Gender', choices = (('M', 'Male'), ('F', 'Female'), ('O', 'Other'), ('Prefer not to say', 'Prefer not to say')))
     class Meta:
