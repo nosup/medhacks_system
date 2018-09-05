@@ -10,7 +10,7 @@ from django.contrib.admin.widgets import AdminDateWidget
 
 class CreateTeamRegisterForm(forms.ModelForm):
 
-    team_name = forms.CharField(label="team_name", max_length=50)
+    team_name = forms.CharField(label="team_name", max_length=100)
 
     class Meta:
         fields = ('team_name',
@@ -18,13 +18,15 @@ class CreateTeamRegisterForm(forms.ModelForm):
         model = RTApp
 
 class SelectTeamForm(forms.ModelForm):
-    #team_join = forms.ModelChoiceField(queryset=RTApp.objects.all().order_by('team_name'))
-    list_of_teams = RTApp.objects.order_by('team_name').values('team_name')
-    team_join = forms.ModelChoiceField(list_of_teams)
+    CHOICES_TEAMS = (
+        ('-', 'None'),
+        ('1', 'One'),
+        ('2', 'Two'),
+        ('3', 'Three'),
+    )
 
-                                        #queryset=Books.objects.all().order_by('name')
-    #team_join = forms.ChoiceField(label='Gender', choices = (('M', 'Male'), ('F', 'Female'), ('O', 'Other'), ('Prefer not to say', 'Prefer not to say')))
+    team_name = forms.ChoiceField(choices=CHOICES_TEAMS)
     class Meta:
-        fields = ('team_join',
+        fields = ('team_name',
         )
         model = RTApp

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from registerTeamApp.models import RTApp
 # Create your models here.
 
 class UserProfileManager(models.Manager):
@@ -25,6 +26,14 @@ class UserProfile(models.Model):
         ('West', 'West'),
         ('International', 'International'),
     )
+
+    # For teams_choices
+    CHOICES_TEAMS = (
+        ('-', 'none'),
+        ('1', 'one'),
+        ('2', 'two'),
+        ('3', 'three'),
+    )
     # user = models.OneToOneField(User, on_delete=models.CASCADE)
     # description = models.CharField(max_length=100, default='')
     # city = models.CharField(max_length=100, default='')
@@ -37,6 +46,7 @@ class UserProfile(models.Model):
     campus_ambassador = models.CharField(max_length=1, choices=CHOICES_YN, default='-')
     accepted = models.CharField(max_length=1, choices=CHOICES_YN, default='-')
     confirmation = models.CharField(max_length=1, choices=CHOICES_YN, default='-')
+    team_name = models.CharField(max_length=100, default='-')
 
     # image = models.ImageField(upload_to='profile_image', blank=True)
 
