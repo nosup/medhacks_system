@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from registerTeamApp.models import RTApp
 # Create your models here.
 
 class UserProfileManager(models.Manager):
@@ -37,6 +38,10 @@ class UserProfile(models.Model):
     campus_ambassador = models.CharField(max_length=1, choices=CHOICES_YN, default='-')
     accepted = models.CharField(max_length=1, choices=CHOICES_YN, default='-')
     confirmation = models.CharField(max_length=1, choices=CHOICES_YN, default='-')
+    team_list = RTApp.objects.all().values_list('team_name', flat=True)
+    team_tuple = list(zip(team_list,team_list))
+    team_tuple.insert(0,('-','-'))
+    team_name = models.CharField(max_length=100, choices=team_tuple, default='-')
 
     # image = models.ImageField(upload_to='profile_image', blank=True)
 

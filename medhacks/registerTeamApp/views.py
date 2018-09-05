@@ -33,8 +33,10 @@ class JoinTeamView(TemplateView):
     def post(self, request):
         form = SelectTeamForm(request.POST, request.FILES)
         if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            post.save()
             team_join = form.cleaned_data['team_join']
-
             form.save()
             #return render(request, 'registerTeamApp/registeredTeamSucess.html')
             return render(request, 'home/applied.html')
