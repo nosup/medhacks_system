@@ -29,10 +29,10 @@ class UserProfile(models.Model):
 
     # For teams_choices
     CHOICES_TEAMS = (
-        ('-', 'none'),
-        ('1', 'one'),
-        ('2', 'two'),
-        ('3', 'three'),
+        ('-', 'None'),
+        ('One', 'One'),
+        ('Two', 'Two'),
+        ('Three', 'Three'),
     )
     # user = models.OneToOneField(User, on_delete=models.CASCADE)
     # description = models.CharField(max_length=100, default='')

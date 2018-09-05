@@ -20,12 +20,12 @@ class CreateTeamRegisterForm(forms.ModelForm):
 class SelectTeamForm(forms.ModelForm):
     CHOICES_TEAMS = (
         ('-', 'None'),
-        ('1', 'One'),
-        ('2', 'Two'),
-        ('3', 'Three'),
+        ('One', 'One'),
+        ('Two', 'Two'),
+        ('Three', 'Three'),
     )
 
-    team_name = forms.ChoiceField(choices=CHOICES_TEAMS)
+    team_name = forms.ChoiceField(label='Select a team from the drop-down to join', choices=CHOICES_TEAMS)
     class Meta:
         fields = ('team_name',
         )

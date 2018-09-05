@@ -1,10 +1,5 @@
-{% extends 'base.html' %} {% load crispy_forms_tags %}
-{% block specificcss %} {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" />
-{% endblock %}
-
-
-{% block body %}
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block specificcss %} {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" /> {% endblock %} {% block body %}
 
 <!-- If the user hasn't submitted an application yet -->
 {% if form != None %}
@@ -12,11 +7,10 @@
     <h1>MedHacks 2018 Application</h1>
     <h2>Hello {{user.first_name}}! </h2>
     <p style="font-size: 1.1rem">
-            <br>
-            The deadline for International and West Coast travel reimbursement applications is <strong>July 20</strong>. The deadline for Midwest and Regional travel reimbursement applications is <strong>August 14</strong>. The general application deadline is <strong>August 25</strong>.
-            <br>
-            Applications are reviewed on a rolling basis so the earlier you apply, the sooner you'll hear back and better your chances are before all spots fill up!
-        </p>
+        <br> The deadline for International and West Coast travel reimbursement applications is <strong>July 20</strong>. The deadline for Midwest and Regional travel reimbursement applications is <strong>August 14</strong>. The general application deadline
+        is <strong>August 25</strong>.
+        <br> Applications are reviewed on a rolling basis so the earlier you apply, the sooner you'll hear back and better your chances are before all spots fill up!
+    </p>
     <div style="height: 25px"></div>
     <form action={% url 'home:home' %} method="post" enctype='multipart/form-data'>
         {% csrf_token %} {{form|crispy}} {% if form.errors %} {% for field in form %} {% for error in field.errors %}
@@ -46,8 +40,7 @@
 
 
 <!-- If user has applied -->
-{% else %}
-{% for appli in apps %}
+{% else %} {% for appli in apps %}
 <div id="accordion">
     <div class="card-body">
         <h2 style="font-size: 2.5rem">Hello {{user.first_name}}! </h2>
@@ -57,13 +50,13 @@
             <li class="active activeLi"><a id="statusTab" data-toggle="tab" href="#statusCA">Application Status</a></li>
             {% if appli.reimbursement == 'Yes' %}
             <li><a id="travelTab" data-toggle="tab" href="#travelCA">Travel Reimbursements</a></li>
-            {% endif %}
-            {% if user.userprofile.campus_ambassador == 'Y' %}
+            {% endif %} {% if user.userprofile.campus_ambassador == 'Y' %}
             <li><a id="caTab" data-toggle="tab" href="#campus_ambassador">Campus Ambassador</a></li>
             {% endif %}
             <li><a id="profTab" data-toggle="tab" href="#profile">Profile</a></li>
+            {% if user.userprofile.team_name == '-' %}
             <li><a id="teamTab" data-toggle="tab" href="#registerTeam"> Join Team </a> </li>
-
+            {% endif %}
         </ul>
 
         <div class="tab-content">
@@ -76,9 +69,7 @@
             <div id="travelCA" class="tab-pane">
                 {% include './travelReimbursement.html' %}
             </div>
-            {% endif %}
-
-            {% if user.userprofile.campus_ambassador == 'Y' %}
+            {% endif %} {% if user.userprofile.campus_ambassador == 'Y' %}
             <div id="campus_ambassador" class="tab-pane">
                 {% include './campusAmbassadorHome.html' %}
             </div>
@@ -90,28 +81,27 @@
                 <p>First name: {{user.first_name}}</p>
                 <p>Last name: {{user.last_name}}</p>
                 <p>Email: {{user.email}}</p>
+                {% if user.userprofile.team_name != '-' %}
+                <p>Team name: {{user.userprofile.team_name}} </p>
+                {% endif %}
                 <p>
                     <a style="color: black; font-style: italic;" href="{% url 'accounts:change_password' %}">
                         Change Password
                     </a>
                 </p>
             </div>
+            {% if user.userprofile.team_name == '-' %}
             <div id="registerTeam" class="tab-pane">
-               <!--<h3>Registering a team</h3>
-               <p>
-                   If you wish to create a team: <a href="{% url 'registerTeamApp:registerTeamApp' %}">Click here</a>
-               </p>-->
-               <h3> Joining a team</h3>
-               <p>
-                  <br />
-                  If you wish to join a team: <a href="{% url 'registerTeamApp:joinTeam' %}">Click here</a>
-               </p>
+                <h3> Join a team</h3>
+                <p>
+                    <br /> If you wish to join a team: <a href="{% url 'registerTeamApp:joinTeam' %}">Click here</a>
+                </p>
             </div>
+            {% endif %}
         </div>
     </div>
 </div>
-{% endfor %}
-{% endif %}
+{% endfor %} {% endif %}
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

@@ -42,6 +42,5 @@ class JoinTeamView(TemplateView):
             team_name = form.cleaned_data['team_name']
             form.save()
             form2.save()
-            #return render(request, 'registerTeamApp/registeredTeamSucess.html')
-            return render(request, 'home/applied.html')
+            return render(request, 'registerTeamApp/registeredTeamSuccess.html')
         return render(request, self.template_name, {'form': form})
