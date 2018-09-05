@@ -57,6 +57,9 @@
             {% if user.userprofile.team_name == '-' %}
             <li><a id="teamTab" data-toggle="tab" href="#registerTeam"> Join Team </a> </li>
             {% endif %}
+
+            <li><a id="pollTab" data-toggle="tab" href="#teamPoll"> Team Poll </a> </li>
+
         </ul>
 
         <div class="tab-content">
@@ -90,6 +93,7 @@
                     </a>
                 </p>
             </div>
+
             {% if user.userprofile.team_name == '-' %}
             <div id="registerTeam" class="tab-pane">
                 <h3> Join a team</h3>
@@ -98,6 +102,12 @@
                 </p>
             </div>
             {% endif %}
+
+            <div id="teamPoll" class="tab-pane">
+                <h3>Team Poll</h3>
+                
+            </div>
+
         </div>
     </div>
 </div>
@@ -136,6 +146,13 @@
             $("#teamTab").parent().removeClass('activeLi');
         });
         $("#teamTab").click(function() {
+            $(this).parent().addClass('activeLi');
+            $("#travelTab").parent().removeClass('activeLi');
+            $("#statusTab").parent().removeClass('activeLi');
+            $("#caTab").parent().removeClass('activeLi');
+            $("#profTab").parent().removeClass('activeLi');
+        });
+        $("#pollTab").click(function() {
             $(this).parent().addClass('activeLi');
             $("#travelTab").parent().removeClass('activeLi');
             $("#statusTab").parent().removeClass('activeLi');
