@@ -34,6 +34,11 @@ class UserProfile(models.Model):
         ('Two', 'Two'),
         ('Three', 'Three'),
     )
+
+    CHOICES_REGISTERED = (
+        ('Not registered', 'Not registered'),
+        ('Registered', 'Registered'),
+    )
     # user = models.OneToOneField(User, on_delete=models.CASCADE)
     # description = models.CharField(max_length=100, default='')
     # city = models.CharField(max_length=100, default='')
@@ -47,7 +52,7 @@ class UserProfile(models.Model):
     accepted = models.CharField(max_length=1, choices=CHOICES_YN, default='-')
     confirmation = models.CharField(max_length=1, choices=CHOICES_YN, default='-')
     team_name = models.CharField(max_length=100, default='-')
-
+    registered = models.CharField(max_length=50, choices=CHOICES_REGISTERED, default='Not registered')
     # image = models.ImageField(upload_to='profile_image', blank=True)
 
     # london = UserProfileManager()
