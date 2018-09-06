@@ -37,7 +37,7 @@ def international_travel(modeladmin, request, queryset):
 international_travel.short_description = "Accept TRAVEL: International"
 
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'travel_reimbursement', 'travel_confirm', 'campus_ambassador', 'accepted', 'confirmation')
+    list_display = ('user', 'travel_reimbursement', 'travel_confirm', 'campus_ambassador', 'accepted', 'confirmation', 'team_name')
     actions = [accept_hacker, reject_hacker, reject_travel, regional_travel, midwest_travel, west_travel, international_travel,]
 
     def user_info(self, obj):

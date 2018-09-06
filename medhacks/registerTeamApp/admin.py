@@ -5,7 +5,7 @@ from django.db.models.signals import post_save
 # Register your models here.
 # We see these in admin view under application
 class RegisterTeamAppAdmin(admin.ModelAdmin):
-    list_display = ('team_name', 'user',
+    list_display = ('team_name', 'get_users',
     )
     # Adds search bar
     search_fields = ['user__username']

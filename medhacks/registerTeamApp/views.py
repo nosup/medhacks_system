@@ -32,14 +32,19 @@ class JoinTeamView(TemplateView):
     def post(self, request):
         user = get_object_or_404(UserProfile, user=request.user)
         form = SelectTeamForm(request.POST, request.FILES, instance=user)
-        form2 = SelectTeamForm(request.POST, request.FILES)
 
         if form.is_valid():
 
             post_data = form.save(commit=False)
             post_data.user = request.user
             post_data.save()
+
             team_name = form.cleaned_data['team_name']
+
+            team = RTApp.objects.get(team_name=team_name)
+            form2 = SelectTeamForm(request.POST, request.FILES, instance=team)
+            team.users.add(request.user) # Add the M2M relationship
+
             form.save()
             form2.save()
             return render(request, 'registerTeamApp/registeredTeamSuccess.html')
