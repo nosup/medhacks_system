@@ -3,6 +3,11 @@ from accounts.models import UserProfile
 from django.db.models.signals import post_save
 
 # Register your models here.
+
+def register_hacker(modeladmin, request, queryset):
+    queryset.update(registered='Registered')
+register_hacker.short_description = "Register selected users"
+
 def accept_hacker(modeladmin, request, queryset):
     queryset.update(accepted='Y')
 accept_hacker.short_description = "Accept selected users into MedHacks"
@@ -38,7 +43,7 @@ international_travel.short_description = "Accept TRAVEL: International"
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'travel_reimbursement', 'travel_confirm', 'campus_ambassador', 'accepted', 'confirmation', 'registered', 'team_name')
-    actions = [accept_hacker, reject_hacker, reject_travel, regional_travel, midwest_travel, west_travel, international_travel,]
+    actions = [register_hacker, accept_hacker, reject_hacker, reject_travel, regional_travel, midwest_travel, west_travel, international_travel,]
 
     def user_info(self, obj):
         return obj.description
