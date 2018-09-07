@@ -104,8 +104,20 @@
             {% endif %}
 
             <div id="teamPoll" class="tab-pane">
-                <h3>Team Poll</h3>
-                
+                <h3>Voting</h3>
+
+                <p>
+                    <br /> If you wish to vote for teams: <a href="{% url 'registerTeamApp:pollTeam' %}">Click here</a>
+                </p>
+
+
+
+
+
+
+
+
+
             </div>
 
         </div>
@@ -123,6 +135,7 @@
             $("#caTab").parent().removeClass('activeLi');
             $("#profTab").parent().removeClass('activeLi');
             $("#teamTab").parent().removeClass('activeLi');
+            $("#pollTab").parent().removeClass('activeLi');
         });
         $("#travelTab").click(function() {
             $(this).parent().addClass('activeLi');
@@ -130,6 +143,7 @@
             $("#caTab").parent().removeClass('activeLi');
             $("#profTab").parent().removeClass('activeLi');
             $("#teamTab").parent().removeClass('activeLi');
+            $("#pollTab").parent().removeClass('activeLi');
         });
         $("#caTab").click(function() {
             $(this).parent().addClass('activeLi');
@@ -137,6 +151,7 @@
             $("#statusTab").parent().removeClass('activeLi');
             $("#profTab").parent().removeClass('activeLi');
             $("#teamTab").parent().removeClass('activeLi');
+            $("#pollTab").parent().removeClass('activeLi');
         });
         $("#profTab").click(function() {
             $(this).parent().addClass('activeLi');
@@ -144,6 +159,7 @@
             $("#statusTab").parent().removeClass('activeLi');
             $("#caTab").parent().removeClass('activeLi');
             $("#teamTab").parent().removeClass('activeLi');
+            $("#pollTab").parent().removeClass('activeLi');
         });
         $("#teamTab").click(function() {
             $(this).parent().addClass('activeLi');
@@ -151,12 +167,14 @@
             $("#statusTab").parent().removeClass('activeLi');
             $("#caTab").parent().removeClass('activeLi');
             $("#profTab").parent().removeClass('activeLi');
+            $("#pollTab").parent().removeClass('activeLi');
         });
         $("#pollTab").click(function() {
             $(this).parent().addClass('activeLi');
             $("#travelTab").parent().removeClass('activeLi');
             $("#statusTab").parent().removeClass('activeLi');
             $("#caTab").parent().removeClass('activeLi');
+            $("#teamTab").parent().removeClass('activeLi');
             $("#profTab").parent().removeClass('activeLi');
         });
     });

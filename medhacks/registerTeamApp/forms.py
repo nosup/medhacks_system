@@ -1,5 +1,5 @@
 from django import forms
-from .models import RTApp
+from .models import RTApp, PollApp
 from django.forms.widgets import SelectDateWidget
 from django.core.exceptions import ValidationError
 from django.conf import settings
@@ -30,3 +30,19 @@ class SelectTeamForm(forms.ModelForm):
         fields = ('team_name',
         )
         model = RTApp
+
+class VotePollForm(forms.ModelForm):
+
+    #This is a copy of CHOICES_TEAMS
+    SAMPLE_CHOICES = (
+        ('-', 'None'),
+        ('One', 'One'),
+        ('Two', 'Two'),
+        ('Three', 'Three'),
+    )
+    choice_field = forms.MultipleChoiceField(choices=SAMPLE_CHOICES, widget=forms.CheckboxSelectMultiple)
+
+    class Meta:
+        fields = ('choice_field',
+        )
+        model = PollApp

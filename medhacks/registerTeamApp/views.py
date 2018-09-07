@@ -1,8 +1,8 @@
 from django.views.generic import TemplateView
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
-from .models import RTApp
-from .forms import SelectTeamForm, CreateTeamRegisterForm
+from .models import RTApp, PollApp
+from .forms import SelectTeamForm, CreateTeamRegisterForm, VotePollForm
 from accounts.models import UserProfile
 #
 class RegisterTeamView(TemplateView):
@@ -48,4 +48,28 @@ class JoinTeamView(TemplateView):
             form.save()
             form2.save()
             return render(request, 'registerTeamApp/registeredTeamSuccess.html')
+        return render(request, self.template_name, {'form': form})
+
+
+class PollTeamView(TemplateView):
+    template_name = 'registerTeamApp/votePollTeam.html'
+
+    def get(self, request):
+        form = VotePollForm
+
+        votes = PollApp.objects.filter(user=request.user)[:1]
+
+        if votes.count() > 0:
+            return render(request, self.template_name, {'form': None})
+
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = VotePollForm(request.POST, request.FILES)
+        if form.is_valid():
+            choice_field = form.cleaned_data['choice_field']
+
+            form.save()
+            #return render(request, 'registerTeamApp/registeredTeamSucess.html')
+            return render(request, 'home/applied.html')
         return render(request, self.template_name, {'form': form})

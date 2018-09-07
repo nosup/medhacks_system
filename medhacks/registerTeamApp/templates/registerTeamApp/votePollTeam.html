@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+<div>
+   <div class=card-body style="width: 90vw; margin-left: 5vw;">
+       <h1>Vote for your favorite teams!</h1>
+       <div style="height: 25px"></div>
+
+       <form action={% url 'registerTeamApp:pollTeam' %} method="post" enctype="multipart/form-data">
+           {% csrf_token %} {{form|crispy}} {% if form.errors %} {% for field in form %} {% for error in field.errors %}
+           <div class="alert alert-danger">
+               <strong>{{ error|escape }}</strong>
+           </div>
+           {% endfor %} {% endfor %} {% for error in form.non_field_errors %}
+           <div class="alert alert-danger">
+               <strong>{{ error|escape }}</strong>
+           </div>
+           {% endfor %} {% endif %}
+
+           <p>{{ form.non_field_errors }}</p>
+           <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+           <p>
+               {{ form.docfile.errors }} {{ form.docfile }}
+           </p>
+
+
+           <input class="applyButton" type="submit" value="Submit" />
+       </form>
+   </div>
+
+</div>
+{% endblock %}
