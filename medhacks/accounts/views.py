@@ -12,24 +12,25 @@ from django.template.loader import render_to_string
 from django.views.generic import TemplateView
 from .forms import ConfirmAcceptanceForm
 from .models import UserProfile
+from registerTeamApp.forms import VotePollForm
 
 def home(request):
     posts = Application.objects.filter(email=request.user.email)[:1]
     args = {'apps': posts}
-    return render(request, 'home/home.html', args)
+    return render(request, 'PollApp/votePollTeam.html', args)
 
-# def register(request):
-#     form = RegistrationForm(request.POST or None)
-#     if request.method == 'POST':
-#         if form.is_valid():
-#             user = form.save()
-#             sender = settings.DEFAULT_FROM_EMAIL
-#             recipient = [form.cleaned_data['email']]
-#             subject = 'MedHacks Account'
-#             content = render_to_string('accounts/account_created_email.html', {'user':user})
-#             send_mail(subject,content,sender,recipient,fail_silently=False)
-#             return redirect(reverse('home:home'))
-#     return render(request, 'accounts/reg_form.html', {'form': form})
+def register(request):
+    form = RegistrationForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            user = form.save()
+            sender = settings.DEFAULT_FROM_EMAIL
+            recipient = [form.cleaned_data['email']]
+            subject = 'MedHacks Account'
+            content = render_to_string('accounts/account_created_email.html', {'user':user})
+            # send_mail(subject,content,sender,recipient,fail_silently=False)
+            return render(request, 'registerTeamApp/votePollTeam.html', {'form': VotePollForm})
+    return render(request, 'accounts/reg_form.html', {'form': form})
 
 def no_register(request):
     return render(request, 'accounts/no_register.html')
