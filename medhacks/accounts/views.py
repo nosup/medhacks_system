@@ -18,18 +18,21 @@ def home(request):
     args = {'apps': posts}
     return render(request, 'home/home.html', args)
 
-def register(request):
-    form = RegistrationForm(request.POST or None)
-    if request.method == 'POST':
-        if form.is_valid():
-            user = form.save()
-            sender = settings.DEFAULT_FROM_EMAIL
-            recipient = [form.cleaned_data['email']]
-            subject = 'MedHacks Account'
-            content = render_to_string('accounts/account_created_email.html', {'user':user})
-            send_mail(subject,content,sender,recipient,fail_silently=False)
-            return redirect(reverse('home:home'))
-    return render(request, 'accounts/reg_form.html', {'form': form})
+# def register(request):
+#     form = RegistrationForm(request.POST or None)
+#     if request.method == 'POST':
+#         if form.is_valid():
+#             user = form.save()
+#             sender = settings.DEFAULT_FROM_EMAIL
+#             recipient = [form.cleaned_data['email']]
+#             subject = 'MedHacks Account'
+#             content = render_to_string('accounts/account_created_email.html', {'user':user})
+#             send_mail(subject,content,sender,recipient,fail_silently=False)
+#             return redirect(reverse('home:home'))
+#     return render(request, 'accounts/reg_form.html', {'form': form})
+
+def no_register(request):
+    return render(request, 'accounts/no_register.html')
 
 def change_password(request):
     if request.method == 'POST':
