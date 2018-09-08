@@ -19,7 +19,7 @@ class RTApp(models.Model):
     'Glove On','Stimtooth','Scribr','Uprising','E.P.I.C','Klear','JERS','Parachi','Spaghetti','TEAM-NAME?',
     'Groceries','Melanotix','Scarlet Screw','5 Timmies','Medplex','Fugal','TBD','Just Pick Something','MedCircle','KALE','BaLITmore',
     'WikiMed','Scribbz','Dynamic Duo', 'My.Doctor', 'Eeck', 'Mani$', 'The Sunshine', 'Stay Hydrated', 'Bouve', 'SymptoKey', 'Roomies',
-    'No', 'Super Smash Brothers', 'Safe Seed', 'Team of 0th Power', 'Uplift']
+    'No', 'Super Smash Brothers', 'Safe Seed', 'Team of 0th Power', 'Uplift', 'Texting Patients', 'M Health']
     teams.sort()
     CHOICES_TEAMS = list(zip(teams, teams))
 
