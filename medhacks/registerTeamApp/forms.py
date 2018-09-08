@@ -30,7 +30,8 @@ class SelectTeamForm(forms.ModelForm):
     'HealthOverall','Spiro','Purple South African Flying Chinchillas','The Rices',
     'The pirates','HTNhelp','E-connect','Neurons','Midnight Mavericks','Bandwidth','Full Source',
     'Glove On','Stimtooth','Scribr','Uprising','E.P.I.C','Klear','JERS','Parachi','Spaghetti','TEAM-NAME?',
-    'Groceries','Melanotix','Scarlet Screw','5 Timmies','Medplex','Fugal']
+    'Groceries','Melanotix','Scarlet Screw','5 Timmies','Medplex','Fugal','TBD','Just Pick Something','MedCircle','KALE']
+    teams.sort()
     CHOICES_TEAMS = list(zip(teams, teams))
 
     team_name = forms.ChoiceField(label='Select a team from the drop-down to join', choices=CHOICES_TEAMS)

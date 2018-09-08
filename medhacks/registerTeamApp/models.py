@@ -17,7 +17,8 @@ class RTApp(models.Model):
     'HealthOverall','Spiro','Purple South African Flying Chinchillas','The Rices',
     'The pirates','HTNhelp','E-connect','Neurons','Midnight Mavericks','Bandwidth','Full Source',
     'Glove On','Stimtooth','Scribr','Uprising','E.P.I.C','Klear','JERS','Parachi','Spaghetti','TEAM-NAME?',
-    'Groceries','Melanotix','Scarlet Screw','5 Timmies','Medplex','Fugal']
+    'Groceries','Melanotix','Scarlet Screw','5 Timmies','Medplex','Fugal','TBD','Just Pick Something','MedCircle','KALE']
+    teams.sort()
     CHOICES_TEAMS = list(zip(teams, teams))
 
     team_name = models.CharField(max_length=100, default='-', blank=True, null=True, choices=CHOICES_TEAMS)
