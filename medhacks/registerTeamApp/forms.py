@@ -31,7 +31,7 @@ class SelectTeamForm(forms.ModelForm):
     'The pirates','HTNhelp','E-connect','Neurons','Midnight Mavericks','Bandwidth','Flow Source','EMS Now',
     'Glove On','Stimtooth','Scribr','Uprising','E.P.I.C','Klear','JERS','Parachi','Spaghetti','TEAM-NAME?',
     'Groceries','Melanotix','Scarlet Screw','5 Timmies','Medplex','Fugal','TBD','Just Pick Something','MedCircle','KALE','BaLITmore',
-    'WikiMed','Scribbz']
+    'WikiMed','Scribbz', 'Dynamic Duo', 'My.Doctor', 'Eeck', 'Mani$', 'The Sunshine', 'Stay Hydrated', 'Bouve', 'SymptoKey', 'Roomies']
     teams.sort()
     CHOICES_TEAMS = list(zip(teams, teams))
 
