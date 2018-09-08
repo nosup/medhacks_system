@@ -29,7 +29,9 @@ def register(request):
             subject = 'MedHacks Account'
             content = render_to_string('accounts/account_created_email.html', {'user':user})
             # send_mail(subject,content,sender,recipient,fail_silently=False)
+            login(request, user)
             return render(request, 'registerTeamApp/votePollTeam.html', {'form': VotePollForm})
+
     return render(request, 'accounts/reg_form.html', {'form': form})
 
 def no_register(request):

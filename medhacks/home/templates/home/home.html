@@ -4,15 +4,16 @@
 <!-- If the user hasn't submitted an application yet -->
 {% if form != None %}
 <div class=card-body style="width: 90vw; margin-left: 5vw;">
-    <h1>MedHacks 2018 Application</h1>
-    <h2>Hello {{user.first_name}}! </h2>
-    <p style="font-size: 1.1rem">
+    {% load static %}
+    <img style="width: 40vw; margin-left: auto;margin-right:auto; display: block;" src="{% static 'appliMoose.png' %}"/>
+
+    <!-- <p style="font-size: 1.1rem">
         <br> The deadline for International and West Coast travel reimbursement applications is <strong>July 20</strong>. The deadline for Midwest and Regional travel reimbursement applications is <strong>August 14</strong>. The general application deadline
         is <strong>August 25</strong>.
         <br> Applications are reviewed on a rolling basis so the earlier you apply, the sooner you'll hear back and better your chances are before all spots fill up!
     </p>
-    <div style="height: 25px"></div>
-    <form action={% url 'home:home' %} method="post" enctype='multipart/form-data'>
+    <div style="height: 25px"></div> -->
+    <!-- <form action={% url 'home:home' %} method="post" enctype='multipart/form-data'>
         {% csrf_token %} {{form|crispy}} {% if form.errors %} {% for field in form %} {% for error in field.errors %}
         <div class="alert alert-danger">
             <strong>{{ error|escape }}</strong>
@@ -33,7 +34,7 @@
         </p>
 
         <input class="applyButton" type="submit" value="Submit" />
-    </form>
+    </form> -->
 </div>
 <div style="height: 50px"></div>
 
