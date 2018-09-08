@@ -28,9 +28,10 @@ class SelectTeamForm(forms.ModelForm):
     'Humpty Dumpties ','Mira','Deacons','AI Socrates ','NutriDoc','TackTile','UR IN LIFE','Tumor Detectives ',
     'Blank','Scrubs','Rehabilita ','No More Headaches','ICU On The Map','Team Johnny','Byte Me','iBioMed',
     'HealthOverall','Spiro','Purple South African Flying Chinchillas','The Rices',
-    'The pirates','HTNhelp','E-connect','Neurons','Midnight Mavericks','Bandwidth','Full Source',
+    'The pirates','HTNhelp','E-connect','Neurons','Midnight Mavericks','Bandwidth','Flow Source',
     'Glove On','Stimtooth','Scribr','Uprising','E.P.I.C','Klear','JERS','Parachi','Spaghetti','TEAM-NAME?',
-    'Groceries','Melanotix','Scarlet Screw','5 Timmies','Medplex','Fugal','TBD','Just Pick Something','MedCircle','KALE']
+    'Groceries','Melanotix','Scarlet Screw','5 Timmies','Medplex','Fugal','TBD','Just Pick Something','MedCircle','KALE','BaLITmore',
+    'WikiMed','Scribbz']
     teams.sort()
     CHOICES_TEAMS = list(zip(teams, teams))
 
