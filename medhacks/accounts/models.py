@@ -53,6 +53,7 @@ class UserProfile(models.Model):
     confirmation = models.CharField(max_length=1, choices=CHOICES_YN, default='-')
     team_name = models.CharField(max_length=100, default='-')
     registered = models.CharField(max_length=50, choices=CHOICES_REGISTERED, default='Not registered')
+    voted = models.IntegerField(default=0)
     # image = models.ImageField(upload_to='profile_image', blank=True)
 
     # london = UserProfileManager()
