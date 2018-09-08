@@ -41,8 +41,18 @@ class JoinTeamView(TemplateView):
 
             team_name = form.cleaned_data['team_name']
 
+
+            if not RTApp.objects.filter(team_name=team_name).exists():
+                users = request.user # Add the M2M relationship
+                form.save()
+                return render(request, 'registerTeamApp/registeredTeamSuccess.html')
+
+
             team = RTApp.objects.get(team_name=team_name)
             form2 = SelectTeamForm(request.POST, request.FILES, instance=team)
+
+            if team.users.count() >= 5:
+                return render(request, 'registerTeamApp/errorform.html')
             team.users.add(request.user) # Add the M2M relationship
 
             form.save()
