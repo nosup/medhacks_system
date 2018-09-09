@@ -5,21 +5,16 @@ from datetime import datetime
 
 # Create your models here.
 class RTApp(models.Model):
-    teams = ['Core 4','IDrops','The Frazzled Five','ZZG','Its Like NLP... But For Team Names',
-    'Snowballerz','Doctoc','Five Factorial','Will code for food','Beans in a Can','We Hax','Aviral',
-    'QStroke','Dr.Gram','The Fellas','MedShield','Something Too Edgy','The Fellas 2.0','JK','InfoMed',
-    'Sick Day Forecast','Safety fit','Davdon','Charcom','JEL','Cas9','Big Brains','BeMetal','QuickFix`',
-    'Noti-Fall','LAMA TECH','Dkim','Team Champs','Lucky Penny','Team Slogs','Physia','Team Awesome Sauce',
-    'Prometheus','iBioBroskis','High five','Genius Bar','Sandwich','Midwest is Best','Crypto Card','S(Team)D',
-    'Citizen Scientist','Yellow Yackets','OTC','Michigan','UniOne','AYA','Qcumber','Featherfall ','Team Number 1',
-    'Humpty Dumpties ','Mira','Deacons','AI Socrates ','NutriDoc','TackTile','UR IN LIFE','Tumor Detectives ',
-    'Blank','Scrubs','Rehabilita ','No More Headaches','ICU On The Map','Team Johnny','Byte Me','iBioMed',
-    'HealthOverall','Spiro','Purple South African Flying Chinchillas','The Rices',
-    'The pirates','HTNhelp','E-connect','Neurons','Midnight Mavericks','Bandwidth','Flow Source','EMS Now',
-    'Glove On','Stimtooth','Scribr','Uprising','E.P.I.C','Klear','JERS','Parachi','Spaghetti','TEAM-NAME?',
-    'Groceries','Melanotix','Scarlet Screw','5 Timmies','Medplex','Fugal','TBD','Just Pick Something','MedCircle','KALE','BaLITmore',
-    'WikiMed','Scribbz','Dynamic Duo', 'My.Doctor', 'Eeck', 'Mani$', 'The Sunshine', 'Stay Hydrated', 'Bouve', 'SymptoKey', 'Roomies',
-    'No', 'Super Smash Brothers', 'Safe Seed', 'Team of 0th Power', 'Uplift', 'Texting Patients', 'M Health', 'Team Patrick']
+    teams = ['A. I. Socrates for Orthopaedic Education', 'Ambient', 'AMY, the medical assistant', 'AquaMap', 'Arthritis Aid', 'Bandwidth',
+    'Bringing Queer Data to the Marketplace', 'CardiaVox', 'CARE', 'CareFall', 'Caring for Caregivers', 'Child Champs', 'Citizen Scientist',
+    'CloseCare', 'Concussion detection', 'Crypto Nexus', 'DisAppter', 'Doctoc', 'Donor Book', 'Dr. Gram', 'EEG Simulator', 'Food Alert',
+    'FoodPrint', 'FoodShare.me', 'Fugal', 'GloveON!', 'headER', 'Health E-Connect', 'HealthHive', 'iFitness', 'InfoMed', 'InforMED',
+    'internal journal', 'iTake', 'LeviChair', 'LBB', 'Lula', 'Lumisoap', 'MakeTheLeap', 'MeChat', 'EZ-EMT', 'zzg', 'Medplex', 'Meds2You',
+    'Melanotix', 'Meno BOT', 'Mental Moments', 'Mind Watch', 'MinuteMed', 'MIRA', 'MirageMap', 'MIRROR App', 'MoCli', 'my.Doctor',
+    'MyHealth Allies', 'Nearby Nutrition', 'Noti-Fall', 'nurture', 'NutriDoc', 'NutriLyfe', 'O.D. Guard', 'Patrick_I/O', 'Physia',
+    'Piece of Mind', 'PillPix', 'PlacePredicts!', 'Pocket Pills', 'Pronto Perio Probe', 'Pure Palm', 'QR Cross', 'QStroke', 'R(eye)covery',
+    'Rehabilita', 'SafelyFit', 'Scribr', 'Share The Love', 'Sick Day Forecast', 'SlowDown!', 'Stay Hydrated', 'Strive', 'SymptoKey', 'TackTile',
+    'Texting Patients', 'The Gina Gown', 'The Prometheus Network', 'Translational Medicine:sisu', 'TriTag', 'Uplift', 'ZipFood']
     teams.sort()
     CHOICES_TEAMS = list(zip(teams, teams))
 
