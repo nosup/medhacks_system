@@ -25,6 +25,7 @@ class RTApp(models.Model):
 
     team_name = models.CharField(max_length=100, default='-', blank=True, null=True, choices=CHOICES_TEAMS)
     users = models.ManyToManyField(User)
+    votes = models.IntegerField(default=1, blank=True, null=True)
     def get_users(self):
         users = []
         users = User.objects.filter(userprofile__team_name=self.team_name)

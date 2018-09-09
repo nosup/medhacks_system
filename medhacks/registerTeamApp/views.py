@@ -66,20 +66,22 @@ class PollTeamView(TemplateView):
 
     def get(self, request):
         form = VotePollForm
-
-        votes = PollApp.objects.filter(user=request.user)[:1]
-
-        if votes.count() > 0:
-            return render(request, self.template_name, {'form': None})
-
         return render(request, self.template_name, {'form': form})
 
     def post(self, request):
+        user = get_object_or_404(UserProfile, user=request.user)
         form = VotePollForm(request.POST, request.FILES)
         if form.is_valid():
             choice_field = form.cleaned_data['choice_field']
-
-            form.save()
-            #return render(request, 'registerTeamApp/registeredTeamSucess.html')
-            return render(request, 'home/applied.html')
+            for choice in choice_field:
+                if RTApp.objects.filter(team_name=choice).count() > 0:
+                    team = RTApp.objects.filter(team_name=choice)[0]
+                    team.votes += 1
+                else:
+                    team = RTApp(team_name=choice, votes = 1)
+                    team.team_name = choice
+                team.save()
+            user.voted = 1
+            user.save()
+            return render(request, 'registerTeamApp/voted.html')
         return render(request, self.template_name, {'form': form})
