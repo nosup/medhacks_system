@@ -5,6 +5,9 @@
 <div>
    <div class=card-body style="width: 90vw; margin-left: 5vw;">
        <h1>Vote for your favorite teams!</h1>
+       <p>
+          Vote for as many teams as you like, but you can only fill out this form once!
+       </p>
        <div style="height: 25px"></div>
 
        <form action={% url 'registerTeamApp:pollTeam' %} method="post" enctype="multipart/form-data">
