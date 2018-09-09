@@ -54,9 +54,9 @@
             <li><a id="caTab" data-toggle="tab" href="#campus_ambassador">Campus Ambassador</a></li>
             {% endif %}
             <li><a id="profTab" data-toggle="tab" href="#profile">Profile</a></li>
-            {% if user.userprofile.team_name == '-' %}
+            <!-- {% if user.userprofile.team_name == '-' %}
             <li><a id="teamTab" data-toggle="tab" href="#registerTeam"> Join Team </a> </li>
-            {% endif %}
+            {% endif %} -->
 
             <!-- <li><a id="pollTab" data-toggle="tab" href="#teamPoll"> Team Poll </a> </li> -->
 
@@ -94,14 +94,14 @@
                 </p>
             </div>
 
-            {% if user.userprofile.team_name == '-' %}
+            <!-- {% if user.userprofile.team_name == '-' %}
             <div id="registerTeam" class="tab-pane">
                 <h3> Join a team</h3>
                 <p>
                     <br /> If you wish to join a team: <a href="{% url 'registerTeamApp:joinTeam' %}">Click here</a>
                 </p>
             </div>
-            {% endif %}
+            {% endif %} -->
 
             <div id="teamPoll" class="tab-pane">
                 <h3>Voting</h3>
