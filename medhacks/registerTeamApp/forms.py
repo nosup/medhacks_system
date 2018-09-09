@@ -39,16 +39,16 @@ class SelectTeamForm(forms.ModelForm):
         model = RTApp
 
 class VotePollForm(forms.ModelForm):
-    teams = [' A. I. Socrates for Orthopaedic Education', ' Ambient', ' AMY, the medical assistant', ' AquaMap', ' Arthritis Aid', ' Bandwidth',
-    ' Bringing Queer Data to the Marketplace', ' CardiaVox', ' CARE', ' CareFall', ' Caring for Caregivers', ' Child Champs', ' Citizen Scientist',
-    ' CloseCare', ' Concussion detection', ' Crypto Nexus', ' DisAppter', ' Doctoc', ' Donor Book', ' Dr. Gram', ' EEG Simulator', ' Food Alert',
-    ' FoodPrint', ' FoodShare.me', ' Fugal', ' GloveON!', ' headER', ' Health E-Connect', ' HealthHive', ' iFitness', ' InfoMed', ' InforMED',
-    ' internal journal', ' iTake', ' LeviChair', 'LBB', ' Lula', ' Lumisoap', ' MakeTheLeap', ' MeChat', ' EZ-EMT', ' zzg', ' Medplex', ' Meds2You',
-    ' Melanotix', ' Meno BOT', ' Mental Moments', ' Mind Watch', ' MinuteMed', ' MIRA', ' MirageMap', ' MIRROR App', ' MoCli', ' my.Doctor',
-    ' MyHealth Allies', ' Nearby Nutrition', ' Noti-Fall', ' nurture', ' NutriDoc', ' NutriLyfe', ' O.D. Guard', ' Patrick_I/O', ' Physia',
-    ' Piece of Mind', ' PillPix', ' PlacePredicts!', ' Pocket Pills', ' Pronto Perio Probe', ' Pure Palm', ' QR Cross', ' QStroke', ' R(eye)covery',
-    ' Rehabilita', ' SafelyFit', ' Scribr', ' Share The Love', ' Sick Day Forecast', ' SlowDown!', ' Stay Hydrated', ' Strive', ' SymptoKey', ' TackTile',
-    ' Texting Patients', ' The Gina Gown', ' The Prometheus Network', ' Translational Medicine:sisu', ' TriTag', ' Uplift', ' ZipFood']
+    teams = ['A. I. Socrates for Orthopaedic Education', 'Ambient', 'AMY, the medical assistant', 'AquaMap', 'Arthritis Aid', 'Bandwidth',
+    'Bringing Queer Data to the Marketplace', 'CardiaVox', 'CARE', 'CareFall', 'Caring for Caregivers', 'Child Champs', 'Citizen Scientist',
+    'CloseCare', 'Concussion detection', 'Crypto Nexus', 'DisAppter', 'Doctoc', 'Donor Book', 'Dr. Gram', 'EEG Simulator', 'Food Alert',
+    'FoodPrint', 'FoodShare.me', 'Fugal', 'GloveON!', 'headER', 'Health E-Connect', 'HealthHive', 'iFitness', 'InfoMed', 'InforMED',
+    'internal journal', 'iTake', 'LeviChair', 'LBB', 'Lula', 'Lumisoap', 'MakeTheLeap', 'MeChat', 'EZ-EMT', 'zzg', 'Medplex', 'Meds2You',
+    'Melanotix', 'Meno BOT', 'Mental Moments', 'Mind Watch', 'MinuteMed', 'MIRA', 'MirageMap', 'MIRROR App', 'MoCli', 'my.Doctor',
+    'MyHealth Allies', 'Nearby Nutrition', 'Noti-Fall', 'nurture', 'NutriDoc', 'NutriLyfe', 'O.D. Guard', 'Patrick_I/O', 'Physia',
+    'Piece of Mind', 'PillPix', 'PlacePredicts!', 'Pocket Pills', 'Pronto Perio Probe', 'Pure Palm', 'QR Cross', 'QStroke', 'R(eye)covery',
+    'Rehabilita', 'SafelyFit', 'Scribr', 'Share The Love', 'Sick Day Forecast', 'SlowDown!', 'Stay Hydrated', 'Strive', 'SymptoKey', 'TackTile',
+    'Texting Patients', 'The Gina Gown', 'The Prometheus Network', 'Translational Medicine:sisu', 'TriTag', 'Uplift', 'ZipFood']
     teams.sort()
     CHOICES_TEAMS = list(zip(teams, teams))
 
